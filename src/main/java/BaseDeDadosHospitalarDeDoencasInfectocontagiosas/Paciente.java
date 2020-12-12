@@ -15,7 +15,7 @@ public class Paciente {
     
     private static int contarPacientes;
     
-    //Construtor
+    //ConstrutorD
     public Paciente(int anonascimento){
         this.anonascimento = anonascimento;
         if((this.id).equals("")) {
