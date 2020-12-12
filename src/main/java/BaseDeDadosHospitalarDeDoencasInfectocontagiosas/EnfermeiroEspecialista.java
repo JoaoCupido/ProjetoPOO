@@ -9,7 +9,7 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
  *
  * @author jcupi
  */
-public class EnfermeiroEspecialista {
+public class EnfermeiroEspecialista extends Enfermeiro{
     //variaveis de instancia
     //construtor
     public EnfermeiroEspecialista()

@@ -42,5 +42,12 @@ public class Paciente {
         this.id=id;
     }
     //toString
+    @Override
+    public String toString()
+    {
+        String info;
+        info = "" ;
+        return info;
+    }
     //equals
 }
