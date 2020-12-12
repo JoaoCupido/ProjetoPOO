@@ -12,10 +12,10 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
 public class Medico {
     //variaveis de instancia
     //construtor
-    //metodos
     public Medico()
     {
     }
+    //metodos
     //getters e setters
     //toString
     //equals
