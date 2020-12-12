@@ -23,4 +23,24 @@ public class Paciente {
             id = "ID" + contarPacientes;
         }
     }
+    //metodos
+    //getters e setters
+    public int getAnoNascimento()
+    {
+        return anonascimento;
+    }
+    public void setAnoNascimento(int anonascimento)
+    {
+        this.anonascimento=anonascimento;
+    }
+    public String getId()
+    {
+        return id;
+    }
+    public void setId(String id)
+    {
+        this.id=id;
+    }
+    //toString
+    //equals
 }
