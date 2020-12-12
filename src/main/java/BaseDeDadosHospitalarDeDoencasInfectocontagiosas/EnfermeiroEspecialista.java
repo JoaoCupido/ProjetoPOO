@@ -11,6 +11,9 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
  */
 public class EnfermeiroEspecialista extends Enfermeiro{
     //variaveis de instancia
+    private String nome;
+    private int anosCarreira;
+    
     //construtor
     public EnfermeiroEspecialista()
     {

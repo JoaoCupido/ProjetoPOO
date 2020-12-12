@@ -12,6 +12,7 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
 public class Paciente {
     private int anonascimento;
     private String id;
+    private boolean Covid, HIV, leucocitosBaixos;
     
     private static int contarPacientes;
     
