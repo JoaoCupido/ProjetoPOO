@@ -9,20 +9,10 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
  *
  * @author Utilizador
  */
-public class Administracao {
+public class MenuAdministracao {
     //variaveis de instancia
-    
     //construtor
-    public Administracao()
-    {
-        
-    }
-    
     //metodos
-    public static void menuAdministracao()
-    {
-        
-    }
     
     public void CriarMedico()
     {

@@ -9,7 +9,7 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
  *
  * @author Utilizador
  */
-public class Medico {
+public class Medico extends Pessoa{
     //variaveis de instancia
     //construtor
     public Medico()

@@ -9,20 +9,14 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
  *
  * @author jcupi
  */
-public class Paciente {
+public class Paciente extends Pessoa{
     private int anonascimento;
-    private String id;
-    private boolean Covid, HIV, leucocitosBaixos;
-    
-    private static int contarPacientes;
+    private boolean covid, hiv, ebola;
     
     //ConstrutorD
     public Paciente(int anonascimento){
+        super();
         this.anonascimento = anonascimento;
-        if((this.id).equals("")) {
-            contarPacientes++;
-            id = "ID" + contarPacientes;
-        }
     }
     //metodos
     //getters e setters
@@ -33,14 +27,6 @@ public class Paciente {
     public void setAnoNascimento(int anonascimento)
     {
         this.anonascimento=anonascimento;
-    }
-    public String getId()
-    {
-        return id;
-    }
-    public void setId(String id)
-    {
-        this.id=id;
     }
     //toString
     @Override
