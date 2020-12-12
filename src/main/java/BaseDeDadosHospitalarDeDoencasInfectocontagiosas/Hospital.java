@@ -11,9 +11,13 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
  */
 public class Hospital {
     //variaveis de instancia
+    private int numObitos,casosPositivos, totalPacientesTestados;
+    private double racioPacientesPositivos;
+    
     //construtor
     public Hospital()
     {
+        
     }
     //metodos
     //getters e setters
