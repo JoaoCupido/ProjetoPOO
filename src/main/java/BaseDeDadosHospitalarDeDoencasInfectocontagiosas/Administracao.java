@@ -17,6 +17,20 @@ public class Administracao {
         
     }
     //metodos
+    public static void menuAdministracao()
+    {
+        
+    }
+    
+    public void CriarMedico()
+    {
+        
+    }
+    
+    public void CriarEnfermeiroEspecialista()
+    {
+        
+    }
     //getters e setters
     //toString
     //equals

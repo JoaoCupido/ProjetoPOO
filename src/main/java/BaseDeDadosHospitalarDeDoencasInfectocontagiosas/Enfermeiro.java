@@ -16,7 +16,33 @@ public class Enfermeiro {
     {
         
     }
+    
     //metodos
+    public static void menuEnfermeiro()
+    {
+        
+    }
+    
+    public void ListarEnfermeiros()
+    {
+        
+    }
+    
+    public void ListarPacientesCurativo()
+    {
+        
+    }
+    
+    public void AtribuirEnfermeiroEspecialista()
+    {
+        
+    }
+    
+    public void AplicarCurativo()
+    {
+        
+    }
+    
     //getters e setters
     //toString
     //equals

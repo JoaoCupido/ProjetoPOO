@@ -16,6 +16,31 @@ public class Medico {
     {
     }
     //metodos
+    public static void menuMedico()
+    {
+        
+    }
+    
+    public void ListarPacientesEspera()
+    {
+    }
+    
+    public void ListarPacientesAlta()
+    {
+    }
+    
+    public void DiagnosticoPaciente(Object paciente)
+    {
+    }
+    
+    public void AltaHospitalar()
+    {
+    }
+    
+    public void RequerimentoAuxiliares()
+    {
+    }
+    
     //getters e setters
     //toString
     //equals
