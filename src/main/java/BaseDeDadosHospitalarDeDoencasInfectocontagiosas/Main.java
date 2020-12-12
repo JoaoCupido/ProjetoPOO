@@ -22,7 +22,7 @@ public class Main {
         opcao = escolha.nextInt();
         switch(opcao)
         {
-            case 1 -> Medico.menuMedico();//implementar o menu na class medico e depois colocar aqui!!!!;
+            case 1 -> System.out.println("opcao2"+"\n") ;//implementar o menu na class medico e depois colocar aqui!!!!;
             case 2 -> System.out.println("opcao2"+"\n");//implementar o menu na class enfermeiro e depois colocar aqui!!!!;
             case 3 -> System.out.println("opcao3"+"\n");//implementar o menu na class administrador e depois colocar aqui!!!!;
         }

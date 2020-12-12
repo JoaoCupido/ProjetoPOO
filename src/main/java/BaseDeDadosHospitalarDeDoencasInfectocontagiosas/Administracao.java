@@ -11,11 +11,13 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
  */
 public class Administracao {
     //variaveis de instancia
+    
     //construtor
     public Administracao()
     {
         
     }
+    
     //metodos
     public static void menuAdministracao()
     {
@@ -28,6 +30,56 @@ public class Administracao {
     }
     
     public void CriarEnfermeiroEspecialista()
+    {
+        
+    }
+    
+    public void CriarNovoPaciente()
+    {
+        
+    }
+    
+    public void PromoverEnfermeiroChefe()
+    {
+        
+    }
+    
+    public void AumentarAnosCarreira()
+    {
+        
+    }
+    
+    public void ListarEnfermeiros()
+    {
+        
+    }
+    
+    public void ListarMedicos()
+    {
+        
+    }
+    
+    public void PedidosEnfermeirosAuxiliares()
+    {
+        
+    }
+    
+    public void PacientesEsperanoHospital()
+    {
+        
+    }
+    
+    public void AtribuirPedidosEnfAuxTrituradora()
+    {
+        
+    }
+    
+    public void OutBreak()
+    {
+        
+    }
+    
+    public void RelatorioHospitalar()
     {
         
     }

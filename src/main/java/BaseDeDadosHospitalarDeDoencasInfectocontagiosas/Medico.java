@@ -14,21 +14,33 @@ public class Medico {
     //construtor
     public Medico()
     {
+        
     }
+    
     //metodos
     public static void menuMedico()
     {
         
     }
     
+    
+    /*
+    Lista de Pacientes em espera!
+    */
     public void ListarPacientesEspera()
     {
     }
     
+    /*
+    Lista de Pacientes que aguardam alta por parte do médico, apos o enfermeiro aplicar o curativo!
+    */
     public void ListarPacientesAlta()
     {
     }
     
+    /*
+    Paciente que deu entrada no hospital. Sera feito um diagnostico caso de positivo de patologia sera colocado na agenda dos enfermeiros alocados ao medico
+    */
     public void DiagnosticoPaciente(Object paciente)
     {
     }
