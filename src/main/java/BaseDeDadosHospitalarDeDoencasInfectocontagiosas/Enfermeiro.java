@@ -12,6 +12,10 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
 public class Enfermeiro {
     //variaveis de instancia
     //construtor
+    public Enfermeiro()
+    {
+        
+    }
     //metodos
     //getters e setters
     //toString

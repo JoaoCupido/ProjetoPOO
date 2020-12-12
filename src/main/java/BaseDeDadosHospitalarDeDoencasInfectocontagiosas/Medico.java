@@ -7,16 +7,15 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
 
 /**
  *
- * @author jcupi
+ * @author Utilizador
  */
-public class EnfermeiroAuxiliar {
+public class Medico {
     //variaveis de instancia
     //construtor
-    public EnfermeiroAuxiliar()
-    {
-        
-    }
     //metodos
+    public Medico()
+    {
+    }
     //getters e setters
     //toString
     //equals

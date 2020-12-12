@@ -12,6 +12,9 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
 public class Hospital {
     //variaveis de instancia
     //construtor
+    public Hospital()
+    {
+    }
     //metodos
     //getters e setters
     //toString
