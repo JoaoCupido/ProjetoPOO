@@ -14,63 +14,67 @@ public class MenuAdministracao {
     //construtor
     //metodos
     
-    public void CriarMedico()
+    public void criarMedico()
     {
         
     }
     
-    public void CriarEnfermeiroEspecialista()
+    public void criarEnfermeiroEspecialista()
     {
         
     }
     
-    public void CriarNovoPaciente()
+    public void criarNovoPaciente()
     {
         
     }
     
-    public void PromoverEnfermeiroChefe()
+    public void promoverEnfermeiroChefe()
     {
         
     }
     
-    public void AumentarAnosCarreira()
+    public void aumentarAnosCarreira()
     {
         
     }
     
-    public void ListarEnfermeiros()
+    public void listarEnfermeiros()
     {
         
     }
     
-    public void ListarMedicos()
+    public void listarMedicos()
     {
         
     }
     
-    public void PedidosEnfermeirosAuxiliares()
+    public void pedidosEnfermeirosAuxiliares()
     {
         
     }
     
-    public void PacientesEsperanoHospital()
+    public void pacientesEsperanoHospital()
     {
         
     }
     
-    public void AtribuirPedidosEnfAuxTrituradora()
+    public void atribuirPedidosEnfAuxTrituradora()
     {
         
     }
     
-    public void OutBreak()
+    public void outBreak()
     {
         
     }
     
-    public void RelatorioHospitalar()
+    public void relatorioHospitalar()
     {
+        
+    }
+    
+    public void sairAplicacao(){
         
     }
     //getters e setters

@@ -7,18 +7,35 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
 
 /**
  *
- * @author Utilizador
+ * @author jcupi
  */
-public class Medico extends Pessoa{
+public class MenuEnfermeiro {
     //variaveis de instancia
     //construtor
-    public Medico()
+    //metodos
+    public void listarEnfermeiros()
     {
         
     }
     
-    //metodos
+    public void listarPacientesCurativo()
+    {
+        
+    }
     
+    public void atribuirEnfermeiroEspecialista()
+    {
+        
+    }
+    
+    public void aplicarCurativo()
+    {
+        
+    }
+    
+    public void sairAplicacao(){
+        
+    }
     //getters e setters
     //toString
     //equals
