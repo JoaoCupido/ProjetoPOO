@@ -10,5 +10,10 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
  * @author jcupi
  */
 public class EnfermeiroAuxiliar {
-    
+    //variaveis de instancia
+    //construtor
+    //metodos
+    //getters e setters
+    //toString
+    //equals
 }
