@@ -63,9 +63,16 @@ public class MenuAdministrador {
         }
     }
     
-    public void aumentarAnosCarreira()
+    public void aumentarAnosCarreira(Hospital hospital)
     {
-        
+        for(int i = 0; i < hospital.listaPessoas.size(); i++) {
+            if((hospital.listaPessoas.get(i).getClass().getName()).equals("EnfermeiroEspecialista") || (hospital.listaPessoas.get(i).getClass().getName()).equals("EnfermeiroAuxiliar") || (hospital.listaPessoas.get(i).getClass().getName()).equals("EnfermeiroChefe")){
+                Enfermeiro enfermeiro = (Enfermeiro) hospital.listaPessoas.get(i);
+                int novoanocarreira = enfermeiro.getAnosCarreira() + 1;
+                enfermeiro.setAnosCarreira(novoanocarreira);
+                hospital.listaPessoas.set(i, enfermeiro);
+            }
+        }
     }
     
     public void listarEnfermeiros()
@@ -73,9 +80,14 @@ public class MenuAdministrador {
         
     }
     
-    public void listarMedicos()
+    public void listarMedicos(Hospital hospital)
     {
-        
+        for(int i = 0; i < hospital.listaPessoas.size(); i++) {
+            if((hospital.listaPessoas.get(i).getClass().getName()).equals("Medico")){
+                Medico medico = (Medico) hospital.listaPessoas.get(i);
+                System.out.println(medico);
+            }
+        }
     }
     
     public void pedidosEnfermeirosAuxiliares()

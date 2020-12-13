@@ -21,5 +21,12 @@ public class Medico extends Pessoa{
     
     //getters e setters
     //toString
+    @Override
+    public String toString()
+    {
+        String info;
+        info = "MEDICO: " + super.getId() + "\n";
+        return info;
+    }
     //equals
 }

@@ -56,8 +56,8 @@ public class Paciente extends Pessoa{
     public String toString()
     {
         String info;
-        info = "PACIENTE: " + super.getId();
-        info += "ANO NASCIMENTO: " + anonascimento;
+        info = "PACIENTE: " + super.getId() + "\n";
+        info += "ANO NASCIMENTO: " + anonascimento + "\n";
         return info;
     }
     //equals
