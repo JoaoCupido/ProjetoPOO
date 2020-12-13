@@ -18,21 +18,82 @@ public class MenuAdministrador {
     //metodos
     
     public void menuOpcoes(Hospital hospital){
+        int opcao;
         System.out.println("***SubMenu Medico***");
         System.out.println("1) Criar Medico");
         System.out.println("2) Criar Enfermeiro-Especialista");
         System.out.println("3) Criar Enfermeiro-Auxiliar");
         System.out.println("4) Criar Novo Paciente");
         System.out.println("5) Criar Enfermeiro-Auxiliar"+"\n");
+        System.out.println("6) Aumentar anos de carreria"+"\n");
+        System.out.println("7) Listar Enfermeiros"+"\n");
+        System.out.println("8) Listar Médicos"+"\n");
+        System.out.println("9) Listar Pedidos para Enfermeiros Auxiliares"+"\n");
+        System.out.println("10) Listar Pacientes em espera no Hospital"+"\n");
+        System.out.println("11) Atirara Pedidos para Enfermeiros Auxiliares para a Trituradora"+"\n");
+        System.out.println("12) Virus Outbreak"+"\n");
+        System.out.println("13) Relatorio Hospitalar"+"\n");
+        System.out.println("14) Sair"+"\n");
         Scanner escolha = new Scanner(System.in);
         System.out.println("Digite uma opcao. Digite nenhuma das opcoes apresentadas para sair do programa: ");
         opcao = escolha.nextInt();
+
+        switch(opcao)
+            {
+                case 1:
+                    criarMedico((Hospital) hospital);
+                    break;
+                case 2:
+                    criarEnfermeiroEspecialista((Hospital) hospital);
+                    break;
+                case 3:
+                    criarEnfermeiroAuxiliar((Hospital) hospital);
+                    break;
+                case 4:
+                    criarNovoPaciente((Hospital) hospital);
+                    break;
+                case 5:
+                    promoverEnfermeiroChefe((Hospital) hospital);
+                    break;
+                case 6:
+                    aumentarAnosCarreira((Hospital) hospital);
+                    break;
+                case 7:
+                    listarEnfermeiros((Hospital) hospital);
+                    break;
+                case 8:
+                    listarMedicos((Hospital) hospital);
+                    break;
+                case 9:
+                    pedidosEnfermeirosAuxiliares();
+                    break;
+                case 10:
+                    pacientesEsperanoHospital();
+                    break;
+                case 11:
+                    atribuirPedidosEnfAuxTrituradora();
+                    break;
+                case 12:
+                    outBreak();
+                    break;
+                case 13: 
+                    relatorioHospitalar();
+                    break;
+                case 14: 
+                    sairAplicacao();
+                    break;
+ 
+                default:
+                    
+                    break;
+            }
     }
     
     public void criarMedico(Hospital hospital)
     {
         Pessoa medico = new Medico();
         hospital.listaPessoas.add(medico); //adicionar medico à lista de pessoas no hospital
+        
     }
     
     public void criarEnfermeiroEspecialista(Hospital hospital)
@@ -43,7 +104,8 @@ public class MenuAdministrador {
         nome = inserirnome.next();
         Pessoa enfermeiroespecialista = new EnfermeiroEspecialista(nome, 0);
         hospital.listaPessoas.add(enfermeiroespecialista); //adicionar enfermeiroespecialista à lista de pessoas no hospital 
-    }
+        
+}
     
     public void criarEnfermeiroAuxiliar(Hospital hospital)
     {
@@ -53,6 +115,7 @@ public class MenuAdministrador {
         nome = inserirnome.next();
         Pessoa enfermeiroauxiliar = new EnfermeiroAuxiliar(nome, 0);
         hospital.listaPessoas.add(enfermeiroauxiliar); //adicionar enfermeiroauxiliar à lista de pessoas no hospital 
+        
     }
     
     public void criarNovoPaciente(Hospital hospital)
@@ -135,7 +198,7 @@ public class MenuAdministrador {
     
     public void outBreak()
     {
-        
+       
     }
     
     public void relatorioHospitalar()
