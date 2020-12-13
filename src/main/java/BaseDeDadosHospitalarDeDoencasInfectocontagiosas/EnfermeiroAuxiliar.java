@@ -12,9 +12,9 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
 public class EnfermeiroAuxiliar extends Enfermeiro{
     //variaveis de instancia
     //construtor
-    public EnfermeiroAuxiliar()
+    public EnfermeiroAuxiliar(String nome, int anoscarreira)
     {
-        
+        super(nome, anoscarreira);
     }
     //metodos
     //getters e setters

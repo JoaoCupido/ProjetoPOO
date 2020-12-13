@@ -11,39 +11,31 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
  */
 public class Enfermeiro extends Pessoa{
     //variaveis de instancia
+    private String nome;
+    private int anoscarreira;
     //construtor
-    public Enfermeiro()
+    public Enfermeiro(String nome, int anoscarreira)
     {
-        
+        super();
+        this.nome = nome;
+        this.anoscarreira = anoscarreira;
     }
     
     //metodos
-    public static void menuEnfermeiro()
-    {
-        
-    }
-    
-    public void ListarEnfermeiros()
-    {
-        
-    }
-    
-    public void ListarPacientesCurativo()
-    {
-        
-    }
-    
-    public void AtribuirEnfermeiroEspecialista()
-    {
-        
-    }
-    
-    public void AplicarCurativo()
-    {
-        
-    }
     
     //getters e setters
+    public String getNome(){
+        return nome;
+    }
+    public int getAnosCarreira(){
+        return anoscarreira;
+    }
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+    public void setAnosCarreira(int anoscarreira){
+        this.anoscarreira = anoscarreira;
+    }
     //toString
     //equals
 }

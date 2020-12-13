@@ -14,7 +14,7 @@ public class Medico extends Pessoa{
     //construtor
     public Medico()
     {
-        
+        super();
     }
     
     //metodos

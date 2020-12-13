@@ -11,14 +11,17 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
  */
 public class EnfermeiroEspecialista extends Enfermeiro{
     //variaveis de instancia
-    private String nome;
-    private int anosCarreira;
-    
     //construtor
-    public EnfermeiroEspecialista()
+    public EnfermeiroEspecialista(String nome, int anoscarreira)
     {
+        super(nome, anoscarreira);
     }
     //metodos
+    public void promoverChefe(){
+        if(this.getAnosCarreira() == 25){ //substituir 25 por minimo do hospital
+            //promoverachefe
+        }
+    }
     //getters e setters
     //toString
     //equals
