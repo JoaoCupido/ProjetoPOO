@@ -11,58 +11,56 @@ import java.util.Scanner;
  */
 public class MenuAdministrador {
     //variaveis de instancia
+    private boolean sair = false;
     //construtor
-    public MenuAdministrador(){
-        
-    }
     //metodos
     
     public void menuOpcoes(Hospital hospital){
         int opcao;
-        System.out.println("***SubMenu Medico***");
-        System.out.println("1) Criar Medico");
+        System.out.println("***SubMenu Médico***");
+        System.out.println("1) Criar Médico");
         System.out.println("2) Criar Enfermeiro-Especialista");
         System.out.println("3) Criar Enfermeiro-Auxiliar");
         System.out.println("4) Criar Novo Paciente");
-        System.out.println("5) Criar Enfermeiro-Auxiliar"+"\n");
-        System.out.println("6) Aumentar anos de carreria"+"\n");
-        System.out.println("7) Listar Enfermeiros"+"\n");
-        System.out.println("8) Listar Médicos"+"\n");
-        System.out.println("9) Listar Pedidos para Enfermeiros Auxiliares"+"\n");
-        System.out.println("10) Listar Pacientes em espera no Hospital"+"\n");
-        System.out.println("11) Atirara Pedidos para Enfermeiros Auxiliares para a Trituradora"+"\n");
-        System.out.println("12) Virus Outbreak"+"\n");
-        System.out.println("13) Relatorio Hospitalar"+"\n");
-        System.out.println("14) Sair"+"\n");
+        System.out.println("5) Promover Enfermeiro a Chefe");
+        System.out.println("6) Aumentar anos de carreria");
+        System.out.println("7) Listar Enfermeiros");
+        System.out.println("8) Listar Médicos");
+        System.out.println("9) Listar Pedidos para Enfermeiros-Auxiliares");
+        System.out.println("10) Listar Pacientes em espera no Hospital");
+        System.out.println("11) Atirar Pedidos para Enfermeiros-Auxiliares para a Trituradora");
+        System.out.println("12) Virus Outbreak");
+        System.out.println("13) N-ésimo Relatório Hospitalar");
+        System.out.println("14) Sair da Aplicação"+"\n");
         Scanner escolha = new Scanner(System.in);
-        System.out.println("Digite uma opcao. Digite nenhuma das opcoes apresentadas para sair do programa: ");
+        System.out.println("Digite uma opção. Digite nenhuma das opções apresentadas para sair do SubMenu Médico: ");
         opcao = escolha.nextInt();
 
         switch(opcao)
             {
                 case 1:
-                    criarMedico((Hospital) hospital);
+                    criarMedico(hospital);
                     break;
                 case 2:
-                    criarEnfermeiroEspecialista((Hospital) hospital);
+                    criarEnfermeiroEspecialista(hospital);
                     break;
                 case 3:
-                    criarEnfermeiroAuxiliar((Hospital) hospital);
+                    criarEnfermeiroAuxiliar(hospital);
                     break;
                 case 4:
-                    criarNovoPaciente((Hospital) hospital);
+                    criarNovoPaciente(hospital);
                     break;
                 case 5:
-                    promoverEnfermeiroChefe((Hospital) hospital);
+                    promoverEnfermeiroChefe(hospital);
                     break;
                 case 6:
-                    aumentarAnosCarreira((Hospital) hospital);
+                    aumentarAnosCarreira(hospital);
                     break;
                 case 7:
-                    listarEnfermeiros((Hospital) hospital);
+                    listarEnfermeiros(hospital);
                     break;
                 case 8:
-                    listarMedicos((Hospital) hospital);
+                    listarMedicos(hospital);
                     break;
                 case 9:
                     pedidosEnfermeirosAuxiliares();
@@ -79,12 +77,12 @@ public class MenuAdministrador {
                 case 13: 
                     relatorioHospitalar();
                     break;
-                case 14: 
+                case 14:
+                    System.out.println("\nEscolhido a opção Sair...\n");
                     sairAplicacao();
                     break;
- 
                 default:
-                    
+                    System.out.println("\nNão foi escolhido nenhuma das opções que foram apresentadas! Voltando para Menu...\n");
                     break;
             }
     }
@@ -93,36 +91,33 @@ public class MenuAdministrador {
     {
         Pessoa medico = new Medico();
         hospital.listaPessoas.add(medico); //adicionar medico à lista de pessoas no hospital
-        
     }
     
     public void criarEnfermeiroEspecialista(Hospital hospital)
     {
         String nome;
         Scanner inserirnome = new Scanner(System.in);
-        System.out.println("Insere o nome: " + "\n");
+        System.out.println("Insere o nome: ");
         nome = inserirnome.next();
         Pessoa enfermeiroespecialista = new EnfermeiroEspecialista(nome, 0);
         hospital.listaPessoas.add(enfermeiroespecialista); //adicionar enfermeiroespecialista à lista de pessoas no hospital 
-        
-}
+    }
     
     public void criarEnfermeiroAuxiliar(Hospital hospital)
     {
         String nome;
         Scanner inserirnome = new Scanner(System.in);
-        System.out.println("Insere o nome: " + "\n");
+        System.out.println("Insere o nome: ");
         nome = inserirnome.next();
         Pessoa enfermeiroauxiliar = new EnfermeiroAuxiliar(nome, 0);
         hospital.listaPessoas.add(enfermeiroauxiliar); //adicionar enfermeiroauxiliar à lista de pessoas no hospital 
-        
     }
     
     public void criarNovoPaciente(Hospital hospital)
     {
         int anonascimento;
         Scanner inserirano = new Scanner(System.in);
-        System.out.println("Insere o ano de nascimento: " + "\n");
+        System.out.println("Insere o ano de nascimento: ");
         anonascimento = inserirano.nextInt();
         Pessoa paciente = new Paciente(anonascimento);
         hospital.listaPessoas.add(paciente); //adicionar paciente à lista de pessoas no hospital
@@ -131,7 +126,7 @@ public class MenuAdministrador {
     public void promoverEnfermeiroChefe(Hospital hospital)
     {
         for(int i = 0; i < hospital.listaPessoas.size(); i++) {
-            if((hospital.listaPessoas.get(i).getClass().getName()).equals("EnfermeiroEspecialista")){
+            if((hospital.listaPessoas.get(i).getClass().getSimpleName()).equals("EnfermeiroEspecialista")){
                 EnfermeiroEspecialista enfermeiroespecialista = (EnfermeiroEspecialista) hospital.listaPessoas.get(i);
                 if(enfermeiroespecialista.getAnosCarreira() >= hospital.getAnosCarreiraMinimo()){
                     EnfermeiroChefe enfermeirochefe = (EnfermeiroChefe) enfermeiroespecialista;
@@ -144,7 +139,7 @@ public class MenuAdministrador {
     public void aumentarAnosCarreira(Hospital hospital)
     {
         for(int i = 0; i < hospital.listaPessoas.size(); i++) {
-            if((hospital.listaPessoas.get(i).getClass().getName()).equals("EnfermeiroEspecialista") || (hospital.listaPessoas.get(i).getClass().getName()).equals("EnfermeiroAuxiliar") || (hospital.listaPessoas.get(i).getClass().getName()).equals("EnfermeiroChefe")){
+            if((hospital.listaPessoas.get(i).getClass().getSimpleName()).equals("EnfermeiroEspecialista") || (hospital.listaPessoas.get(i).getClass().getSimpleName()).equals("EnfermeiroAuxiliar") || (hospital.listaPessoas.get(i).getClass().getSimpleName()).equals("EnfermeiroChefe")){
                 Enfermeiro enfermeiro = (Enfermeiro) hospital.listaPessoas.get(i);
                 int novoanocarreira = enfermeiro.getAnosCarreira() + 1;
                 enfermeiro.setAnosCarreira(novoanocarreira);
@@ -156,15 +151,15 @@ public class MenuAdministrador {
     public void listarEnfermeiros(Hospital hospital)
     {
         for(int i = 0; i < hospital.listaPessoas.size(); i++) {
-            if((hospital.listaPessoas.get(i).getClass().getName()).equals("EnfermeiroEspecialista")){
+            if((hospital.listaPessoas.get(i).getClass().getSimpleName()).equals("EnfermeiroEspecialista")){
                 EnfermeiroEspecialista enfermeiroespecialista = (EnfermeiroEspecialista) hospital.listaPessoas.get(i);
                 System.out.println(enfermeiroespecialista);
             }
-            else if((hospital.listaPessoas.get(i).getClass().getName()).equals("EnfermeiroAuxiliar")){
+            else if((hospital.listaPessoas.get(i).getClass().getSimpleName()).equals("EnfermeiroAuxiliar")){
                 EnfermeiroAuxiliar enfermeiroauxiliar = (EnfermeiroAuxiliar) hospital.listaPessoas.get(i);
                 System.out.println(enfermeiroauxiliar);
             }
-            else if((hospital.listaPessoas.get(i).getClass().getName()).equals("EnfermeiroChefe")){
+            else if((hospital.listaPessoas.get(i).getClass().getSimpleName()).equals("EnfermeiroChefe")){
                 EnfermeiroChefe enfermeirochefe = (EnfermeiroChefe) hospital.listaPessoas.get(i);
                 System.out.println(enfermeirochefe);
             }
@@ -174,7 +169,7 @@ public class MenuAdministrador {
     public void listarMedicos(Hospital hospital)
     {
         for(int i = 0; i < hospital.listaPessoas.size(); i++) {
-            if((hospital.listaPessoas.get(i).getClass().getName()).equals("Medico")){
+            if((hospital.listaPessoas.get(i).getClass().getSimpleName()).equals("Medico")){
                 Medico medico = (Medico) hospital.listaPessoas.get(i);
                 System.out.println(medico);
             }
@@ -207,9 +202,15 @@ public class MenuAdministrador {
     }
     
     public void sairAplicacao(){
-        
+        setSair(true);
     }
     //getters e setters
+    public boolean getSair(){
+        return sair;
+    }
+    public void setSair(boolean sair){
+        this.sair = sair;
+    }
     //toString
     //equals
 }

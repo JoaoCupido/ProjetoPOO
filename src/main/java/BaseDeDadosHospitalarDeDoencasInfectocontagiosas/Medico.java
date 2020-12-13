@@ -25,7 +25,7 @@ public class Medico extends Pessoa{
     public String toString()
     {
         String info;
-        info = "MEDICO: " + super.getId() + "\n";
+        info = "MÉDICO: " + super.getId() + "\n";
         return info;
     }
     //equals

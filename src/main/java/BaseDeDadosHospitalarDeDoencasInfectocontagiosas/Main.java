@@ -14,31 +14,29 @@ public class Main {
     {
         Hospital hospital = new Hospital();
         MenuAdministrador menuadministrador = new MenuAdministrador();
-        boolean sair = false;
-        while(!sair){
+        while(!menuadministrador.getSair()){
             int opcao;
             System.out.println("***Menu***");
-            System.out.println("1) Medico");
+            System.out.println("1) Médico");
             System.out.println("2) Enfermeiro");
             System.out.println("3) Administrador"+"\n");
             Scanner escolha = new Scanner(System.in);
-            System.out.println("Digite uma opcao. Digite nenhuma das opcoes apresentadas para sair do programa: ");
+            System.out.println("Digite uma opção que esteja apresentada: ");
             opcao = escolha.nextInt();
             switch(opcao)
             {
                 case 1:
-                    System.out.println("opcao1"+"\n");//implementar o menu na class medico e depois colocar aqui!!!!;
-                    menuadministrador.menuOpcoes(hospital);
+                    System.out.println("\nEscolhido a opção Médico...\n");//implementar o menu na class medico e depois colocar aqui!!!!;
                     break;
                 case 2:
-                    System.out.println("opcao2"+"\n");//implementar o menu na class enfermeiro e depois colocar aqui!!!!;
+                    System.out.println("\nEscolhido a opção Enfermeiro...\n");//implementar o menu na class enfermeiro e depois colocar aqui!!!!;
                     break;
                 case 3:
-                    System.out.println("opcao3"+"\n");//implementar o menu na class administrador e depois colocar aqui!!!!;
+                    System.out.println("\nEscolhido a opção Administrador...\n");//implementar o menu na class administrador e depois colocar aqui!!!!;
+                    menuadministrador.menuOpcoes(hospital);
                     break;
                 default:
-                    System.out.println("sair"+"\n");
-                    sair = true;
+                    System.out.println("\nERRO! Não foi escolhido nenhuma das opções que foram apresentadas! Recomeçando...\n");
                     break;
             }
         }

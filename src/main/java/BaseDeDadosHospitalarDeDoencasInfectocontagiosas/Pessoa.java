@@ -10,21 +10,25 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
  * @author jcupi
  */
 public class Pessoa {
+    //variaveis de instancia
     private String id;
     private static int contarPessoas;
     
+    //construtor
     public Pessoa(){
         id = criarID();
     }
     
+    //metodos
     public String criarID(){
-        if((this.id).equals("")) {
+        if(this.id == null) {
             contarPessoas++;
             id = "ID" + contarPessoas;
         }
         return id;
     }
     
+    //getters e setters
     public String getId(){
         return id;
     }
@@ -32,4 +36,7 @@ public class Pessoa {
     {
         this.id=id;
     }
+    
+    //toString
+    //equals
 }
