@@ -19,5 +19,14 @@ public class EnfermeiroChefe extends EnfermeiroEspecialista{
     //metodos
     //getters e setters
     //toString
+    @Override
+    public String toString()
+    {
+        String info;
+        info = "ENFERMEIRO " + super.getClass().getName() + " ID: " + super.getId() + "\n";
+        info += "ANOS DE EXPERIENCIA: " + super.getAnosCarreira() + "\n";
+        // medico a qual está alocado
+        return info;
+    }
     //equals
 }

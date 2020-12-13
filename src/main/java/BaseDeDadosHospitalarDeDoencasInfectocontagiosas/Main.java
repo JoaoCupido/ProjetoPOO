@@ -12,6 +12,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String args[])
     {
+        Hospital hospital = new Hospital();
+        MenuAdministrador menuadministrador = new MenuAdministrador();
         boolean sair = false;
         while(!sair){
             int opcao;
@@ -26,6 +28,7 @@ public class Main {
             {
                 case 1:
                     System.out.println("opcao1"+"\n");//implementar o menu na class medico e depois colocar aqui!!!!;
+                    menuadministrador.menuOpcoes(hospital);
                     break;
                 case 2:
                     System.out.println("opcao2"+"\n");//implementar o menu na class enfermeiro e depois colocar aqui!!!!;

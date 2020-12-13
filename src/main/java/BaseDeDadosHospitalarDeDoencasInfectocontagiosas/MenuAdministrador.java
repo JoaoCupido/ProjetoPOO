@@ -12,7 +12,22 @@ import java.util.Scanner;
 public class MenuAdministrador {
     //variaveis de instancia
     //construtor
+    public MenuAdministrador(){
+        
+    }
     //metodos
+    
+    public void menuOpcoes(Hospital hospital){
+        System.out.println("***SubMenu Medico***");
+        System.out.println("1) Criar Medico");
+        System.out.println("2) Criar Enfermeiro-Especialista");
+        System.out.println("3) Criar Enfermeiro-Auxiliar");
+        System.out.println("4) Criar Novo Paciente");
+        System.out.println("5) Criar Enfermeiro-Auxiliar"+"\n");
+        Scanner escolha = new Scanner(System.in);
+        System.out.println("Digite uma opcao. Digite nenhuma das opcoes apresentadas para sair do programa: ");
+        opcao = escolha.nextInt();
+    }
     
     public void criarMedico(Hospital hospital)
     {
@@ -75,9 +90,22 @@ public class MenuAdministrador {
         }
     }
     
-    public void listarEnfermeiros()
+    public void listarEnfermeiros(Hospital hospital)
     {
-        
+        for(int i = 0; i < hospital.listaPessoas.size(); i++) {
+            if((hospital.listaPessoas.get(i).getClass().getName()).equals("EnfermeiroEspecialista")){
+                EnfermeiroEspecialista enfermeiroespecialista = (EnfermeiroEspecialista) hospital.listaPessoas.get(i);
+                System.out.println(enfermeiroespecialista);
+            }
+            else if((hospital.listaPessoas.get(i).getClass().getName()).equals("EnfermeiroAuxiliar")){
+                EnfermeiroAuxiliar enfermeiroauxiliar = (EnfermeiroAuxiliar) hospital.listaPessoas.get(i);
+                System.out.println(enfermeiroauxiliar);
+            }
+            else if((hospital.listaPessoas.get(i).getClass().getName()).equals("EnfermeiroChefe")){
+                EnfermeiroChefe enfermeirochefe = (EnfermeiroChefe) hospital.listaPessoas.get(i);
+                System.out.println(enfermeirochefe);
+            }
+        }
     }
     
     public void listarMedicos(Hospital hospital)
