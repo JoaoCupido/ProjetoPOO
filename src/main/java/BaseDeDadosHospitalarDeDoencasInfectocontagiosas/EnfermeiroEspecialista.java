@@ -17,9 +17,10 @@ public class EnfermeiroEspecialista extends Enfermeiro{
         super(nome, anoscarreira);
     }
     //metodos
-    public void promoverChefe(){
-        if(this.getAnosCarreira() == 25){ //substituir 25 por minimo do hospital
-            //promoverachefe
+    public void promoverChefe(Object obj){
+        Hospital hospital = (Hospital) obj;
+        if(this.getAnosCarreira() == hospital.getAnosCarreiraMinimo()){
+            //EnfermeiroChefe enfermeirochefe = (EnfermeiroChefe) this;
         }
     }
     //getters e setters
