@@ -9,12 +9,12 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
  *
  * @author jcupi
  */
-public class EnfermeiroChefe {
+public class EnfermeiroChefe extends EnfermeiroEspecialista{
     //variaveis de instancia
     //construtor
-    public EnfermeiroChefe()
+    public EnfermeiroChefe(String nome, int anoscarreira)
     {
-        
+        super(nome, anoscarreira);
     }
     //metodos
     //getters e setters

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
-
+import java.util.ArrayList;
 /**
  *
  * @author jcupi
@@ -14,10 +14,11 @@ public class Hospital {
     private int numobitos,casospositivos, totalpacientestestados, anoscarreiraminimo;
     private double raciopacientespositivos;
     
+    ArrayList<Pessoa> listaPessoas;
     //construtor
     public Hospital()
     {
-        
+        listaPessoas = new ArrayList<Pessoa>();
     }
     //metodos
     //getters e setters
