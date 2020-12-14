@@ -15,15 +15,15 @@ public class MenuAdministrador {
     //construtor
     //metodos
     
-    public void menuOpcoes(Hospital hospital){
+    public void menuOpcoesAdministrador(Hospital hospital){
         int opcao;
-        System.out.println("***SubMenu Médico***");
+        System.out.println("***SubMenu Administrador***");
         System.out.println("1) Criar Médico");
         System.out.println("2) Criar Enfermeiro-Especialista");
         System.out.println("3) Criar Enfermeiro-Auxiliar");
         System.out.println("4) Criar Novo Paciente");
         System.out.println("5) Promover Enfermeiro a Chefe");
-        System.out.println("6) Aumentar anos de carreria");
+        System.out.println("6) Aumentar Anos de Carreria");
         System.out.println("7) Listar Enfermeiros");
         System.out.println("8) Listar Médicos");
         System.out.println("9) Listar Pedidos para Enfermeiros-Auxiliares");
@@ -31,54 +31,67 @@ public class MenuAdministrador {
         System.out.println("11) Atirar Pedidos para Enfermeiros-Auxiliares para a Trituradora");
         System.out.println("12) Virus Outbreak");
         System.out.println("13) N-ésimo Relatório Hospitalar");
-        System.out.println("14) Sair da Aplicação"+"\n");
+        System.out.println("14) Sair da Aplicação\n");
         Scanner escolha = new Scanner(System.in);
-        System.out.println("Digite uma opção. Digite nenhuma das opções apresentadas para sair do SubMenu Médico: ");
+        System.out.println("Digite uma opção. Digite nenhuma das opções apresentadas para sair do SubMenu Administrador: ");
         opcao = escolha.nextInt();
 
         switch(opcao)
             {
                 case 1:
+                    System.out.println("\nEscolhido a opção Criar Médico...\n");
                     criarMedico(hospital);
                     break;
                 case 2:
+                    System.out.println("\nEscolhido a opção Criar Enfermeiro-Especialista...\n");
                     criarEnfermeiroEspecialista(hospital);
                     break;
                 case 3:
+                    System.out.println("\nEscolhido a opção Criar Enfermeiro-Auxiliar...\n");
                     criarEnfermeiroAuxiliar(hospital);
                     break;
                 case 4:
+                    System.out.println("\nEscolhido a opção Criar Novo Paciente...\n");
                     criarNovoPaciente(hospital);
                     break;
                 case 5:
+                    System.out.println("\nEscolhido a opção Promover Enfermeiro a Chefe...\n");
                     promoverEnfermeiroChefe(hospital);
                     break;
                 case 6:
+                    System.out.println("\nEscolhido a opção Aumentar Anos de Carreria...\n");
                     aumentarAnosCarreira(hospital);
                     break;
                 case 7:
+                    System.out.println("\nEscolhido a opção Listar Enfermeiros...\n");
                     listarEnfermeiros(hospital);
                     break;
                 case 8:
+                    System.out.println("\nEscolhido a opção Listar Médicos...\n");
                     listarMedicos(hospital);
                     break;
                 case 9:
+                    System.out.println("\nEscolhido a opção Listar Pedidos para Enfermeiros-Auxiliares...\n");
                     pedidosEnfermeirosAuxiliares();
                     break;
                 case 10:
+                    System.out.println("\nEscolhido a opção Listar Pacientes em espera no Hospital...\n");
                     pacientesEsperanoHospital();
                     break;
                 case 11:
+                    System.out.println("\nEscolhido a opção Atirar Pedidos para Enfermeiros-Auxiliares para a Trituradora...\n");
                     atribuirPedidosEnfAuxTrituradora();
                     break;
                 case 12:
+                    System.out.println("\nEscolhido a opção Virus Outbreak...\n");
                     outBreak();
                     break;
-                case 13: 
+                case 13:
+                    System.out.println("\nEscolhido a opção N-ésimo Relatório Hospitalar...\n");
                     relatorioHospitalar();
                     break;
                 case 14:
-                    System.out.println("\nEscolhido a opção Sair...\n");
+                    System.out.println("\nEscolhido a opção Sair da Aplicação...\n");
                     sairAplicacao();
                     break;
                 default:
