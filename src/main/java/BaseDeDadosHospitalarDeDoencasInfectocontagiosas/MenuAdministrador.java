@@ -103,7 +103,7 @@ public class MenuAdministrador {
     public void criarMedico(Hospital hospital)
     {
         Pessoa medico = new Medico();
-        hospital.listaPessoas.add(medico); //adicionar medico à lista de pessoas no hospital
+        hospital.getListaPessoas().add(medico); //adicionar medico à lista de pessoas no hospital
     }
     
     public void criarEnfermeiroEspecialista(Hospital hospital)
@@ -113,7 +113,7 @@ public class MenuAdministrador {
         System.out.println("Insere o nome: ");
         nome = inserirnome.next();
         Pessoa enfermeiroespecialista = new EnfermeiroEspecialista(nome, 0);
-        hospital.listaPessoas.add(enfermeiroespecialista); //adicionar enfermeiroespecialista à lista de pessoas no hospital 
+        hospital.getListaPessoas().add(enfermeiroespecialista); //adicionar enfermeiroespecialista à lista de pessoas no hospital 
     }
     
     public void criarEnfermeiroAuxiliar(Hospital hospital)
@@ -123,7 +123,7 @@ public class MenuAdministrador {
         System.out.println("Insere o nome: ");
         nome = inserirnome.next();
         Pessoa enfermeiroauxiliar = new EnfermeiroAuxiliar(nome, 0);
-        hospital.listaPessoas.add(enfermeiroauxiliar); //adicionar enfermeiroauxiliar à lista de pessoas no hospital 
+        hospital.getListaPessoas().add(enfermeiroauxiliar); //adicionar enfermeiroauxiliar à lista de pessoas no hospital 
     }
     
     public void criarNovoPaciente(Hospital hospital)
@@ -133,17 +133,18 @@ public class MenuAdministrador {
         System.out.println("Insere o ano de nascimento: ");
         anonascimento = inserirano.nextInt();
         Pessoa paciente = new Paciente(anonascimento);
-        hospital.listaPessoas.add(paciente); //adicionar paciente à lista de pessoas no hospital
+        hospital.getListaPessoas().add(paciente); //adicionar paciente à lista de pessoas no hospital
     }
     
     public void promoverEnfermeiroChefe(Hospital hospital)
     {
-        for(int i = 0; i < hospital.listaPessoas.size(); i++) {
-            if((hospital.listaPessoas.get(i).getClass().getSimpleName()).equals("EnfermeiroEspecialista")){
-                EnfermeiroEspecialista enfermeiroespecialista = (EnfermeiroEspecialista) hospital.listaPessoas.get(i);
+        for(int i = 0; i < hospital.getListaPessoas().size(); i++) {
+            if((hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("EnfermeiroEspecialista")){
+                EnfermeiroEspecialista enfermeiroespecialista = (EnfermeiroEspecialista) hospital.getListaPessoas().get(i);
                 if(enfermeiroespecialista.getAnosCarreira() >= hospital.getAnosCarreiraMinimo()){
-                    EnfermeiroChefe enfermeirochefe = (EnfermeiroChefe) enfermeiroespecialista;
-                    hospital.listaPessoas.set(i, enfermeirochefe);
+                    EnfermeiroChefe enfermeirochefe = (EnfermeiroChefe) enfermeiroespecialista; //ERRO AQUI!
+                    //ERRO: class BaseDeDadosHospitalarDeDoencasInfectocontagiosas.EnfermeiroEspecialista cannot be cast to class BaseDeDadosHospitalarDeDoencasInfectocontagiosas.EnfermeiroChefe
+                    hospital.getListaPessoas().set(i, enfermeirochefe);
                 }
             }
         }
@@ -151,29 +152,29 @@ public class MenuAdministrador {
     
     public void aumentarAnosCarreira(Hospital hospital)
     {
-        for(int i = 0; i < hospital.listaPessoas.size(); i++) {
-            if((hospital.listaPessoas.get(i).getClass().getSimpleName()).equals("EnfermeiroEspecialista") || (hospital.listaPessoas.get(i).getClass().getSimpleName()).equals("EnfermeiroAuxiliar") || (hospital.listaPessoas.get(i).getClass().getSimpleName()).equals("EnfermeiroChefe")){
-                Enfermeiro enfermeiro = (Enfermeiro) hospital.listaPessoas.get(i);
+        for(int i = 0; i < hospital.getListaPessoas().size(); i++) {
+            if((hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("EnfermeiroEspecialista") || (hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("EnfermeiroAuxiliar") || (hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("EnfermeiroChefe")){
+                Enfermeiro enfermeiro = (Enfermeiro) hospital.getListaPessoas().get(i);
                 int novoanocarreira = enfermeiro.getAnosCarreira() + 1;
                 enfermeiro.setAnosCarreira(novoanocarreira);
-                hospital.listaPessoas.set(i, enfermeiro);
+                hospital.getListaPessoas().set(i, enfermeiro);
             }
         }
     }
     
     public void listarEnfermeiros(Hospital hospital)
     {
-        for(int i = 0; i < hospital.listaPessoas.size(); i++) {
-            if((hospital.listaPessoas.get(i).getClass().getSimpleName()).equals("EnfermeiroEspecialista")){
-                EnfermeiroEspecialista enfermeiroespecialista = (EnfermeiroEspecialista) hospital.listaPessoas.get(i);
+        for(int i = 0; i < hospital.getListaPessoas().size(); i++) {
+            if((hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("EnfermeiroEspecialista")){
+                EnfermeiroEspecialista enfermeiroespecialista = (EnfermeiroEspecialista) hospital.getListaPessoas().get(i);
                 System.out.println(enfermeiroespecialista);
             }
-            else if((hospital.listaPessoas.get(i).getClass().getSimpleName()).equals("EnfermeiroAuxiliar")){
-                EnfermeiroAuxiliar enfermeiroauxiliar = (EnfermeiroAuxiliar) hospital.listaPessoas.get(i);
+            else if((hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("EnfermeiroAuxiliar")){
+                EnfermeiroAuxiliar enfermeiroauxiliar = (EnfermeiroAuxiliar) hospital.getListaPessoas().get(i);
                 System.out.println(enfermeiroauxiliar);
             }
-            else if((hospital.listaPessoas.get(i).getClass().getSimpleName()).equals("EnfermeiroChefe")){
-                EnfermeiroChefe enfermeirochefe = (EnfermeiroChefe) hospital.listaPessoas.get(i);
+            else if((hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("EnfermeiroChefe")){
+                EnfermeiroChefe enfermeirochefe = (EnfermeiroChefe) hospital.getListaPessoas().get(i);
                 System.out.println(enfermeirochefe);
             }
         }
@@ -181,9 +182,9 @@ public class MenuAdministrador {
     
     public void listarMedicos(Hospital hospital)
     {
-        for(int i = 0; i < hospital.listaPessoas.size(); i++) {
-            if((hospital.listaPessoas.get(i).getClass().getSimpleName()).equals("Medico")){
-                Medico medico = (Medico) hospital.listaPessoas.get(i);
+        for(int i = 0; i < hospital.getListaPessoas().size(); i++) {
+            if((hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("Medico")){
+                Medico medico = (Medico) hospital.getListaPessoas().get(i);
                 System.out.println(medico);
             }
         }

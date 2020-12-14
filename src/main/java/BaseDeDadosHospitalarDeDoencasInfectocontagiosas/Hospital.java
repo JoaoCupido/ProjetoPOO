@@ -14,7 +14,8 @@ public class Hospital {
     private int numobitos,casospositivos, totalpacientestestados, anoscarreiraminimo;
     private double raciopacientespositivos;
     
-    ArrayList<Pessoa> listaPessoas;
+    private ArrayList<Pessoa> listaPessoas;
+    
     //construtor
     public Hospital()
     {
@@ -27,6 +28,9 @@ public class Hospital {
     }
     public void setAnosCarreiraMinimo(int anoscarreiraminimo){
         this.anoscarreiraminimo = anoscarreiraminimo;
+    }
+    public ArrayList<Pessoa> getListaPessoas(){
+        return listaPessoas;
     }
     //toString
     //equals
