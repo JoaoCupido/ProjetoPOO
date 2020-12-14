@@ -142,7 +142,9 @@ public class MenuAdministrador {
             if((hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("EnfermeiroEspecialista")){
                 EnfermeiroEspecialista enfermeiroespecialista = (EnfermeiroEspecialista) hospital.getListaPessoas().get(i);
                 if(enfermeiroespecialista.getAnosCarreira() >= hospital.getAnosCarreiraMinimo()){
-                    EnfermeiroChefe enfermeirochefe = (EnfermeiroChefe) enfermeiroespecialista; //ERRO AQUI!
+                    Pessoa enfermeirochefe = new EnfermeiroChefe(enfermeiroespecialista.getNome(), enfermeiroespecialista.getAnosCarreira());
+                    enfermeirochefe.setId(enfermeiroespecialista.getId());
+                    //EnfermeiroChefe enfermeirochefe = (EnfermeiroChefe) enfermeiroespecialista; //ERRO AQUI!
                     //ERRO: class BaseDeDadosHospitalarDeDoencasInfectocontagiosas.EnfermeiroEspecialista cannot be cast to class BaseDeDadosHospitalarDeDoencasInfectocontagiosas.EnfermeiroChefe
                     hospital.getListaPessoas().set(i, enfermeirochefe);
                 }
