@@ -36,6 +36,12 @@ public class Pessoa {
     {
         this.id=id;
     }
+    public int getContarPessoas(){
+        return contarPessoas;
+    }
+    public void setContarPessoas(int contarPessoas){
+        this.contarPessoas = contarPessoas;
+    }
     
     //toString
     //equals
