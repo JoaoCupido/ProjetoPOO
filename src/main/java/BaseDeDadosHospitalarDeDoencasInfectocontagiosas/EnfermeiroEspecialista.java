@@ -23,9 +23,10 @@ public class EnfermeiroEspecialista extends Enfermeiro{
     public String toString()
     {
         String info;
-        info = "ENFERMEIRO: " + super.getClass().getSimpleName() + "\n";
-        info += "ID: " + super.getId() + "\n";
-        info += "ANOS DE EXPERIENCIA: " + super.getAnosCarreira() + "\n";
+        info = "ENFERMEIRO: " + getClass().getSimpleName() + "\n";
+        info += "NOME: " + getNome() + "\n";
+        info += "ID: " + getId() + "\n";
+        info += "ANOS DE EXPERIENCIA: " + getAnosCarreira() + "\n";
         // medico a qual está alocado
         return info;
     }
