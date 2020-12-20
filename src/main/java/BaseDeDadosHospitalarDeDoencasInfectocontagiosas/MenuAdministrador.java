@@ -113,7 +113,7 @@ public class MenuAdministrador {
         System.out.println("Insere o nome: ");
         nome = inserirnome.next();
         Pessoa enfermeiroespecialista = new EnfermeiroEspecialista(nome, 0);
-        hospital.getListaPessoas().add(enfermeiroespecialista); //adicionar enfermeiroespecialista à lista de pessoas no hospital 
+        hospital.addPessoa(enfermeiroespecialista); //adicionar enfermeiroespecialista à lista de pessoas no hospital 
     }
     
     public void criarEnfermeiroAuxiliar(Hospital hospital)
@@ -123,7 +123,7 @@ public class MenuAdministrador {
         System.out.println("Insere o nome: ");
         nome = inserirnome.next();
         Pessoa enfermeiroauxiliar = new EnfermeiroAuxiliar(nome, 0);
-        hospital.getListaPessoas().add(enfermeiroauxiliar); //adicionar enfermeiroauxiliar à lista de pessoas no hospital 
+        hospital.addPessoa(enfermeiroauxiliar); //adicionar enfermeiroauxiliar à lista de pessoas no hospital 
     }
     
     public void criarNovoPaciente(Hospital hospital)
@@ -133,7 +133,7 @@ public class MenuAdministrador {
         System.out.println("Insere o ano de nascimento: ");
         anonascimento = inserirano.nextInt();
         Pessoa paciente = new Paciente(anonascimento);
-        hospital.getListaPessoas().add(paciente); //adicionar paciente à lista de pessoas no hospital
+        hospital.addPessoa(paciente); //adicionar paciente à lista de pessoas no hospital
     }
     
     public void promoverEnfermeiroChefe(Hospital hospital)

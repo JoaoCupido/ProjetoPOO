@@ -28,19 +28,19 @@ public class Main {
             switch(opcao)
             {
                 case 1:
-                    System.out.println("\nEscolhido a opção Médico...\n");//implementar o menu na class medico e depois colocar aqui!!!!;
+                    System.out.println("\nEscolhido a opção Médico...\n");//implementar o menu medico;
                     menumedico.menuOpcoesMedico(hospital);
                     break;
                 case 2:
-                    System.out.println("\nEscolhido a opção Enfermeiro...\n");//implementar o menu na class enfermeiro e depois colocar aqui!!!!;
+                    System.out.println("\nEscolhido a opção Enfermeiro...\n");//implementar o menu enfermeiro;
                     menuenfermeiro.menuOpcoesEnfermeiro(hospital);
                     break;
                 case 3:
-                    System.out.println("\nEscolhido a opção Administrador...\n");//implementar o menu na class administrador e depois colocar aqui!!!!;
+                    System.out.println("\nEscolhido a opção Administrador...\n");//implementar o menu administrador;
                     menuadministrador.menuOpcoesAdministrador(hospital);
                     break;
                 default:
-                    System.out.println("\nERRO! Não foi escolhido nenhuma das opções que foram apresentadas! Recomeçando...\n");
+                    System.out.println("\nERRO! Não foi escolhido nenhuma das opções que foram apresentadas! Voltando ao Menu...\n");
                     break;
             }
         }

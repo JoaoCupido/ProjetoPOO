@@ -32,6 +32,9 @@ public class Hospital {
     public ArrayList<Pessoa> getListaPessoas(){
         return listaPessoas;
     }
+    public void addPessoa(Pessoa pessoa){
+        listaPessoas.add(pessoa);
+    }
     //toString
     //equals
 }
