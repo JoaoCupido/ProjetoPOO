@@ -58,6 +58,9 @@ public class MenuMedico {
     */
     public void listarPacientesEspera(Hospital hospital)
     {
+        for(int i = 0; i < hospital.getListaPacientes().size(); i++){
+            System.out.println(hospital.getListaPacientes().get(i));
+        }
     }
     
     /*

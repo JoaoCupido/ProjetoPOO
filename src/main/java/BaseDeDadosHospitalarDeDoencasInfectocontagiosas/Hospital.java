@@ -15,11 +15,13 @@ public class Hospital {
     private double raciopacientespositivos;
     
     private ArrayList<Pessoa> listaPessoas;
+    private ArrayList<Paciente> listaPacientes;
     
     //construtor
     public Hospital()
     {
         listaPessoas = new ArrayList<Pessoa>();
+        listaPacientes = new ArrayList<Paciente>();
     }
     //metodos
     //getters e setters
@@ -35,6 +37,13 @@ public class Hospital {
     public void addPessoa(Pessoa pessoa){
         listaPessoas.add(pessoa);
     }
+    public ArrayList<Paciente> getListaPacientes(){
+        return listaPacientes;
+    }
+    public void addPaciente(Paciente paciente){
+        listaPacientes.add(paciente);
+    }
+    
     //toString
     //equals
 }

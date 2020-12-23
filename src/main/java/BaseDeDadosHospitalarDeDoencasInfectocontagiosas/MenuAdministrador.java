@@ -76,7 +76,7 @@ public class MenuAdministrador {
                     break;
                 case 10:
                     System.out.println("\nEscolhido a opção Listar Pacientes em espera no Hospital...\n");
-                    pacientesEsperanoHospital();
+                    pacientesEsperanoHospital(hospital);
                     break;
                 case 11:
                     System.out.println("\nEscolhido a opção Atirar Pedidos para Enfermeiros-Auxiliares para a Trituradora...\n");
@@ -134,6 +134,7 @@ public class MenuAdministrador {
         anonascimento = inserirano.nextInt();
         Pessoa paciente = new Paciente(anonascimento);
         hospital.addPessoa(paciente); //adicionar paciente à lista de pessoas no hospital
+        hospital.addPaciente((Paciente) paciente); //adicionar paciente à lista de pacientes em espera no hospital
     }
     
     public void promoverEnfermeiroChefe(Hospital hospital)
@@ -198,9 +199,11 @@ public class MenuAdministrador {
         
     }
     
-    public void pacientesEsperanoHospital()
+    public void pacientesEsperanoHospital(Hospital hospital)
     {
-        
+        for(int i = 0; i < hospital.getListaPacientes().size(); i++){
+            System.out.println(hospital.getListaPacientes().get(i));
+        }
     }
     
     public void atribuirPedidosEnfAuxTrituradora()
