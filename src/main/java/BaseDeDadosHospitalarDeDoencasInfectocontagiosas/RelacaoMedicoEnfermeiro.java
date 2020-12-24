@@ -17,4 +17,5 @@ public interface RelacaoMedicoEnfermeiro {
     //getters e setters
     public Medico getMedicoAcompanhado();
     public void setMedicoAcompanhado(Medico medico);
+    public Paciente[] getAgenda();
 }

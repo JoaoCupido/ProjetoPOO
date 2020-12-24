@@ -49,6 +49,9 @@ public class EnfermeiroAuxiliar extends Enfermeiro implements RelacaoMedicoEnfer
     public void setMedicoAcompanhado(Medico medico){
         medicoacompanhado = medico;
     }
+    public Paciente[] getAgenda(){
+        return agenda;
+    }
     //toString
     @Override
     public String toString()
