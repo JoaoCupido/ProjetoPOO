@@ -11,13 +11,21 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
  */
 public class EnfermeiroEspecialista extends Enfermeiro{
     //variaveis de instancia
+    private Medico medicoacompanhado;
     //construtor
     public EnfermeiroEspecialista(String nome, int anoscarreira)
     {
         super(nome, anoscarreira);
+        medicoacompanhado = null;
     }
     //metodos
     //getters e setters
+    public Medico getMedicoAcompanhado(){
+        return medicoacompanhado;
+    }
+    public void setMedicoAcompanhado(Medico medico){
+        medicoacompanhado = medico;
+    }
     //toString
     @Override
     public String toString()

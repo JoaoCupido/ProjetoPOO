@@ -9,7 +9,7 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
  *
  * @author jcupi
  */
-public class Enfermeiro extends Pessoa{
+public abstract class Enfermeiro extends Pessoa{
     //variaveis de instancia
     private String nome;
     private int anoscarreira;
