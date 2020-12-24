@@ -19,17 +19,32 @@ public class Medico extends Pessoa{
     }
     
     //metodos
-    public void addPacienteAlta(Paciente paciente){
+    public void addPacienteAlta(Paciente paciente, Enfermeiro enfermeiro){
         if(listaPacientesAlta[0] != null && listaPacientesAlta[1] != null && listaPacientesAlta[2] != null){
             System.out.println("ERRO! O médico " + this.getId() + " já tem o máximo de 3 pacientes.");
         }
         else{
             for(int i = 0; i < listaPacientesAlta.length; i++) {
                 if(listaPacientesAlta[i] == null){
-                    //remover paciente da agenda de enfermeiros
-                    listaPacientesAlta[i] = paciente;
-                    break;
+                    if(enfermeiro.getClass().getSimpleName().equals("EnfermeiroAuxiliar") && ((EnfermeiroAuxiliar) enfermeiro).getMedicoAcompanhado().getId().equals(this.getId())){
+                        ((EnfermeiroAuxiliar) enfermeiro).removePacienteAgenda(paciente);
+                        listaPacientesAlta[i] = paciente;
+                        break;
+                    }
+                    else if(enfermeiro.getClass().getSimpleName().equals("EnfermeiroEspecialista") && ((EnfermeiroEspecialista) enfermeiro).getMedicoAcompanhado().getId().equals(this.getId())){
+                        ((EnfermeiroEspecialista) enfermeiro).removePacienteAgenda(paciente);
+                        listaPacientesAlta[i] = paciente;
+                        break;
+                    }
                 }
+            }
+        }
+    }
+    public void removePacienteAlta(Paciente paciente){
+        for(int i = 0; i < listaPacientesAlta.length; i++){
+            if(listaPacientesAlta[i].equals(paciente)){
+                listaPacientesAlta[i] = null;
+                break;
             }
         }
     }

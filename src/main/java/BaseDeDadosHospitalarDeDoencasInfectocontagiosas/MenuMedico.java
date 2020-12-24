@@ -34,7 +34,16 @@ public class MenuMedico {
                     break;
                 case 2:
                     System.out.println("\nEscolhido a opção Listar Pacientes a aguardar Alta...\n");
-                    listarPacientesAlta(hospital);
+                    Scanner scannermedico = new Scanner(System.in);
+                    System.out.println("Insira o ID do médico a selecionar: ");
+                    String medicoid = scannermedico.next();
+                    for(int i = 0; i < hospital.getListaPessoas().size(); i++){
+                        if(hospital.getListaPessoas().get(i).getId().equals(medicoid) && hospital.getListaPessoas().get(i).getClass().getSimpleName().equals("Medico")){
+                            System.out.println("LISTA DE PACIENTES A AGUARDAR ALTA DO MÉDICO " + hospital.getListaPessoas().get(i).getId() + " :");
+                            listarPacientesAlta((Medico) hospital.getListaPessoas().get(i));
+                            break;
+                        }
+                    }
                     break;
                 case 3:
                     System.out.println("\nEscolhido a opção Diagnóstico ao Paciente...\n");
@@ -66,8 +75,11 @@ public class MenuMedico {
     /*
     Lista de Pacientes que aguardam alta por parte do médico, apos o enfermeiro aplicar o curativo!
     */
-    public void listarPacientesAlta(Hospital hospital)
+    public void listarPacientesAlta(Medico medico)
     {
+        for (Paciente listaPacientesAlta : medico.getlistaPacientesAlta()) {
+            System.out.println(listaPacientesAlta);
+        }
     }
     
     /*

@@ -9,9 +9,10 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
  *
  * @author jcupi
  */
-public class EnfermeiroAuxiliar extends Enfermeiro{
+public class EnfermeiroAuxiliar extends Enfermeiro implements RelacaoMedicoEnfermeiro{
     //variaveis de instancia
     private Medico medicoacompanhado;
+    private Paciente[] agenda = {null, null, null};
     //construtor
     public EnfermeiroAuxiliar(String nome, int anoscarreira)
     {
@@ -19,6 +20,28 @@ public class EnfermeiroAuxiliar extends Enfermeiro{
         medicoacompanhado = null;
     }
     //metodos
+    public void addPacienteAgenda(Hospital hospital, Paciente paciente){
+        if(agenda[0] != null && agenda[1] != null && agenda[2] != null){
+            System.out.println("ERRO! O enfermeiro " + this.getId() + " de nome " + this.getNome() + " já tem o máximo de 3 pacientes.");
+        }
+        else{
+            for(int i = 0; i < agenda.length; i++) {
+                if(agenda[i] == null){
+                    hospital.removerPaciente(paciente);
+                    agenda[i] = paciente;
+                    break;
+                }
+            }
+        }
+    }
+    public void removePacienteAgenda(Paciente paciente){
+        for(int i = 0; i < agenda.length; i++){
+            if(agenda[i].equals(paciente)){
+                agenda[i] = null;
+                break;
+            }
+        }
+    }
     //getters e setters
     public Medico getMedicoAcompanhado(){
         return medicoacompanhado;
@@ -35,7 +58,7 @@ public class EnfermeiroAuxiliar extends Enfermeiro{
         info += "NOME: " + getNome() + "\n";
         info += "ID: " + getId() + "\n";
         info += "ANOS DE EXPERIENCIA: " + getAnosCarreira() + "\n";
-        // medico a qual está alocado
+        info += "MEDICO ALOCADO: " + medicoacompanhado + "\n";
         return info;
     }
     //equals

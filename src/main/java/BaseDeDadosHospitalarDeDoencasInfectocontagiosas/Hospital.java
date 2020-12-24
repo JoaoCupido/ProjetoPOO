@@ -24,6 +24,20 @@ public class Hospital {
         listaPacientes = new ArrayList<Paciente>();
     }
     //metodos
+    public void addPessoa(Pessoa pessoa){
+        listaPessoas.add(pessoa);
+    }
+    public void addPaciente(Paciente paciente){
+        listaPacientes.add(paciente);
+    }
+    public void removerPaciente(Paciente pacientearemover){
+        for(int i = 0; i < listaPacientes.size(); i++){
+            if(listaPacientes.get(i).equals(pacientearemover)){
+                listaPacientes.remove(i);
+                break;
+            }
+        }
+    }
     //getters e setters
     public int getAnosCarreiraMinimo(){
         return anoscarreiraminimo;
@@ -34,14 +48,8 @@ public class Hospital {
     public ArrayList<Pessoa> getListaPessoas(){
         return listaPessoas;
     }
-    public void addPessoa(Pessoa pessoa){
-        listaPessoas.add(pessoa);
-    }
     public ArrayList<Paciente> getListaPacientes(){
         return listaPacientes;
-    }
-    public void addPaciente(Paciente paciente){
-        listaPacientes.add(paciente);
     }
     
     //toString
