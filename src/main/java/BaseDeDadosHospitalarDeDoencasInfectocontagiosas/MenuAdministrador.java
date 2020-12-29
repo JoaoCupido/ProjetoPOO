@@ -264,11 +264,56 @@ public class MenuAdministrador {
                                     paciente.setId(hospital.getListaPessoas().get(i).getId());
                                     paciente.setContarPessoas(paciente.getContarPessoas()-1);
                                     hospital.getListaPessoas().set(i, paciente);
+                                    hospital.addPaciente((Paciente) paciente);
                                 }
                             }
                         }
                         break;
-                    case "Paciente": //falta fazer esta parte 29/12
+                    case "Paciente":
+                        boolean pacientepossivelinfetar = true;
+                        if(!isPacienteOnListaEspera(hospital, (Paciente) hospital.getListaPessoas().get(i))){
+                            for(int j = 0; j < hospital.getListaPessoas().size(); j++){
+                                switch(hospital.getListaPessoas().get(j).getClass().getSimpleName()) {
+                                    case "Medico":
+                                        for(int k = 0; k < ((Medico)hospital.getListaPessoas().get(j)).getlistaPacientesAlta().length; k++){
+                                            if(((Medico)hospital.getListaPessoas().get(j)).getlistaPacientesAlta()[k].getId().equals(hospital.getListaPessoas().get(i).getId())){
+                                                pacientepossivelinfetar = false;
+                                                break;
+                                            }
+                                        }
+                                        break;
+                                    case "EnfermeiroEspecialista":
+                                        for(int k = 0; k < ((EnfermeiroEspecialista)hospital.getListaPessoas().get(j)).getAgenda().length; k++){
+                                            if(((EnfermeiroEspecialista)hospital.getListaPessoas().get(j)).getAgenda()[k].getId().equals(hospital.getListaPessoas().get(i).getId())){
+                                                pacientepossivelinfetar = false;
+                                                break;
+                                            }
+                                        }
+                                        break;
+                                    case "EnfermeiroAuxiliar":
+                                        for(int k = 0; k < ((EnfermeiroAuxiliar)hospital.getListaPessoas().get(j)).getAgenda().length; k++){
+                                            if(((EnfermeiroAuxiliar)hospital.getListaPessoas().get(j)).getAgenda()[k].getId().equals(hospital.getListaPessoas().get(i).getId())){
+                                                pacientepossivelinfetar = false;
+                                                break;
+                                            }
+                                        }
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                            if(pacientepossivelinfetar){
+                                if(gerador.nextBoolean()){
+                                    Scanner anonascimento = new Scanner(System.in);
+                                    System.out.println("Insere o ano de nascimento de um infetado: ");
+                                    Pessoa paciente = new Paciente(anonascimento.nextInt());
+                                    paciente.setId(hospital.getListaPessoas().get(i).getId());
+                                    paciente.setContarPessoas(paciente.getContarPessoas()-1);
+                                    hospital.getListaPessoas().set(i, paciente);
+                                    hospital.addPaciente((Paciente) paciente);
+                                }
+                            }
+                        }
                         break;
                     case "EnfermeiroEspecialista":
                         if(((EnfermeiroEspecialista)hospital.getListaPessoas().get(i)).vazioPacienteAgenda() && ((EnfermeiroEspecialista)hospital.getListaPessoas().get(i)).getMedicoAcompanhado()==null){
@@ -279,6 +324,7 @@ public class MenuAdministrador {
                                 paciente.setId(hospital.getListaPessoas().get(i).getId());
                                 paciente.setContarPessoas(paciente.getContarPessoas()-1);
                                 hospital.getListaPessoas().set(i, paciente);
+                                hospital.addPaciente((Paciente) paciente);
                             }
                         }
                         break;
@@ -291,6 +337,7 @@ public class MenuAdministrador {
                                 paciente.setId(hospital.getListaPessoas().get(i).getId());
                                 paciente.setContarPessoas(paciente.getContarPessoas()-1);
                                 hospital.getListaPessoas().set(i, paciente);
+                                hospital.addPaciente((Paciente) paciente);
                             }
                         }
                         break;
@@ -302,6 +349,7 @@ public class MenuAdministrador {
                             paciente.setId(hospital.getListaPessoas().get(i).getId());
                             paciente.setContarPessoas(paciente.getContarPessoas()-1);
                             hospital.getListaPessoas().set(i, paciente);
+                            hospital.addPaciente((Paciente) paciente);
                         }
                         break;
                     default:
@@ -335,6 +383,17 @@ public class MenuAdministrador {
             }
         }
         return foundmedico;
+    }
+    
+    public boolean isPacienteOnListaEspera(Hospital hospital, Paciente paciente){
+        boolean ispacientelistaespera = false;
+        for(int i = 0; i < hospital.getListaPacientes().size(); i++){
+            if(hospital.getListaPacientes().get(i).getId().equals(paciente.getId()) && hospital.getListaPacientes().get(i).getClass().getSimpleName().equals("Paciente")){
+                ispacientelistaespera = true;
+                break;
+            }
+        }
+        return ispacientelistaespera;
     }
     //getters e setters
     public boolean getSair(){
