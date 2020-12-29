@@ -139,16 +139,24 @@ public class MenuAdministrador {
     
     public void promoverEnfermeiroChefe(Hospital hospital)
     {
-        for(int i = 0; i < hospital.getListaPessoas().size(); i++) {
-            if((hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("EnfermeiroEspecialista")){
-                EnfermeiroEspecialista enfermeiroespecialista = (EnfermeiroEspecialista) hospital.getListaPessoas().get(i);
-                if(enfermeiroespecialista.getAnosCarreira() >= hospital.getAnosCarreiraMinimo()){
-                    Pessoa enfermeirochefe = new EnfermeiroChefe(enfermeiroespecialista.getNome(), enfermeiroespecialista.getAnosCarreira());
-                    enfermeirochefe.setId(enfermeiroespecialista.getId());
-                    enfermeirochefe.setContarPessoas(enfermeirochefe.getContarPessoas()-1);
-                    //EnfermeiroChefe enfermeirochefe = (EnfermeiroChefe) enfermeiroespecialista; //ERRO AQUI!
-                    //ERRO: class BaseDeDadosHospitalarDeDoencasInfectocontagiosas.EnfermeiroEspecialista cannot be cast to class BaseDeDadosHospitalarDeDoencasInfectocontagiosas.EnfermeiroChefe
-                    hospital.getListaPessoas().set(i, enfermeirochefe);
+        if(hospital.getListaPessoas().isEmpty()){
+            throw new ArrayIndexOutOfBoundsException("ListaPessoas está vazio.");
+        }
+        else{
+            for(int i = 0; i < hospital.getListaPessoas().size(); i++) {
+                if((hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("EnfermeiroEspecialista")){
+                    EnfermeiroEspecialista enfermeiroespecialista = (EnfermeiroEspecialista) hospital.getListaPessoas().get(i);
+                    if(enfermeiroespecialista.getAnosCarreira() >= hospital.getAnosCarreiraMinimo()){
+                        Pessoa enfermeirochefe = new EnfermeiroChefe(enfermeiroespecialista.getNome(), enfermeiroespecialista.getAnosCarreira());
+                        enfermeirochefe.setId(enfermeiroespecialista.getId());
+                        enfermeirochefe.setContarPessoas(enfermeirochefe.getContarPessoas()-1);
+                        //EnfermeiroChefe enfermeirochefe = (EnfermeiroChefe) enfermeiroespecialista; //ERRO AQUI!
+                        //ERRO: class BaseDeDadosHospitalarDeDoencasInfectocontagiosas.EnfermeiroEspecialista cannot be cast to class BaseDeDadosHospitalarDeDoencasInfectocontagiosas.EnfermeiroChefe
+                        hospital.getListaPessoas().set(i, enfermeirochefe);
+                    }
+                    else{
+                        System.out.println("O enfermeiro especialista " + enfermeiroespecialista.getId() + " de nome " + enfermeiroespecialista.getNome() + " não tem o requerimento minimo de anos de carreira para ser promovido a enfermeiro chefe.");
+                    }
                 }
             }
         }
@@ -156,40 +164,59 @@ public class MenuAdministrador {
     
     public void aumentarAnosCarreira(Hospital hospital)
     {
-        for(int i = 0; i < hospital.getListaPessoas().size(); i++) {
-            if((hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("EnfermeiroEspecialista") || (hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("EnfermeiroAuxiliar") || (hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("EnfermeiroChefe")){
-                Enfermeiro enfermeiro = (Enfermeiro) hospital.getListaPessoas().get(i);
-                int novoanocarreira = enfermeiro.getAnosCarreira() + 1;
-                enfermeiro.setAnosCarreira(novoanocarreira);
-                hospital.getListaPessoas().set(i, enfermeiro);
+        if(hospital.getListaPessoas().isEmpty()){
+            throw new ArrayIndexOutOfBoundsException("ListaPessoas está vazio.");
+        }
+        else{
+            for(int i = 0; i < hospital.getListaPessoas().size(); i++) {
+                if((hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("EnfermeiroEspecialista") || (hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("EnfermeiroAuxiliar") || (hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("EnfermeiroChefe")){
+                    Enfermeiro enfermeiro = (Enfermeiro) hospital.getListaPessoas().get(i);
+                    int novoanocarreira = enfermeiro.getAnosCarreira() + 1;
+                    enfermeiro.setAnosCarreira(novoanocarreira);
+                    hospital.getListaPessoas().set(i, enfermeiro);
+                }
             }
         }
     }
     
     public void listarEnfermeiros(Hospital hospital)
     {
-        for(int i = 0; i < hospital.getListaPessoas().size(); i++) {
-            if((hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("EnfermeiroEspecialista")){
-                EnfermeiroEspecialista enfermeiroespecialista = (EnfermeiroEspecialista) hospital.getListaPessoas().get(i);
-                System.out.println(enfermeiroespecialista);
-            }
-            else if((hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("EnfermeiroAuxiliar")){
-                EnfermeiroAuxiliar enfermeiroauxiliar = (EnfermeiroAuxiliar) hospital.getListaPessoas().get(i);
-                System.out.println(enfermeiroauxiliar);
-            }
-            else if((hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("EnfermeiroChefe")){
-                EnfermeiroChefe enfermeirochefe = (EnfermeiroChefe) hospital.getListaPessoas().get(i);
-                System.out.println(enfermeirochefe);
+        if(hospital.getListaPessoas().isEmpty()){
+            throw new ArrayIndexOutOfBoundsException("ListaPessoas está vazio.");
+        }
+        else{
+            for(int i = 0; i < hospital.getListaPessoas().size(); i++) {
+                switch (hospital.getListaPessoas().get(i).getClass().getSimpleName()) {
+                    case "EnfermeiroEspecialista":
+                        EnfermeiroEspecialista enfermeiroespecialista = (EnfermeiroEspecialista) hospital.getListaPessoas().get(i);
+                        System.out.println(enfermeiroespecialista);
+                        break;
+                    case "EnfermeiroAuxiliar":
+                        EnfermeiroAuxiliar enfermeiroauxiliar = (EnfermeiroAuxiliar) hospital.getListaPessoas().get(i);
+                        System.out.println(enfermeiroauxiliar);
+                        break;
+                    case "EnfermeiroChefe":
+                        EnfermeiroChefe enfermeirochefe = (EnfermeiroChefe) hospital.getListaPessoas().get(i);
+                        System.out.println(enfermeirochefe);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
     
     public void listarMedicos(Hospital hospital)
     {
-        for(int i = 0; i < hospital.getListaPessoas().size(); i++) {
-            if((hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("Medico")){
-                Medico medico = (Medico) hospital.getListaPessoas().get(i);
-                System.out.println(medico);
+        if(hospital.getListaPessoas().isEmpty()){
+            throw new ArrayIndexOutOfBoundsException("ListaPessoas está vazio.");
+        }
+        else{
+            for(int i = 0; i < hospital.getListaPessoas().size(); i++) {
+                if((hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("Medico")){
+                    Medico medico = (Medico) hospital.getListaPessoas().get(i);
+                    System.out.println(medico);
+                }
             }
         }
     }
@@ -201,8 +228,13 @@ public class MenuAdministrador {
     
     public void pacientesEsperanoHospital(Hospital hospital)
     {
-        for(int i = 0; i < hospital.getListaPacientes().size(); i++){
-            System.out.println(hospital.getListaPacientes().get(i));
+        if(hospital.getListaPacientes().isEmpty()){
+            throw new ArrayIndexOutOfBoundsException("ListaPacientes está vazio.");
+        }
+        else{
+            for(int i = 0; i < hospital.getListaPacientes().size(); i++){
+                System.out.println(hospital.getListaPacientes().get(i));
+            }
         }
     }
     

@@ -16,6 +16,9 @@ public class Main {
         MenuAdministrador menuadministrador = new MenuAdministrador();
         MenuMedico menumedico = new MenuMedico();
         MenuEnfermeiro menuenfermeiro = new MenuEnfermeiro();
+        System.out.println("Insere os anos de carreira mínimo do hospital: ");
+        Scanner anocarreiraminimo = new Scanner(System.in);
+        hospital.setAnosCarreiraMinimo(anocarreiraminimo.nextInt());
         while(!menuadministrador.getSair()){
             int opcao;
             System.out.println("***Menu***");
