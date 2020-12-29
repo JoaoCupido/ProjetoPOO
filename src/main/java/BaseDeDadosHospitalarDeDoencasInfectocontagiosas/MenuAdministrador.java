@@ -5,6 +5,7 @@
  */
 package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
 import java.util.Scanner;
+import java.util.Random;
 /**
  *
  * @author Utilizador
@@ -84,7 +85,7 @@ public class MenuAdministrador {
                     break;
                 case 12:
                     System.out.println("\nEscolhido a opção Virus Outbreak...\n");
-                    outBreak();
+                    outBreak(hospital);
                     break;
                 case 13:
                     System.out.println("\nEscolhido a opção N-ésimo Relatório Hospitalar...\n");
@@ -243,9 +244,38 @@ public class MenuAdministrador {
         
     }
     
-    public void outBreak()
+    public void outBreak(Hospital hospital)
     {
-       
+        Random gerador = new Random();
+        if(hospital.getListaPessoas().isEmpty()){
+            throw new ArrayIndexOutOfBoundsException("Não é possivel haver Virus Outbreak, porque ListaPessoas está vazio.");
+        }
+        else{
+            for(int i = 0; i < hospital.getListaPessoas().size(); i++){
+                switch(hospital.getListaPessoas().get(i).getClass().getSimpleName()) {
+                    case "Medico":
+                        break;
+                    case "Paciente":
+                        break;
+                    case "EnfermeiroEspecialista":
+                        break;
+                    case "EnfermeiroAuxiliar":
+                        break;
+                    case "EnfermeiroChefe":
+                        if(gerador.nextBoolean()){
+                            Scanner anonascimento = new Scanner(System.in);
+                            System.out.println("Insere o ano de nascimento de um infetado: ");
+                            Pessoa paciente = new Paciente(anonascimento.nextInt());
+                            paciente.setId(hospital.getListaPessoas().get(i).getId());
+                            paciente.setContarPessoas(paciente.getContarPessoas()-1);
+                            hospital.getListaPessoas().set(i, paciente);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
     
     public void relatorioHospitalar()
