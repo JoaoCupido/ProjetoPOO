@@ -276,7 +276,7 @@ public class MenuAdministrador {
                                 switch(hospital.getListaPessoas().get(j).getClass().getSimpleName()) {
                                     case "Medico":
                                         for(int k = 0; k < ((Medico)hospital.getListaPessoas().get(j)).getlistaPacientesAlta().length; k++){
-                                            if(((Medico)hospital.getListaPessoas().get(j)).getlistaPacientesAlta()[k].getId().equals(hospital.getListaPessoas().get(i).getId())){
+                                            if(((Medico)hospital.getListaPessoas().get(j)).getlistaPacientesAlta()[k].equals(hospital.getListaPessoas().get(i))){
                                                 pacientepossivelinfetar = false;
                                                 break;
                                             }
@@ -284,7 +284,7 @@ public class MenuAdministrador {
                                         break;
                                     case "EnfermeiroEspecialista":
                                         for(int k = 0; k < ((EnfermeiroEspecialista)hospital.getListaPessoas().get(j)).getAgenda().length; k++){
-                                            if(((EnfermeiroEspecialista)hospital.getListaPessoas().get(j)).getAgenda()[k].getId().equals(hospital.getListaPessoas().get(i).getId())){
+                                            if(((EnfermeiroEspecialista)hospital.getListaPessoas().get(j)).getAgenda()[k].equals(hospital.getListaPessoas().get(i))){
                                                 pacientepossivelinfetar = false;
                                                 break;
                                             }
@@ -292,7 +292,7 @@ public class MenuAdministrador {
                                         break;
                                     case "EnfermeiroAuxiliar":
                                         for(int k = 0; k < ((EnfermeiroAuxiliar)hospital.getListaPessoas().get(j)).getAgenda().length; k++){
-                                            if(((EnfermeiroAuxiliar)hospital.getListaPessoas().get(j)).getAgenda()[k].getId().equals(hospital.getListaPessoas().get(i).getId())){
+                                            if(((EnfermeiroAuxiliar)hospital.getListaPessoas().get(j)).getAgenda()[k].equals(hospital.getListaPessoas().get(i))){
                                                 pacientepossivelinfetar = false;
                                                 break;
                                             }
@@ -388,7 +388,7 @@ public class MenuAdministrador {
     public boolean isPacienteOnListaEspera(Hospital hospital, Paciente paciente){
         boolean ispacientelistaespera = false;
         for(int i = 0; i < hospital.getListaPacientes().size(); i++){
-            if(hospital.getListaPacientes().get(i).getId().equals(paciente.getId()) && hospital.getListaPacientes().get(i).getClass().getSimpleName().equals("Paciente")){
+            if(hospital.getListaPacientes().get(i).equals(paciente) && hospital.getListaPacientes().get(i).getClass().getSimpleName().equals("Paciente")){
                 ispacientelistaespera = true;
                 break;
             }

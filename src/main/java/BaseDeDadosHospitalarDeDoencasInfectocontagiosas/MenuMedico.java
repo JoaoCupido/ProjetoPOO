@@ -91,7 +91,7 @@ public class MenuMedico {
     */
     public void listarPacientesAlta(Medico medico)
     {
-        if(medico.getlistaPacientesAlta()[0] == null && medico.getlistaPacientesAlta()[1] == null && medico.getlistaPacientesAlta()[2] == null ){
+        if(medico.vazioPacienteAlta()){
             throw new ArrayIndexOutOfBoundsException("ListaPacientesAlta está vazio.");
         }
         else{

@@ -68,4 +68,12 @@ public class EnfermeiroAuxiliar extends Enfermeiro implements RelacaoMedicoEnfer
         return info;
     }
     //equals
+    @Override
+    public boolean equals(Object obj){
+        if(this==obj) return true;
+        if(obj == null) return false;
+        if(this.getClass() != obj.getClass()) return false;
+        EnfermeiroAuxiliar ea = (EnfermeiroAuxiliar) obj;
+        return getId().equals(ea.getId());
+    }
 }

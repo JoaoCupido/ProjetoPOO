@@ -64,4 +64,12 @@ public class Medico extends Pessoa{
         return info;
     }
     //equals
+    @Override
+    public boolean equals(Object obj){
+        if(this==obj) return true;
+        if(obj == null) return false;
+        if(this.getClass() != obj.getClass()) return false;
+        Medico med = (Medico) obj;
+        return getId().equals(med.getId());
+    }
 }
