@@ -48,6 +48,9 @@ public class Medico extends Pessoa{
             }
         }
     }
+    public boolean vazioPacienteAlta(){
+        return (listaPacientesAlta[0]==null && listaPacientesAlta[1]==null && listaPacientesAlta[2]==null);
+    }
     //getters e setters
     public Paciente[] getlistaPacientesAlta(){
         return listaPacientesAlta;

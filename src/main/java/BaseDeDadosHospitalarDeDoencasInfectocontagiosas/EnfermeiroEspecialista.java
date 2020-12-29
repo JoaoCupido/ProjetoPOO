@@ -42,6 +42,9 @@ public class EnfermeiroEspecialista extends Enfermeiro implements RelacaoMedicoE
             }
         }
     }
+    public boolean vazioPacienteAgenda(){
+        return (agenda[0]==null && agenda[1]==null && agenda[2]==null);
+    }
     //getters e setters
     public Medico getMedicoAcompanhado(){
         return medicoacompanhado;
