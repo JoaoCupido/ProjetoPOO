@@ -11,19 +11,15 @@ import java.util.Random;
  */
 public class Doenca {
     //variaveis de instancia
-    private int combinaçao;
     Random gerador = new Random();
     private boolean covid, hiv, ebola;
     //construtor
     public Doenca(){
-        combinaçao = gerador.nextInt(7) + 1;
+        combinacaoDoenca(gerador.nextInt(7) + 1);
     }
     //metodos
-    public void combinaçaoDoença(int combinaçao){
-        switch(combinaçao){
-            case 0:
-                covid = false; hiv = false; ebola = false;
-                break;
+    public void combinacaoDoenca(int combinacao){
+        switch(combinacao){
             case 1:
                 covid = true; hiv = false; ebola = false;
                 break;
