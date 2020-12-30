@@ -39,8 +39,8 @@ public class MenuEnfermeiro {
                     else{
                         for(int i = 0; i < hospital.getListaPessoas().size(); i++){
                             if(hospital.getListaPessoas().get(i).getId().equals(medicoid) && hospital.getListaPessoas().get(i).getClass().getSimpleName().equals("Medico")){
-                                System.out.println("LISTA DE PACIENTES A AGUARDAR ALTA DO MÉDICO " + hospital.getListaPessoas().get(i).getId() + " :");
-                                listarEnfermeiros(hospital, (Medico) hospital.getListaPessoas().get(i));
+                                System.out.println("LISTA DE ENFERMEIROS ACOMPANHADOS DO MÉDICO " + hospital.getListaPessoas().get(i).getId() + " :");
+                                listarEnfermeiros((Medico) hospital.getListaPessoas().get(i));
                                 break;
                             }
                             else if(hospital.getListaPessoas().get(i).getId().equals(medicoid) && !(hospital.getListaPessoas().get(i).getClass().getSimpleName().equals("Medico"))){
@@ -91,15 +91,13 @@ public class MenuEnfermeiro {
         }
     }
     
-    public void listarEnfermeiros(Hospital hospital, Medico medico)
+    public void listarEnfermeiros(Medico medico)
     {
-        for(int i = 0 ; i < hospital.getListaPessoas().size(); i++){
-            if(hospital.getListaPessoas().get(i).getClass().getSimpleName().equals("EnfermeiroAuxiliar") && ((EnfermeiroAuxiliar) hospital.getListaPessoas().get(i)).getMedicoAcompanhado().equals(medico)){
-                System.out.println((EnfermeiroAuxiliar) hospital.getListaPessoas().get(i));
-            }
-            else if(hospital.getListaPessoas().get(i).getClass().getSimpleName().equals("EnfermeiroEspecialista") && ((EnfermeiroEspecialista) hospital.getListaPessoas().get(i)).getMedicoAcompanhado().equals(medico)){
-                System.out.println((EnfermeiroEspecialista) hospital.getListaPessoas().get(i));
-            }
+        for(int i = 0 ; i < medico.getAuxiliaresAcompanhados().size(); i++){
+            System.out.println(medico.getAuxiliaresAcompanhados().get(i));
+        }
+        for(int i = 0 ; i < medico.getEspecialistasAcompanhados().size(); i++){
+            System.out.println(medico.getEspecialistasAcompanhados().get(i));
         }
     }
     

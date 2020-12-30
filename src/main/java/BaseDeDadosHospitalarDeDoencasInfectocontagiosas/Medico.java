@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
-
+import java.util.ArrayList;
 /**
  *
  * @author Utilizador
@@ -12,10 +12,14 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
 public class Medico extends Pessoa{
     //variaveis de instancia
     private Paciente[] listaPacientesAlta = {null, null, null};
+    private ArrayList<EnfermeiroAuxiliar> auxiliaresAcompanhados;
+    private ArrayList<EnfermeiroEspecialista> especialistasAcompanhados;
     //construtor
     public Medico()
     {
         super();
+        auxiliaresAcompanhados = new ArrayList<EnfermeiroAuxiliar>(1);
+        especialistasAcompanhados = new ArrayList<EnfermeiroEspecialista>(1);
     }
     
     //metodos
@@ -51,9 +55,45 @@ public class Medico extends Pessoa{
     public boolean vazioPacienteAlta(){
         return (listaPacientesAlta[0]==null && listaPacientesAlta[1]==null && listaPacientesAlta[2]==null);
     }
+    
+    public void atualizarEnfermeirosAcompanhados(Hospital hospital){
+        boolean enfermeirounico = true;
+        for(int i = 0; i < hospital.getListaPessoas().size(); i++){
+            switch(hospital.getListaPessoas().get(i).getClass().getSimpleName()){
+                case "EnfermeiroAuxiliar":
+                    for(int j = 0; j < auxiliaresAcompanhados.size(); j++){
+                        if(((EnfermeiroAuxiliar)hospital.getListaPessoas().get(i)).equals(auxiliaresAcompanhados.get(j))){
+                            enfermeirounico = false;
+                        }
+                    }
+                    if(enfermeirounico && ((EnfermeiroAuxiliar)hospital.getListaPessoas().get(i)).getMedicoAcompanhado().equals(this)){
+                        auxiliaresAcompanhados.add((EnfermeiroAuxiliar)hospital.getListaPessoas().get(i));
+                    }
+                    break;
+                case "EnfermeiroEspecialista":
+                    for(int j = 0; j < especialistasAcompanhados.size(); j++){
+                        if(((EnfermeiroEspecialista)hospital.getListaPessoas().get(i)).equals(especialistasAcompanhados.get(j))){
+                            enfermeirounico = false;
+                        }
+                    }
+                    if(enfermeirounico && ((EnfermeiroEspecialista)hospital.getListaPessoas().get(i)).getMedicoAcompanhado().equals(this)){
+                        especialistasAcompanhados.add((EnfermeiroEspecialista)hospital.getListaPessoas().get(i));
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
     //getters e setters
     public Paciente[] getlistaPacientesAlta(){
         return listaPacientesAlta;
+    }
+    public ArrayList<EnfermeiroAuxiliar> getAuxiliaresAcompanhados(){
+        return auxiliaresAcompanhados;
+    }
+    public ArrayList<EnfermeiroEspecialista> getEspecialistasAcompanhados(){
+        return especialistasAcompanhados;
     }
     //toString
     @Override
