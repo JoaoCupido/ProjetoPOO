@@ -33,17 +33,17 @@ public class MenuEnfermeiro {
                     Scanner scannermedico = new Scanner(System.in);
                     System.out.println("Insira o ID do médico a selecionar: ");
                     String medicoid = scannermedico.next();
-                    if(!isMedicoOnListaPessoas(hospital,medicoid)){
-                        throw new ArrayIndexOutOfBoundsException("O médico a procurar não existe na ListaPessoas.");
+                    if(!hospital.getListaPessoas().containsKey(medicoid)){
+                        throw new ArrayIndexOutOfBoundsException("O ID a procurar não existe na ListaPessoas.");
                     }
                     else{
-                        for(int i = 0; i < hospital.getListaPessoas().size(); i++){
-                            if(hospital.getListaPessoas().get(i).getId().equals(medicoid) && hospital.getListaPessoas().get(i).getClass().getSimpleName().equals("Medico")){
-                                System.out.println("LISTA DE ENFERMEIROS ACOMPANHADOS DO MÉDICO " + hospital.getListaPessoas().get(i).getId() + " :");
-                                listarEnfermeiros((Medico) hospital.getListaPessoas().get(i));
+                        for(Pessoa pessoaencontrar : hospital.getListaPessoas().values()){
+                            if(pessoaencontrar.getId().equals(medicoid) && pessoaencontrar.getClass().getSimpleName().equals("Medico")){
+                                System.out.println("LISTA DE ENFERMEIROS ACOMPANHADOS DO MÉDICO " + pessoaencontrar.getId() + " :");
+                                listarEnfermeiros((Medico) pessoaencontrar);
                                 break;
                             }
-                            else if(hospital.getListaPessoas().get(i).getId().equals(medicoid) && !(hospital.getListaPessoas().get(i).getClass().getSimpleName().equals("Medico"))){
+                            else if(pessoaencontrar.getId().equals(medicoid) && !(pessoaencontrar.getClass().getSimpleName().equals("Medico"))){
                                 throw new ArrayIndexOutOfBoundsException("O ID foi encontrado, mas não pertence a um médico.");
                                 //break;
                             }
@@ -55,22 +55,22 @@ public class MenuEnfermeiro {
                     Scanner scannerenfermeiro = new Scanner(System.in);
                     System.out.println("Insira o ID do enfermeiro auxiliar ou especialista a selecionar: ");
                     String enfermeiroid = scannerenfermeiro.next();
-                    if(!isEnfermeiroAuxiliarOuEnfermeiroEspecialistaOnListaPessoas(hospital,enfermeiroid)){
-                        throw new ArrayIndexOutOfBoundsException("O enfermeiro auxiliar ou especialista a procurar não existe na ListaPessoas.");
+                    if(!hospital.getListaPessoas().containsKey(enfermeiroid)){
+                        throw new ArrayIndexOutOfBoundsException("O ID a procurar não existe na ListaPessoas.");
                     }
                     else {
-                        for(int i = 0; i < hospital.getListaPessoas().size(); i++){
-                            if(hospital.getListaPessoas().get(i).getId().equals(enfermeiroid) && hospital.getListaPessoas().get(i).getClass().getSimpleName().equals("EnfermeiroAuxiliar")){
-                                System.out.println("LISTA DE PACIENTES A AGUARDAR CURATIVO DO ENFERMEIRO AUXILIAR " + hospital.getListaPessoas().get(i).getId() + " DE NOME " + ((EnfermeiroAuxiliar) hospital.getListaPessoas().get(i)).getNome() + " :");
-                                listarPacientesCurativo((Enfermeiro) hospital.getListaPessoas().get(i));
+                        for(Pessoa pessoaencontrar : hospital.getListaPessoas().values()){
+                            if(pessoaencontrar.getId().equals(enfermeiroid) && pessoaencontrar.getClass().getSimpleName().equals("EnfermeiroAuxiliar")){
+                                System.out.println("LISTA DE PACIENTES A AGUARDAR CURATIVO DO ENFERMEIRO AUXILIAR " + pessoaencontrar.getId() + " DE NOME " + ((EnfermeiroAuxiliar) pessoaencontrar).getNome() + " :");
+                                listarPacientesCurativo((Enfermeiro) pessoaencontrar);
                                 break;
                             }
-                            else if(hospital.getListaPessoas().get(i).getId().equals(enfermeiroid) && hospital.getListaPessoas().get(i).getClass().getSimpleName().equals("EnfermeiroEspecialista")){
-                                System.out.println("LISTA DE PACIENTES A AGUARDAR CURATIVO DO ENFERMEIRO ESPECIALISTA " + hospital.getListaPessoas().get(i).getId() + " DE NOME " + ((EnfermeiroEspecialista) hospital.getListaPessoas().get(i)).getNome() + " :");
-                                listarPacientesCurativo((Enfermeiro) hospital.getListaPessoas().get(i));
+                            else if(pessoaencontrar.getId().equals(enfermeiroid) && pessoaencontrar.getClass().getSimpleName().equals("EnfermeiroEspecialista")){
+                                System.out.println("LISTA DE PACIENTES A AGUARDAR CURATIVO DO ENFERMEIRO ESPECIALISTA " + pessoaencontrar.getId() + " DE NOME " + ((EnfermeiroEspecialista) pessoaencontrar).getNome() + " :");
+                                listarPacientesCurativo((Enfermeiro) pessoaencontrar);
                                 break;
                             }
-                            else if(hospital.getListaPessoas().get(i).getId().equals(enfermeiroid) && !(hospital.getListaPessoas().get(i).getClass().getSimpleName().equals("EnfermeiroEspecialista")) && !(hospital.getListaPessoas().get(i).getClass().getSimpleName().equals("EnfermeiroAuxiliar"))){
+                            else if(pessoaencontrar.getId().equals(enfermeiroid) && !(pessoaencontrar.getClass().getSimpleName().equals("EnfermeiroEspecialista")) && !(pessoaencontrar.getClass().getSimpleName().equals("EnfermeiroAuxiliar"))){
                                 throw new ArrayIndexOutOfBoundsException("O ID foi encontrado, mas não pertence nem a um enfermeiro auxiliar nem a um enfermeiro especialista.");
                                 //break;
                             }
@@ -93,11 +93,11 @@ public class MenuEnfermeiro {
     
     public void listarEnfermeiros(Medico medico)
     {
-        for(int i = 0 ; i < medico.getAuxiliaresAcompanhados().size(); i++){
-            System.out.println(medico.getAuxiliaresAcompanhados().get(i));
+        for(EnfermeiroAuxiliar ea : medico.getAuxiliaresAcompanhados().values()){
+            System.out.println(ea);
         }
-        for(int i = 0 ; i < medico.getEspecialistasAcompanhados().size(); i++){
-            System.out.println(medico.getEspecialistasAcompanhados().get(i));
+        for(EnfermeiroEspecialista ee : medico.getEspecialistasAcompanhados().values()){
+            System.out.println(ee);
         }
     }
     
@@ -125,28 +125,6 @@ public class MenuEnfermeiro {
     public void aplicarCurativo(Hospital hospital)
     {
         
-    }
-    
-    public boolean isMedicoOnListaPessoas(Hospital hospital, String medicoid){
-        boolean ismedico = false;
-        for(int i = 0; i < hospital.getListaPessoas().size(); i++){
-            if(hospital.getListaPessoas().get(i).getId().equals(medicoid) && hospital.getListaPessoas().get(i).getClass().getSimpleName().equals("Medico")){
-                ismedico = true;
-                break;
-            }
-        }
-        return ismedico;
-    }
-    
-    public boolean isEnfermeiroAuxiliarOuEnfermeiroEspecialistaOnListaPessoas(Hospital hospital, String enfermeiroid){
-        boolean foundenfermeiro = false;
-        for(int i = 0; i < hospital.getListaPessoas().size(); i++){
-            if((hospital.getListaPessoas().get(i).getId().equals(enfermeiroid) && hospital.getListaPessoas().get(i).getClass().getSimpleName().equals("EnfermeiroAuxiliar")) || (hospital.getListaPessoas().get(i).getId().equals(enfermeiroid) && hospital.getListaPessoas().get(i).getClass().getSimpleName().equals("EnfermeiroEspecialista"))){
-                foundenfermeiro = true;
-                break;
-            }
-        }
-        return foundenfermeiro;
     }
     //getters e setters
     //toString

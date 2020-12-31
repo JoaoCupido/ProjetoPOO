@@ -37,17 +37,17 @@ public class MenuMedico {
                     Scanner scannermedico = new Scanner(System.in);
                     System.out.println("Insira o ID do médico a selecionar: ");
                     String medicoid = scannermedico.next();
-                    if(!isMedicoOnListaPessoas(hospital,medicoid)){
-                        throw new ArrayIndexOutOfBoundsException("O médico a procurar não existe na ListaPessoas.");
+                    if(!hospital.getListaPessoas().containsKey(medicoid)){
+                        throw new ArrayIndexOutOfBoundsException("O ID a procurar não existe na ListaPessoas.");
                     }
                     else{
-                        for(int i = 0; i < hospital.getListaPessoas().size(); i++){
-                            if(hospital.getListaPessoas().get(i).getId().equals(medicoid) && hospital.getListaPessoas().get(i).getClass().getSimpleName().equals("Medico")){
-                                System.out.println("LISTA DE PACIENTES A AGUARDAR ALTA DO MÉDICO " + hospital.getListaPessoas().get(i).getId() + " :");
-                                listarPacientesAlta((Medico) hospital.getListaPessoas().get(i));
+                        for(Pessoa pessoaencontrar : hospital.getListaPessoas().values()){
+                            if(pessoaencontrar.getId().equals(medicoid) && pessoaencontrar.getClass().getSimpleName().equals("Medico")){
+                                System.out.println("LISTA DE PACIENTES A AGUARDAR ALTA DO MÉDICO " + pessoaencontrar.getId() + " :");
+                                listarPacientesAlta((Medico) pessoaencontrar);
                                 break;
                             }
-                            else if(hospital.getListaPessoas().get(i).getId().equals(medicoid) && !(hospital.getListaPessoas().get(i).getClass().getSimpleName().equals("Medico"))){
+                            else if(pessoaencontrar.getId().equals(medicoid) && !(pessoaencontrar.getClass().getSimpleName().equals("Medico"))){
                                 throw new ArrayIndexOutOfBoundsException("O ID foi encontrado, mas não pertence a um médico.");
                                 //break;
                             }
@@ -80,8 +80,8 @@ public class MenuMedico {
             throw new ArrayIndexOutOfBoundsException("ListaPacientes está vazio.");
         }
         else{
-            for(int i = 0; i < hospital.getListaPacientes().size(); i++){
-                System.out.println(hospital.getListaPacientes().get(i));
+            for(Paciente pacienteespera : hospital.getListaPacientes().values()){
+                System.out.println(pacienteespera);
             }
         }
     }
@@ -116,16 +116,6 @@ public class MenuMedico {
     {
     }
     
-    public boolean isMedicoOnListaPessoas(Hospital hospital, String medicoid){
-        boolean ismedico = false;
-        for(int i = 0; i < hospital.getListaPessoas().size(); i++){
-            if(hospital.getListaPessoas().get(i).getId().equals(medicoid) && hospital.getListaPessoas().get(i).getClass().getSimpleName().equals("Medico")){
-                ismedico = true;
-                break;
-            }
-        }
-        return ismedico;
-    }
     //getters e setters
     //toString
     //equals

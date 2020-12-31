@@ -104,7 +104,7 @@ public class MenuAdministrador {
     public void criarMedico(Hospital hospital)
     {
         Pessoa medico = new Medico();
-        hospital.getListaPessoas().add(medico); //adicionar medico à lista de pessoas no hospital
+        hospital.getListaPessoas().put(medico.getId(),medico); //adicionar medico à lista de pessoas no hospital
     }
     
     public void criarEnfermeiroEspecialista(Hospital hospital)
@@ -144,16 +144,16 @@ public class MenuAdministrador {
             throw new ArrayIndexOutOfBoundsException("ListaPessoas está vazio.");
         }
         else{
-            for(int i = 0; i < hospital.getListaPessoas().size(); i++) {
-                if((hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("EnfermeiroEspecialista")){
-                    EnfermeiroEspecialista enfermeiroespecialista = (EnfermeiroEspecialista) hospital.getListaPessoas().get(i);
+            for(Pessoa pessoaencontrar : hospital.getListaPessoas().values()) {
+                if((pessoaencontrar.getClass().getSimpleName()).equals("EnfermeiroEspecialista")){
+                    EnfermeiroEspecialista enfermeiroespecialista = (EnfermeiroEspecialista) pessoaencontrar;
                     if(enfermeiroespecialista.getAnosCarreira() >= hospital.getAnosCarreiraMinimo()){
                         Pessoa enfermeirochefe = new EnfermeiroChefe(enfermeiroespecialista.getNome(), enfermeiroespecialista.getAnosCarreira());
                         enfermeirochefe.setId(enfermeiroespecialista.getId());
                         enfermeirochefe.setContarPessoas(enfermeirochefe.getContarPessoas()-1);
                         //EnfermeiroChefe enfermeirochefe = (EnfermeiroChefe) enfermeiroespecialista; //ERRO AQUI!
                         //ERRO: class BaseDeDadosHospitalarDeDoencasInfectocontagiosas.EnfermeiroEspecialista cannot be cast to class BaseDeDadosHospitalarDeDoencasInfectocontagiosas.EnfermeiroChefe
-                        hospital.getListaPessoas().set(i, enfermeirochefe);
+                        hospital.getListaPessoas().replace(enfermeirochefe.getId(), enfermeirochefe);
                     }
                     else{
                         System.out.println("O enfermeiro especialista " + enfermeiroespecialista.getId() + " de nome " + enfermeiroespecialista.getNome() + " não tem o requerimento minimo de anos de carreira para ser promovido a enfermeiro chefe.");
@@ -169,12 +169,12 @@ public class MenuAdministrador {
             throw new ArrayIndexOutOfBoundsException("ListaPessoas está vazio.");
         }
         else{
-            for(int i = 0; i < hospital.getListaPessoas().size(); i++) {
-                if((hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("EnfermeiroEspecialista") || (hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("EnfermeiroAuxiliar") || (hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("EnfermeiroChefe")){
-                    Enfermeiro enfermeiro = (Enfermeiro) hospital.getListaPessoas().get(i);
+            for(Pessoa pessoaencontrar : hospital.getListaPessoas().values()) {
+                if((pessoaencontrar.getClass().getSimpleName()).equals("EnfermeiroEspecialista") || (pessoaencontrar.getClass().getSimpleName()).equals("EnfermeiroAuxiliar") || (pessoaencontrar.getClass().getSimpleName()).equals("EnfermeiroChefe")){
+                    Enfermeiro enfermeiro = (Enfermeiro) pessoaencontrar;
                     int novoanocarreira = enfermeiro.getAnosCarreira() + 1;
                     enfermeiro.setAnosCarreira(novoanocarreira);
-                    hospital.getListaPessoas().set(i, enfermeiro);
+                    //hospital.getListaPessoas().replace(enfermeiro.getId(), enfermeiro);
                 }
             }
         }
@@ -186,18 +186,18 @@ public class MenuAdministrador {
             throw new ArrayIndexOutOfBoundsException("ListaPessoas está vazio.");
         }
         else{
-            for(int i = 0; i < hospital.getListaPessoas().size(); i++) {
-                switch (hospital.getListaPessoas().get(i).getClass().getSimpleName()) {
+            for(Pessoa pessoaencontrar : hospital.getListaPessoas().values()) {
+                switch (pessoaencontrar.getClass().getSimpleName()) {
                     case "EnfermeiroEspecialista":
-                        EnfermeiroEspecialista enfermeiroespecialista = (EnfermeiroEspecialista) hospital.getListaPessoas().get(i);
+                        EnfermeiroEspecialista enfermeiroespecialista = (EnfermeiroEspecialista) pessoaencontrar;
                         System.out.println(enfermeiroespecialista);
                         break;
                     case "EnfermeiroAuxiliar":
-                        EnfermeiroAuxiliar enfermeiroauxiliar = (EnfermeiroAuxiliar) hospital.getListaPessoas().get(i);
+                        EnfermeiroAuxiliar enfermeiroauxiliar = (EnfermeiroAuxiliar) pessoaencontrar;
                         System.out.println(enfermeiroauxiliar);
                         break;
                     case "EnfermeiroChefe":
-                        EnfermeiroChefe enfermeirochefe = (EnfermeiroChefe) hospital.getListaPessoas().get(i);
+                        EnfermeiroChefe enfermeirochefe = (EnfermeiroChefe) pessoaencontrar;
                         System.out.println(enfermeirochefe);
                         break;
                     default:
@@ -213,9 +213,9 @@ public class MenuAdministrador {
             throw new ArrayIndexOutOfBoundsException("ListaPessoas está vazio.");
         }
         else{
-            for(int i = 0; i < hospital.getListaPessoas().size(); i++) {
-                if((hospital.getListaPessoas().get(i).getClass().getSimpleName()).equals("Medico")){
-                    Medico medico = (Medico) hospital.getListaPessoas().get(i);
+            for(Pessoa pessoaencontrar : hospital.getListaPessoas().values()) {
+                if((pessoaencontrar.getClass().getSimpleName()).equals("Medico")){
+                    Medico medico = (Medico) pessoaencontrar;
                     System.out.println(medico);
                 }
             }
@@ -233,8 +233,8 @@ public class MenuAdministrador {
             throw new ArrayIndexOutOfBoundsException("ListaPacientes está vazio.");
         }
         else{
-            for(int i = 0; i < hospital.getListaPacientes().size(); i++){
-                System.out.println(hospital.getListaPacientes().get(i));
+            for(Paciente pacienteespera : hospital.getListaPacientes().values()){
+                System.out.println(pacienteespera);
             }
         }
     }
@@ -251,19 +251,19 @@ public class MenuAdministrador {
             throw new ArrayIndexOutOfBoundsException("Não é possivel haver Virus Outbreak, porque ListaPessoas está vazio.");
         }
         else{
-            for(int i = 0; i < hospital.getListaPessoas().size(); i++){
-                switch(hospital.getListaPessoas().get(i).getClass().getSimpleName()) {
+            for(Pessoa pessoaencontrar : hospital.getListaPessoas().values()){
+                switch(pessoaencontrar.getClass().getSimpleName()) {
                     case "Medico":
-                        Medico medicoencontrado = (Medico) hospital.getListaPessoas().get(i);
+                        Medico medicoencontrado = (Medico) pessoaencontrar;
                         if(medicoencontrado.vazioPacienteAlta()){
                             if(!isEnfermeiroWithMedico(hospital, medicoencontrado)){
                                 if(gerador.nextBoolean()){
                                     Scanner anonascimento = new Scanner(System.in);
                                     System.out.println("Insere o ano de nascimento de um infetado: ");
                                     Pessoa paciente = new Paciente(anonascimento.nextInt());
-                                    paciente.setId(hospital.getListaPessoas().get(i).getId());
+                                    paciente.setId(pessoaencontrar.getId());
                                     paciente.setContarPessoas(paciente.getContarPessoas()-1);
-                                    hospital.getListaPessoas().set(i, paciente);
+                                    hospital.getListaPessoas().replace(paciente.getId(), paciente);
                                     hospital.addPaciente((Paciente) paciente);
                                 }
                             }
@@ -271,28 +271,28 @@ public class MenuAdministrador {
                         break;
                     case "Paciente":
                         boolean pacientepossivelinfetar = true;
-                        if(!isPacienteOnListaEspera(hospital, (Paciente) hospital.getListaPessoas().get(i))){
-                            for(int j = 0; j < hospital.getListaPessoas().size(); j++){
-                                switch(hospital.getListaPessoas().get(j).getClass().getSimpleName()) {
+                        if(!hospital.getListaPacientes().containsValue((Paciente)pessoaencontrar)){
+                            for(Pessoa pessoarelacaopacienteencontrar : hospital.getListaPessoas().values()){
+                                switch(pessoarelacaopacienteencontrar.getClass().getSimpleName()) {
                                     case "Medico":
-                                        for(int k = 0; k < ((Medico)hospital.getListaPessoas().get(j)).getlistaPacientesAlta().length; k++){
-                                            if(((Medico)hospital.getListaPessoas().get(j)).getlistaPacientesAlta()[k].equals(hospital.getListaPessoas().get(i))){
+                                        for(int k = 0; k < ((Medico)pessoarelacaopacienteencontrar).getlistaPacientesAlta().length; k++){
+                                            if(((Medico)pessoarelacaopacienteencontrar).getlistaPacientesAlta()[k].equals(pessoaencontrar)){
                                                 pacientepossivelinfetar = false;
                                                 break;
                                             }
                                         }
                                         break;
                                     case "EnfermeiroEspecialista":
-                                        for(int k = 0; k < ((EnfermeiroEspecialista)hospital.getListaPessoas().get(j)).getAgenda().length; k++){
-                                            if(((EnfermeiroEspecialista)hospital.getListaPessoas().get(j)).getAgenda()[k].equals(hospital.getListaPessoas().get(i))){
+                                        for(int k = 0; k < ((EnfermeiroEspecialista)pessoarelacaopacienteencontrar).getAgenda().length; k++){
+                                            if(((EnfermeiroEspecialista)pessoarelacaopacienteencontrar).getAgenda()[k].equals(pessoaencontrar)){
                                                 pacientepossivelinfetar = false;
                                                 break;
                                             }
                                         }
                                         break;
                                     case "EnfermeiroAuxiliar":
-                                        for(int k = 0; k < ((EnfermeiroAuxiliar)hospital.getListaPessoas().get(j)).getAgenda().length; k++){
-                                            if(((EnfermeiroAuxiliar)hospital.getListaPessoas().get(j)).getAgenda()[k].equals(hospital.getListaPessoas().get(i))){
+                                        for(int k = 0; k < ((EnfermeiroAuxiliar)pessoarelacaopacienteencontrar).getAgenda().length; k++){
+                                            if(((EnfermeiroAuxiliar)pessoarelacaopacienteencontrar).getAgenda()[k].equals(pessoaencontrar)){
                                                 pacientepossivelinfetar = false;
                                                 break;
                                             }
@@ -307,36 +307,36 @@ public class MenuAdministrador {
                                     Scanner anonascimento = new Scanner(System.in);
                                     System.out.println("Insere o ano de nascimento de um infetado: ");
                                     Pessoa paciente = new Paciente(anonascimento.nextInt());
-                                    paciente.setId(hospital.getListaPessoas().get(i).getId());
+                                    paciente.setId(pessoaencontrar.getId());
                                     paciente.setContarPessoas(paciente.getContarPessoas()-1);
-                                    hospital.getListaPessoas().set(i, paciente);
+                                    hospital.getListaPessoas().replace(paciente.getId(), paciente);
                                     hospital.addPaciente((Paciente) paciente);
                                 }
                             }
                         }
                         break;
                     case "EnfermeiroEspecialista":
-                        if(((EnfermeiroEspecialista)hospital.getListaPessoas().get(i)).vazioPacienteAgenda() && ((EnfermeiroEspecialista)hospital.getListaPessoas().get(i)).getMedicoAcompanhado()==null){
+                        if(((EnfermeiroEspecialista)pessoaencontrar).vazioPacienteAgenda() && ((EnfermeiroEspecialista)pessoaencontrar).getMedicoAcompanhado()==null){
                             if(gerador.nextBoolean()){
                                 Scanner anonascimento = new Scanner(System.in);
                                 System.out.println("Insere o ano de nascimento de um infetado: ");
                                 Pessoa paciente = new Paciente(anonascimento.nextInt());
-                                paciente.setId(hospital.getListaPessoas().get(i).getId());
+                                paciente.setId(pessoaencontrar.getId());
                                 paciente.setContarPessoas(paciente.getContarPessoas()-1);
-                                hospital.getListaPessoas().set(i, paciente);
+                                hospital.getListaPessoas().replace(paciente.getId(), paciente);
                                 hospital.addPaciente((Paciente) paciente);
                             }
                         }
                         break;
                     case "EnfermeiroAuxiliar":
-                        if(((EnfermeiroAuxiliar)hospital.getListaPessoas().get(i)).vazioPacienteAgenda() && ((EnfermeiroAuxiliar)hospital.getListaPessoas().get(i)).getMedicoAcompanhado()==null){
+                        if(((EnfermeiroAuxiliar)pessoaencontrar).vazioPacienteAgenda() && ((EnfermeiroAuxiliar)pessoaencontrar).getMedicoAcompanhado()==null){
                             if(gerador.nextBoolean()){
                                 Scanner anonascimento = new Scanner(System.in);
                                 System.out.println("Insere o ano de nascimento de um infetado: ");
                                 Pessoa paciente = new Paciente(anonascimento.nextInt());
-                                paciente.setId(hospital.getListaPessoas().get(i).getId());
+                                paciente.setId(pessoaencontrar.getId());
                                 paciente.setContarPessoas(paciente.getContarPessoas()-1);
-                                hospital.getListaPessoas().set(i, paciente);
+                                hospital.getListaPessoas().replace(paciente.getId(), paciente);
                                 hospital.addPaciente((Paciente) paciente);
                             }
                         }
@@ -346,9 +346,9 @@ public class MenuAdministrador {
                             Scanner anonascimento = new Scanner(System.in);
                             System.out.println("Insere o ano de nascimento de um infetado: ");
                             Pessoa paciente = new Paciente(anonascimento.nextInt());
-                            paciente.setId(hospital.getListaPessoas().get(i).getId());
+                            paciente.setId(pessoaencontrar.getId());
                             paciente.setContarPessoas(paciente.getContarPessoas()-1);
-                            hospital.getListaPessoas().set(i, paciente);
+                            hospital.getListaPessoas().replace(paciente.getId(), paciente);
                             hospital.addPaciente((Paciente) paciente);
                         }
                         break;
@@ -370,14 +370,14 @@ public class MenuAdministrador {
     
     public boolean isEnfermeiroWithMedico(Hospital hospital, Medico medico){
         boolean foundmedico = false;
-        for(int i = 0; i < hospital.getListaPessoas().size(); i++){
-            if(hospital.getListaPessoas().get(i).getClass().getSimpleName().equals("EnfermeiroAuxiliar")){
-                if(((EnfermeiroAuxiliar)hospital.getListaPessoas().get(i)).getMedicoAcompanhado().equals(medico)){
+        for(Pessoa pessoaencontrar : hospital.getListaPessoas().values()){
+            if(pessoaencontrar.getClass().getSimpleName().equals("EnfermeiroAuxiliar")){
+                if(((EnfermeiroAuxiliar)pessoaencontrar).getMedicoAcompanhado().equals(medico)){
                     foundmedico = true;
                 }
             }
-            else if(hospital.getListaPessoas().get(i).getClass().getSimpleName().equals("EnfermeiroEspecialista")){
-                if(((EnfermeiroEspecialista)hospital.getListaPessoas().get(i)).getMedicoAcompanhado().equals(medico)){
+            else if(pessoaencontrar.getClass().getSimpleName().equals("EnfermeiroEspecialista")){
+                if(((EnfermeiroEspecialista)pessoaencontrar).getMedicoAcompanhado().equals(medico)){
                     foundmedico = true;
                 }
             }
@@ -385,16 +385,6 @@ public class MenuAdministrador {
         return foundmedico;
     }
     
-    public boolean isPacienteOnListaEspera(Hospital hospital, Paciente paciente){
-        boolean ispacientelistaespera = false;
-        for(int i = 0; i < hospital.getListaPacientes().size(); i++){
-            if(hospital.getListaPacientes().get(i).equals(paciente) && hospital.getListaPacientes().get(i).getClass().getSimpleName().equals("Paciente")){
-                ispacientelistaespera = true;
-                break;
-            }
-        }
-        return ispacientelistaespera;
-    }
     //getters e setters
     public boolean getSair(){
         return sair;

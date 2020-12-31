@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
-import java.util.ArrayList;
+import java.util.HashMap;
 /**
  *
  * @author Utilizador
@@ -12,14 +12,14 @@ import java.util.ArrayList;
 public class Medico extends Pessoa{
     //variaveis de instancia
     private Paciente[] listaPacientesAlta = {null, null, null};
-    private ArrayList<EnfermeiroAuxiliar> auxiliaresAcompanhados;
-    private ArrayList<EnfermeiroEspecialista> especialistasAcompanhados;
+    private HashMap<String,EnfermeiroAuxiliar> auxiliaresAcompanhados;
+    private HashMap<String,EnfermeiroEspecialista> especialistasAcompanhados;
     //construtor
     public Medico()
     {
         super();
-        auxiliaresAcompanhados = new ArrayList<EnfermeiroAuxiliar>(1);
-        especialistasAcompanhados = new ArrayList<EnfermeiroEspecialista>(1);
+        auxiliaresAcompanhados = new HashMap<>(0);
+        especialistasAcompanhados = new HashMap<>(0);
     }
     
     //metodos
@@ -56,28 +56,28 @@ public class Medico extends Pessoa{
         return (listaPacientesAlta[0]==null && listaPacientesAlta[1]==null && listaPacientesAlta[2]==null);
     }
     
-    public void atualizarEnfermeirosAcompanhados(Hospital hospital){
+    public void atualizarEnfermeirosAcompanhados(Hospital hospital){ 
         boolean enfermeirounico = true;
-        for(int i = 0; i < hospital.getListaPessoas().size(); i++){
-            switch(hospital.getListaPessoas().get(i).getClass().getSimpleName()){
+        for(Pessoa pessoaencontrar : hospital.getListaPessoas().values()){
+            switch(pessoaencontrar.getClass().getSimpleName()){
                 case "EnfermeiroAuxiliar":
-                    for(int j = 0; j < auxiliaresAcompanhados.size(); j++){
-                        if(((EnfermeiroAuxiliar)hospital.getListaPessoas().get(i)).equals(auxiliaresAcompanhados.get(j))){
+                    for(EnfermeiroAuxiliar ea : auxiliaresAcompanhados.values()){
+                        if(((EnfermeiroAuxiliar)pessoaencontrar).equals(ea)){
                             enfermeirounico = false;
                         }
                     }
-                    if(enfermeirounico && ((EnfermeiroAuxiliar)hospital.getListaPessoas().get(i)).getMedicoAcompanhado().equals(this)){
-                        auxiliaresAcompanhados.add((EnfermeiroAuxiliar)hospital.getListaPessoas().get(i));
+                    if(enfermeirounico && ((EnfermeiroAuxiliar)pessoaencontrar).getMedicoAcompanhado().equals(this)){
+                        auxiliaresAcompanhados.put(pessoaencontrar.getId(),(EnfermeiroAuxiliar)pessoaencontrar);
                     }
                     break;
                 case "EnfermeiroEspecialista":
-                    for(int j = 0; j < especialistasAcompanhados.size(); j++){
-                        if(((EnfermeiroEspecialista)hospital.getListaPessoas().get(i)).equals(especialistasAcompanhados.get(j))){
+                    for(EnfermeiroEspecialista ee : especialistasAcompanhados.values()){
+                        if(((EnfermeiroEspecialista)pessoaencontrar).equals(ee)){
                             enfermeirounico = false;
                         }
                     }
-                    if(enfermeirounico && ((EnfermeiroEspecialista)hospital.getListaPessoas().get(i)).getMedicoAcompanhado().equals(this)){
-                        especialistasAcompanhados.add((EnfermeiroEspecialista)hospital.getListaPessoas().get(i));
+                    if(enfermeirounico && ((EnfermeiroEspecialista)pessoaencontrar).getMedicoAcompanhado().equals(this)){
+                        especialistasAcompanhados.put(pessoaencontrar.getId(),(EnfermeiroEspecialista)pessoaencontrar);
                     }
                     break;
                 default:
@@ -89,10 +89,10 @@ public class Medico extends Pessoa{
     public Paciente[] getlistaPacientesAlta(){
         return listaPacientesAlta;
     }
-    public ArrayList<EnfermeiroAuxiliar> getAuxiliaresAcompanhados(){
+    public HashMap<String,EnfermeiroAuxiliar> getAuxiliaresAcompanhados(){
         return auxiliaresAcompanhados;
     }
-    public ArrayList<EnfermeiroEspecialista> getEspecialistasAcompanhados(){
+    public HashMap<String,EnfermeiroEspecialista> getEspecialistasAcompanhados(){
         return especialistasAcompanhados;
     }
     //toString

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
-import java.util.ArrayList;
+import java.util.HashMap;
 /**
  *
  * @author jcupi
@@ -14,29 +14,24 @@ public class Hospital {
     private int numobitos,casospositivos, totalpacientestestados, anoscarreiraminimo;
     private double raciopacientespositivos;
     
-    private ArrayList<Pessoa> listaPessoas;
-    private ArrayList<Paciente> listaPacientes;
+    private HashMap<String,Pessoa> listaPessoas;
+    private HashMap<String,Paciente> listaPacientes;
     
     //construtor
     public Hospital()
     {
-        listaPessoas = new ArrayList<Pessoa>();
-        listaPacientes = new ArrayList<Paciente>();
+        listaPessoas = new HashMap<>(0);
+        listaPacientes = new HashMap<>(0);
     }
     //metodos
     public void addPessoa(Pessoa pessoa){
-        listaPessoas.add(pessoa);
+        listaPessoas.put(pessoa.getId(),pessoa);
     }
     public void addPaciente(Paciente paciente){
-        listaPacientes.add(paciente);
+        listaPacientes.put(paciente.getId(),paciente);
     }
-    public void removerPaciente(Paciente pacientearemover){
-        for(int i = 0; i < listaPacientes.size(); i++){
-            if(listaPacientes.get(i).equals(pacientearemover)){
-                listaPacientes.remove(i);
-                break;
-            }
-        }
+    public void removerPaciente(Paciente pacientearemover){ 
+        listaPacientes.remove(pacientearemover.getId());
     }
     //getters e setters
     public int getAnosCarreiraMinimo(){
@@ -45,10 +40,10 @@ public class Hospital {
     public void setAnosCarreiraMinimo(int anoscarreiraminimo){
         this.anoscarreiraminimo = anoscarreiraminimo;
     }
-    public ArrayList<Pessoa> getListaPessoas(){
+    public HashMap<String,Pessoa> getListaPessoas(){
         return listaPessoas;
     }
-    public ArrayList<Paciente> getListaPacientes(){
+    public HashMap<String,Paciente> getListaPacientes(){
         return listaPacientes;
     }
     
