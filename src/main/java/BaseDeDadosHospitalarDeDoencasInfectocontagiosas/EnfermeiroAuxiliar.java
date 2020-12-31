@@ -21,7 +21,7 @@ public class EnfermeiroAuxiliar extends Enfermeiro implements RelacaoMedicoEnfer
     }
     //metodos
     public void addPacienteAgenda(Hospital hospital, Paciente paciente){
-        if(agenda[0] != null && agenda[1] != null && agenda[2] != null){
+        if(isFullPacienteAgenda()){
             System.out.println("ERRO! O enfermeiro " + this.getId() + " de nome " + this.getNome() + " já tem o máximo de 3 pacientes.");
         }
         else{
@@ -42,8 +42,11 @@ public class EnfermeiroAuxiliar extends Enfermeiro implements RelacaoMedicoEnfer
             }
         }
     }
-    public boolean vazioPacienteAgenda(){
+    public boolean isEmptyPacienteAgenda(){
         return (agenda[0]==null && agenda[1]==null && agenda[2]==null);
+    }
+    public boolean isFullPacienteAgenda(){
+        return (agenda[0]!=null && agenda[1]!=null && agenda[2]!=null);
     }
     //getters e setters
     public Medico getMedicoAcompanhado(){

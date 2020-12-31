@@ -52,8 +52,11 @@ public class Medico extends Pessoa{
             }
         }
     }
-    public boolean vazioPacienteAlta(){
+    public boolean isEmptyPacienteAlta(){
         return (listaPacientesAlta[0]==null && listaPacientesAlta[1]==null && listaPacientesAlta[2]==null);
+    }
+    public boolean isFullPacienteAlta(){
+        return (listaPacientesAlta[0]!=null && listaPacientesAlta[1]!=null && listaPacientesAlta[2]!=null);
     }
     
     public void atualizarEnfermeirosAcompanhados(Hospital hospital){ 

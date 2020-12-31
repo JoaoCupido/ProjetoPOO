@@ -31,6 +31,12 @@ public class Paciente extends Pessoa{
     {
         this.anonascimento=anonascimento;
     }
+    public Doenca getDoenca(){
+        return doenca;
+    }
+    public void setDoenca(Doenca doenca){
+        this.doenca = doenca;
+    }
     //toString
     @Override
     public String toString()

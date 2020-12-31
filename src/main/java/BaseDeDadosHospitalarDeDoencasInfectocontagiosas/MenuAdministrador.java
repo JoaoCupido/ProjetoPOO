@@ -274,7 +274,7 @@ public class MenuAdministrador {
                 switch(pessoaencontrar.getClass().getSimpleName()) {
                     case "Medico":
                         Medico medicoencontrado = (Medico) pessoaencontrar;
-                        if(medicoencontrado.vazioPacienteAlta()){
+                        if(medicoencontrado.isEmptyPacienteAlta()){
                             if(!isEnfermeiroWithMedico(hospital, medicoencontrado)){
                                 if(gerador.nextBoolean()){
                                     Scanner anonascimento = new Scanner(System.in);
@@ -335,7 +335,7 @@ public class MenuAdministrador {
                         }
                         break;
                     case "EnfermeiroEspecialista":
-                        if(((EnfermeiroEspecialista)pessoaencontrar).vazioPacienteAgenda() && ((EnfermeiroEspecialista)pessoaencontrar).getMedicoAcompanhado()==null){
+                        if(((EnfermeiroEspecialista)pessoaencontrar).isEmptyPacienteAgenda() && ((EnfermeiroEspecialista)pessoaencontrar).getMedicoAcompanhado()==null){
                             if(gerador.nextBoolean()){
                                 Scanner anonascimento = new Scanner(System.in);
                                 System.out.println("Insere o ano de nascimento de um infetado: ");
@@ -348,7 +348,7 @@ public class MenuAdministrador {
                         }
                         break;
                     case "EnfermeiroAuxiliar":
-                        if(((EnfermeiroAuxiliar)pessoaencontrar).vazioPacienteAgenda() && ((EnfermeiroAuxiliar)pessoaencontrar).getMedicoAcompanhado()==null){
+                        if(((EnfermeiroAuxiliar)pessoaencontrar).isEmptyPacienteAgenda() && ((EnfermeiroAuxiliar)pessoaencontrar).getMedicoAcompanhado()==null){
                             if(gerador.nextBoolean()){
                                 Scanner anonascimento = new Scanner(System.in);
                                 System.out.println("Insere o ano de nascimento de um infetado: ");
