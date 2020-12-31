@@ -5,7 +5,7 @@
  */
 package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
 import java.util.Scanner;
-
+import java.util.Map;
 /**
  *
  * @author Utilizador
@@ -34,25 +34,7 @@ public class MenuMedico {
                     break;
                 case 2:
                     System.out.println("\nEscolhido a opção Listar Pacientes a aguardar Alta...\n");
-                    Scanner scannermedico = new Scanner(System.in);
-                    System.out.println("Insira o ID do médico a selecionar: ");
-                    String medicoid = scannermedico.next();
-                    if(!hospital.getListaPessoas().containsKey(medicoid)){
-                        throw new ArrayIndexOutOfBoundsException("O ID a procurar não existe na ListaPessoas.");
-                    }
-                    else{
-                        for(Pessoa pessoaencontrar : hospital.getListaPessoas().values()){
-                            if(pessoaencontrar.getId().equals(medicoid) && pessoaencontrar.getClass().getSimpleName().equals("Medico")){
-                                System.out.println("LISTA DE PACIENTES A AGUARDAR ALTA DO MÉDICO " + pessoaencontrar.getId() + " :");
-                                listarPacientesAlta((Medico) pessoaencontrar);
-                                break;
-                            }
-                            else if(pessoaencontrar.getId().equals(medicoid) && !(pessoaencontrar.getClass().getSimpleName().equals("Medico"))){
-                                throw new ArrayIndexOutOfBoundsException("O ID foi encontrado, mas não pertence a um médico.");
-                                //break;
-                            }
-                        }
-                    }
+                    listarPacientesAlta(hospital);
                     break;
                 case 3:
                     System.out.println("\nEscolhido a opção Diagnóstico ao Paciente...\n");
@@ -89,14 +71,32 @@ public class MenuMedico {
     /*
     Lista de Pacientes que aguardam alta por parte do médico, apos o enfermeiro aplicar o curativo!
     */
-    public void listarPacientesAlta(Medico medico)
+    public void listarPacientesAlta(Hospital hospital)
     {
-        if(medico.vazioPacienteAlta()){
-            throw new ArrayIndexOutOfBoundsException("ListaPacientesAlta está vazio.");
+        Scanner scannermedico = new Scanner(System.in);
+        System.out.println("Insira o ID do médico a selecionar: ");
+        String medicoid = scannermedico.next();
+        if(!hospital.getListaPessoas().containsKey(medicoid)){
+            throw new ArrayIndexOutOfBoundsException("O ID a procurar não existe na ListaPessoas.");
         }
         else{
-            for (Paciente listaPacientesAlta : medico.getlistaPacientesAlta()) {
-                System.out.println(listaPacientesAlta);
+            for(Map.Entry<String,Pessoa> elementonalista : hospital.getListaPessoas().entrySet()){
+                if(elementonalista.getKey().equals(medicoid) && elementonalista.getValue().getClass().getSimpleName().equals("Medico")){
+                    System.out.println("LISTA DE PACIENTES A AGUARDAR ALTA DO MÉDICO " + elementonalista.getValue().getId() + " :");
+                    if(((Medico) elementonalista.getValue()).vazioPacienteAlta()){
+                        throw new ArrayIndexOutOfBoundsException("ListaPacientesAlta está vazio.");
+                    }
+                    else{
+                        for(Paciente listaPacientesAlta : ((Medico) elementonalista.getValue()).getlistaPacientesAlta()) {
+                            System.out.println(listaPacientesAlta);
+                        }
+                    }
+                    break;
+                }
+                else if(elementonalista.getKey().equals(medicoid) && !(elementonalista.getValue().getClass().getSimpleName().equals("Medico"))){
+                    throw new ArrayIndexOutOfBoundsException("O ID foi encontrado, mas não pertence a um médico.");
+                    //break;
+                }
             }
         }
     }
