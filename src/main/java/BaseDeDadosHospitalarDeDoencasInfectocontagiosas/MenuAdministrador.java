@@ -12,8 +12,11 @@ import java.util.Random;
  */
 public class MenuAdministrador {
     //variaveis de instancia
-    private boolean sair = false;
+    private boolean sair;
     //construtor
+    public MenuAdministrador(){
+        sair = false;
+    }
     //metodos
     
     public void menuOpcoesAdministrador(Hospital hospital){
@@ -30,9 +33,10 @@ public class MenuAdministrador {
         System.out.println("9) Listar Pedidos para Enfermeiros-Auxiliares");
         System.out.println("10) Listar Pacientes em espera no Hospital");
         System.out.println("11) Atirar Pedidos para Enfermeiros-Auxiliares para a Trituradora");
-        System.out.println("12) Virus Outbreak");
-        System.out.println("13) N-ésimo Relatório Hospitalar");
-        System.out.println("14) Sair da Aplicação\n");
+        System.out.println("12) Atender ao Pedido para Enfermeiros-Auxiliares");
+        System.out.println("13) Virus Outbreak");
+        System.out.println("14) N-ésimo Relatório Hospitalar");
+        System.out.println("15) Sair da Aplicação\n");
         Scanner escolha = new Scanner(System.in);
         System.out.println("Digite uma opção. Digite nenhuma das opções apresentadas para sair do SubMenu Administrador: ");
         opcao = escolha.nextInt();
@@ -84,14 +88,18 @@ public class MenuAdministrador {
                     atribuirPedidosEnfAuxTrituradora();
                     break;
                 case 12:
+                    System.out.println("\nEscolhido a opção Atender ao Pedido para Enfermeiros-Auxiliares...\n");
+                    atenderPedidoEnfAuxiliares();
+                    break;
+                case 13:
                     System.out.println("\nEscolhido a opção Virus Outbreak...\n");
                     outBreak(hospital);
                     break;
-                case 13:
+                case 14:
                     System.out.println("\nEscolhido a opção N-ésimo Relatório Hospitalar...\n");
                     relatorioHospitalar();
                     break;
-                case 14:
+                case 15:
                     System.out.println("\nEscolhido a opção Sair da Aplicação...\n");
                     sairAplicacao();
                     break;
@@ -147,7 +155,7 @@ public class MenuAdministrador {
             for(Pessoa pessoaencontrar : hospital.getListaPessoas().values()) {
                 if((pessoaencontrar.getClass().getSimpleName()).equals("EnfermeiroEspecialista")){
                     EnfermeiroEspecialista enfermeiroespecialista = (EnfermeiroEspecialista) pessoaencontrar;
-                    if(enfermeiroespecialista.getAnosCarreira() >= hospital.getAnosCarreiraMinimo()){
+                    if(enfermeiroespecialista.getAnosCarreira() >= hospital.getAnosCarreiraMinimo() && enfermeiroespecialista.getMedicoAcompanhado()==null){
                         Pessoa enfermeirochefe = new EnfermeiroChefe(enfermeiroespecialista.getNome(), enfermeiroespecialista.getAnosCarreira());
                         enfermeirochefe.setId(enfermeiroespecialista.getId());
                         enfermeirochefe.setContarPessoas(enfermeirochefe.getContarPessoas()-1);
@@ -155,8 +163,15 @@ public class MenuAdministrador {
                         //ERRO: class BaseDeDadosHospitalarDeDoencasInfectocontagiosas.EnfermeiroEspecialista cannot be cast to class BaseDeDadosHospitalarDeDoencasInfectocontagiosas.EnfermeiroChefe
                         hospital.getListaPessoas().replace(enfermeirochefe.getId(), enfermeirochefe);
                     }
+                    else if(enfermeiroespecialista.getAnosCarreira() < hospital.getAnosCarreiraMinimo() && enfermeiroespecialista.getMedicoAcompanhado()==null){
+                        System.out.println("O enfermeiro especialista " + enfermeiroespecialista.getId() + " de nome " + enfermeiroespecialista.getNome() + " não tem o requerimento minimo de anos de carreira ( " + enfermeiroespecialista.getAnosCarreira() + " < " + hospital.getAnosCarreiraMinimo() + " ) para ser promovido a enfermeiro chefe.");
+                    }
+                    else if(enfermeiroespecialista.getAnosCarreira() >= hospital.getAnosCarreiraMinimo() && enfermeiroespecialista.getMedicoAcompanhado()!=null){
+                        System.out.println("O enfermeiro especialista " + enfermeiroespecialista.getId() + " de nome " + enfermeiroespecialista.getNome() + " acompanha o médico " + enfermeiroespecialista.getMedicoAcompanhado().getId() + ".");
+                    }
                     else{
-                        System.out.println("O enfermeiro especialista " + enfermeiroespecialista.getId() + " de nome " + enfermeiroespecialista.getNome() + " não tem o requerimento minimo de anos de carreira para ser promovido a enfermeiro chefe.");
+                        System.out.println("O enfermeiro especialista " + enfermeiroespecialista.getId() + " de nome " + enfermeiroespecialista.getNome() + " não tem o requerimento minimo de anos de carreira ( " + enfermeiroespecialista.getAnosCarreira() + " < " + hospital.getAnosCarreiraMinimo() + " ) para ser promovido a enfermeiro chefe.");
+                        System.out.println("O enfermeiro especialista " + enfermeiroespecialista.getId() + " de nome " + enfermeiroespecialista.getNome() + " acompanha o médico " + enfermeiroespecialista.getMedicoAcompanhado().getId() + ".");
                     }
                 }
             }
@@ -170,7 +185,7 @@ public class MenuAdministrador {
         }
         else{
             for(Pessoa pessoaencontrar : hospital.getListaPessoas().values()) {
-                if((pessoaencontrar.getClass().getSimpleName()).equals("EnfermeiroEspecialista") || (pessoaencontrar.getClass().getSimpleName()).equals("EnfermeiroAuxiliar") || (pessoaencontrar.getClass().getSimpleName()).equals("EnfermeiroChefe")){
+                if(pessoaencontrar instanceof Enfermeiro){
                     Enfermeiro enfermeiro = (Enfermeiro) pessoaencontrar;
                     int novoanocarreira = enfermeiro.getAnosCarreira() + 1;
                     enfermeiro.setAnosCarreira(novoanocarreira);
@@ -241,6 +256,10 @@ public class MenuAdministrador {
     
     public void atribuirPedidosEnfAuxTrituradora()
     {
+        
+    }
+    
+    public void atenderPedidoEnfAuxiliares(){
         
     }
     
