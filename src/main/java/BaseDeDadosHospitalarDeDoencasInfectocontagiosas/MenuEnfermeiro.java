@@ -115,7 +115,50 @@ public class MenuEnfermeiro {
     
     public void atribuirEnfermeiroEspecialista(Hospital hospital)
     {
-        
+        Scanner scannerenfermeiro = new Scanner(System.in);
+        System.out.println("Insira o ID do enfermeiro chefe a selecionar: ");
+        String chefeid = scannerenfermeiro.next();
+        if(!hospital.getListaPessoas().containsKey(chefeid)){
+            throw new ArrayIndexOutOfBoundsException("O ID do chefe a procurar não existe na ListaPessoas.");
+        }
+        else {
+            for(Map.Entry<String,Pessoa> elementonalista : hospital.getListaPessoas().entrySet()){
+                if(elementonalista.getKey().equals(chefeid) && !(elementonalista.getValue().getClass().getSimpleName().equals("EnfermeiroChefe"))){
+                    throw new ArrayIndexOutOfBoundsException("O ID foi encontrado, mas não pertence a um enfermeiro chefe.");
+                }
+                else if(elementonalista.getKey().equals(chefeid) && elementonalista.getValue().getClass().getSimpleName().equals("EnfermeiroChefe")){
+                    System.out.println("Insira o ID do enfermeiro-especialista a ser atribuído: ");
+                    String enfermeiroid = scannerenfermeiro.next();
+                    System.out.println("Insira o ID do médico a receber o enfermeiro-especialista: ");
+                    String medicoid = scannerenfermeiro.next();
+                    if(!hospital.getListaPessoas().containsKey(enfermeiroid)){
+                        throw new ArrayIndexOutOfBoundsException("O ID do enfermeiro-especialista a ser atribuído não existe na ListaPessoas.");
+                    }
+                    else if(!hospital.getListaPessoas().containsKey(medicoid)){
+                        throw new ArrayIndexOutOfBoundsException("O ID do médico a receber o enfermeiro-especialista não existe na ListaPessoas.");
+                    }
+                    else{
+                        for(Map.Entry<String,Pessoa> especialistanalista : hospital.getListaPessoas().entrySet()){
+                            if(especialistanalista.getKey().equals(enfermeiroid) && !(especialistanalista.getValue().getClass().getSimpleName().equals("EnfermeiroEspecialista"))){
+                                throw new ArrayIndexOutOfBoundsException("O ID foi encontrado, mas não pertence a um enfermeiro-especialista.");
+                            }
+                            else if(especialistanalista.getKey().equals(enfermeiroid) && especialistanalista.getValue().getClass().getSimpleName().equals("EnfermeiroEspecialista")){
+                                for(Map.Entry<String,Pessoa> mediconalista : hospital.getListaPessoas().entrySet()){
+                                    if(mediconalista.getKey().equals(medicoid) && !(mediconalista.getValue().getClass().getSimpleName().equals("Medico"))){
+                                        throw new ArrayIndexOutOfBoundsException("O ID foi encontrado, mas não pertence a um médico.");
+                                    }
+                                    else if(mediconalista.getKey().equals(medicoid) && mediconalista.getValue().getClass().getSimpleName().equals("Medico")){
+                                        ((EnfermeiroEspecialista)especialistanalista).setMedicoAcompanhado((Medico)mediconalista.getValue());
+                                        ((Medico)mediconalista.getValue()).atualizarEnfermeirosAcompanhados(hospital);
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
     public void aplicarCurativo(Hospital hospital)
