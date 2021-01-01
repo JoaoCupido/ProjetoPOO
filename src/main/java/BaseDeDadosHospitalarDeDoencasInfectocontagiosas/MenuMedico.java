@@ -238,13 +238,19 @@ public class MenuMedico {
                     }
                     else if(ea.getMedicoAcompanhado().equals(medico) && !ea.isFullPacienteAgenda()){
                         if(paciente.getDoenca().getCovid() || paciente.getDoenca().getEbola() || paciente.getDoenca().getHiv()){
-                            ea.addPacienteAgenda(hospital, paciente);
-                            medico.removePacienteAlta(paciente);
-                            hospital.removerPaciente(paciente);
+                            if(hospital.getListaPacientes().containsValue(paciente)){
+                                ea.addPacienteAgenda(hospital, paciente);
+                                hospital.removerPaciente(paciente);
+                            }
+                            else{
+                                ea.addPacienteAgenda(hospital, paciente);
+                                medico.removePacienteAlta(paciente);
+                            }
                         }
                         else if(!(paciente.getDoenca().getCovid() || paciente.getDoenca().getEbola() || paciente.getDoenca().getHiv())){
                             medico.removePacienteAlta(paciente);
                             ea.removePacienteAgenda(paciente);
+                            //adicionar dados do paciente que teve alta no relatorio hospitalar
                         }
                     }
                     break;
@@ -255,13 +261,19 @@ public class MenuMedico {
                     }
                     else if(ee.getMedicoAcompanhado().equals(medico) && !ee.isFullPacienteAgenda()){
                         if(paciente.getDoenca().getCovid() || paciente.getDoenca().getEbola() || paciente.getDoenca().getHiv()){
-                            ee.addPacienteAgenda(hospital, paciente);
-                            medico.removePacienteAlta(paciente);
-                            hospital.removerPaciente(paciente);
+                            if(hospital.getListaPacientes().containsValue(paciente)){
+                                ee.addPacienteAgenda(hospital, paciente);
+                                hospital.removerPaciente(paciente);
+                            }
+                            else{
+                                ee.addPacienteAgenda(hospital, paciente);
+                                medico.removePacienteAlta(paciente);
+                            }
                         }
                         else if(!(paciente.getDoenca().getCovid() || paciente.getDoenca().getEbola() || paciente.getDoenca().getHiv())){
                             medico.removePacienteAlta(paciente);
                             ee.removePacienteAgenda(paciente);
+                            //adicionar dados do paciente que teve alta no relatorio hospitalar
                         }
                     }
                     break;
