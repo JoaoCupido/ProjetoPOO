@@ -73,9 +73,9 @@ public class MenuMedico {
     */
     public void listarPacientesAlta(Hospital hospital)
     {
-        Scanner scannermedico = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Insira o ID do médico a selecionar: ");
-        String medicoid = scannermedico.next();
+        String medicoid = scanner.next();
         if(!hospital.getListaPessoas().containsKey(medicoid)){
             throw new ArrayIndexOutOfBoundsException("O ID a procurar não existe na ListaPessoas.");
         }

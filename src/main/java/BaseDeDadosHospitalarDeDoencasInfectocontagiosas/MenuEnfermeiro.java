@@ -53,9 +53,9 @@ public class MenuEnfermeiro {
     
     public void listarEnfermeiros(Hospital hospital)
     {
-        Scanner scannermedico = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Insira o ID do médico a selecionar: ");
-        String medicoid = scannermedico.next();
+        String medicoid = scanner.next();
         if(!hospital.getListaPessoas().containsKey(medicoid)){
             throw new ArrayIndexOutOfBoundsException("O ID a procurar não existe na ListaPessoas.");
         }
@@ -81,9 +81,9 @@ public class MenuEnfermeiro {
     
     public void listarPacientesCurativo(Hospital hospital)
     {
-        Scanner scannerenfermeiro = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Insira o ID do enfermeiro auxiliar ou especialista a selecionar: ");
-        String enfermeiroid = scannerenfermeiro.next();
+        String enfermeiroid = scanner.next();
         if(!hospital.getListaPessoas().containsKey(enfermeiroid)){
             throw new ArrayIndexOutOfBoundsException("O ID a procurar não existe na ListaPessoas.");
         }
@@ -115,9 +115,9 @@ public class MenuEnfermeiro {
     
     public void atribuirEnfermeiroEspecialista(Hospital hospital)
     {
-        Scanner scannerenfermeiro = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Insira o ID do enfermeiro chefe a selecionar: ");
-        String chefeid = scannerenfermeiro.next();
+        String chefeid = scanner.next();
         if(!hospital.getListaPessoas().containsKey(chefeid)){
             throw new ArrayIndexOutOfBoundsException("O ID do chefe a procurar não existe na ListaPessoas.");
         }
@@ -128,9 +128,9 @@ public class MenuEnfermeiro {
                 }
                 else if(elementonalista.getKey().equals(chefeid) && elementonalista.getValue().getClass().getSimpleName().equals("EnfermeiroChefe")){
                     System.out.println("Insira o ID do enfermeiro-especialista a ser atribuído: ");
-                    String enfermeiroid = scannerenfermeiro.next();
+                    String enfermeiroid = scanner.next();
                     System.out.println("Insira o ID do médico a receber o enfermeiro-especialista: ");
-                    String medicoid = scannerenfermeiro.next();
+                    String medicoid = scanner.next();
                     if(!hospital.getListaPessoas().containsKey(enfermeiroid)){
                         throw new ArrayIndexOutOfBoundsException("O ID do enfermeiro-especialista a ser atribuído não existe na ListaPessoas.");
                     }
