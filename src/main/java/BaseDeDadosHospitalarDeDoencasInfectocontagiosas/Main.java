@@ -17,17 +17,16 @@ public class Main {
         MenuMedico menumedico = new MenuMedico();
         MenuEnfermeiro menuenfermeiro = new MenuEnfermeiro();
         System.out.println("Insere os anos de carreira mínimo do hospital: ");
-        Scanner anocarreiraminimo = new Scanner(System.in);
-        hospital.setAnosCarreiraMinimo(anocarreiraminimo.nextInt());
+        Scanner scanner = new Scanner(System.in);
+        hospital.setAnosCarreiraMinimo(scanner.nextInt());
         while(!menuadministrador.getSair()){
             int opcao;
             System.out.println("***Menu***");
             System.out.println("1) Médico");
             System.out.println("2) Enfermeiro");
             System.out.println("3) Administrador"+"\n");
-            Scanner escolha = new Scanner(System.in);
             System.out.println("Digite uma opção que esteja apresentada no Menu: ");
-            opcao = escolha.nextInt();
+            opcao = scanner.nextInt();
             switch(opcao)
             {
                 case 1:

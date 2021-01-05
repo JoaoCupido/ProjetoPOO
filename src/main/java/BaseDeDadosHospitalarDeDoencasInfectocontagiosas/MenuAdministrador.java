@@ -149,7 +149,7 @@ public class MenuAdministrador {
     public void promoverEnfermeiroChefe(Hospital hospital)
     {
         if(hospital.getListaPessoas().isEmpty()){
-            throw new ArrayIndexOutOfBoundsException("ListaPessoas está vazio.");
+            System.out.println("ListaPessoas está vazio.");
         }
         else{
             for(Pessoa pessoaencontrar : hospital.getListaPessoas().values()) {
@@ -181,7 +181,7 @@ public class MenuAdministrador {
     public void aumentarAnosCarreira(Hospital hospital)
     {
         if(hospital.getListaPessoas().isEmpty()){
-            throw new ArrayIndexOutOfBoundsException("ListaPessoas está vazio.");
+            System.out.println("ListaPessoas está vazio.");
         }
         else{
             for(Pessoa pessoaencontrar : hospital.getListaPessoas().values()) {
@@ -198,7 +198,7 @@ public class MenuAdministrador {
     public void listarEnfermeiros(Hospital hospital)
     {
         if(hospital.getListaPessoas().isEmpty()){
-            throw new ArrayIndexOutOfBoundsException("ListaPessoas está vazio.");
+            System.out.println("ListaPessoas está vazio.");
         }
         else{
             for(Pessoa pessoaencontrar : hospital.getListaPessoas().values()) {
@@ -225,7 +225,7 @@ public class MenuAdministrador {
     public void listarMedicos(Hospital hospital)
     {
         if(hospital.getListaPessoas().isEmpty()){
-            throw new ArrayIndexOutOfBoundsException("ListaPessoas está vazio.");
+            System.out.println("ListaPessoas está vazio.");
         }
         else{
             for(Pessoa pessoaencontrar : hospital.getListaPessoas().values()) {
@@ -245,7 +245,7 @@ public class MenuAdministrador {
     public void pacientesEsperanoHospital(Hospital hospital)
     {
         if(hospital.getListaPacientes().isEmpty()){
-            throw new ArrayIndexOutOfBoundsException("ListaPacientes está vazio.");
+            System.out.println("ListaPacientes está vazio.");
         }
         else{
             for(Paciente pacienteespera : hospital.getListaPacientes().values()){
@@ -267,7 +267,7 @@ public class MenuAdministrador {
     {
         Random gerador = new Random();
         if(hospital.getListaPessoas().isEmpty()){
-            throw new ArrayIndexOutOfBoundsException("Não é possivel haver Virus Outbreak, porque ListaPessoas está vazio.");
+            System.out.println("Não é possivel haver Virus Outbreak, porque ListaPessoas está vazio.");
         }
         else{
             for(Pessoa pessoaencontrar : hospital.getListaPessoas().values()){
@@ -323,9 +323,7 @@ public class MenuAdministrador {
                             }
                             if(pacientepossivelinfetar){
                                 if(gerador.nextBoolean()){
-                                    Scanner anonascimento = new Scanner(System.in);
-                                    System.out.println("Insere o ano de nascimento de um infetado: ");
-                                    Pessoa paciente = new Paciente(anonascimento.nextInt());
+                                    Pessoa paciente = new Paciente(((Paciente)pessoaencontrar).getAnoNascimento()); // paciente já tem ano de nascimento;
                                     paciente.setId(pessoaencontrar.getId());
                                     paciente.setContarPessoas(paciente.getContarPessoas()-1);
                                     hospital.getListaPessoas().replace(paciente.getId(), paciente);

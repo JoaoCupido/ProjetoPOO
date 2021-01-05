@@ -59,7 +59,7 @@ public class MenuMedico {
     public void listarPacientesEspera(Hospital hospital)
     {
         if(hospital.getListaPacientes().isEmpty()){
-            throw new ArrayIndexOutOfBoundsException("ListaPacientes está vazio.");
+            System.out.println("ListaPacientes está vazio.");
         }
         else{
             for(Paciente pacienteespera : hospital.getListaPacientes().values()){
@@ -77,14 +77,14 @@ public class MenuMedico {
         System.out.println("Insira o ID do médico a selecionar: ");
         String medicoid = scanner.next();
         if(!hospital.getListaPessoas().containsKey(medicoid)){
-            throw new ArrayIndexOutOfBoundsException("O ID a procurar não existe na ListaPessoas.");
+            System.out.println("O ID a procurar não existe na ListaPessoas.");
         }
         else{
             for(Map.Entry<String,Pessoa> elementonalista : hospital.getListaPessoas().entrySet()){
                 if(elementonalista.getKey().equals(medicoid) && elementonalista.getValue().getClass().getSimpleName().equals("Medico")){
                     System.out.println("LISTA DE PACIENTES A AGUARDAR ALTA DO MÉDICO " + elementonalista.getValue().getId() + " :");
                     if(((Medico) elementonalista.getValue()).isEmptyPacienteAlta()){
-                        throw new ArrayIndexOutOfBoundsException("ListaPacientesAlta está vazio.");
+                        System.out.println("ListaPacientesAlta está vazio.");
                     }
                     else{
                         for(Paciente listaPacientesAlta : ((Medico) elementonalista.getValue()).getlistaPacientesAlta()) {
@@ -94,8 +94,8 @@ public class MenuMedico {
                     break;
                 }
                 else if(elementonalista.getKey().equals(medicoid) && !(elementonalista.getValue().getClass().getSimpleName().equals("Medico"))){
-                    throw new ArrayIndexOutOfBoundsException("O ID foi encontrado, mas não pertence a um médico.");
-                    //break;
+                    System.out.println("O ID foi encontrado, mas não pertence a um médico.");
+                    break;
                 }
             }
         }
@@ -112,21 +112,21 @@ public class MenuMedico {
         System.out.println("Insira o ID do paciente a ser diagnosticado: ");
         String pacienteid = scanner.next();
         if(!hospital.getListaPessoas().containsKey(medicoid)){
-            throw new ArrayIndexOutOfBoundsException("O ID do médico a procurar não existe na ListaPessoas.");
+            System.out.println("O ID do médico a procurar não existe na ListaPessoas.");
         }
         else if(!hospital.getListaPacientes().containsKey(pacienteid)){
-            throw new ArrayIndexOutOfBoundsException("O ID do paciente a ser diagnosticado não existe na ListaPessoas.");
+            System.out.println("O ID do paciente a ser diagnosticado não existe na ListaPessoas.");
         }
         else{
             for(Map.Entry<String,Pessoa> mediconalista : hospital.getListaPessoas().entrySet()){
                 if(mediconalista.getKey().equals(medicoid) && !(mediconalista.getValue().getClass().getSimpleName().equals("Medico"))){
-                    throw new ArrayIndexOutOfBoundsException("O ID foi encontrado, mas não pertence a um médico.");
+                    System.out.println("O ID foi encontrado, mas não pertence a um médico.");
                 }
                 else if(mediconalista.getKey().equals(medicoid) && mediconalista.getValue().getClass().getSimpleName().equals("Medico")){
                     if(!((Medico)mediconalista).getAuxiliaresAcompanhados().isEmpty() && !((Medico)mediconalista).getEspecialistasAcompanhados().isEmpty()){
                         for(Map.Entry<String,Paciente> pacientenalista : hospital.getListaPacientes().entrySet()){
                             if(pacientenalista.getKey().equals(pacienteid) && !(pacientenalista.getValue().getClass().getSimpleName().equals("Paciente"))){
-                                throw new ArrayIndexOutOfBoundsException("O ID foi encontrado, mas não pertence a um paciente.");
+                                System.out.println("O ID foi encontrado, mas não pertence a um paciente.");
                             }
                             else if(pacientenalista.getKey().equals(pacienteid) && pacientenalista.getValue().getClass().getSimpleName().equals("Paciente")){
                                 diagnosticoPaciente(hospital, (Medico)mediconalista.getValue(),(Paciente)pacientenalista.getValue());
@@ -134,7 +134,7 @@ public class MenuMedico {
                         }
                     }
                     else{
-                        throw new ArrayIndexOutOfBoundsException("O médico não tem nenhum enfermeiro a acompanhar no diagnóstico.");
+                        System.out.println("O médico não tem nenhum enfermeiro a acompanhar no diagnóstico.");
                     }
                 }
             }
@@ -149,19 +149,19 @@ public class MenuMedico {
         System.out.println("Insira o ID do paciente a ser diagnosticado: ");
         String pacienteid = scanner.next();
         if(!hospital.getListaPessoas().containsKey(medicoid)){
-            throw new ArrayIndexOutOfBoundsException("O ID do médico a procurar não existe na ListaPessoas.");
+            System.out.println("O ID do médico a procurar não existe na ListaPessoas.");
         }
         else if(!hospital.getListaPessoas().containsKey(pacienteid)){
-            throw new ArrayIndexOutOfBoundsException("O ID do paciente a ser avaliado não existe na ListaPessoas.");
+            System.out.println("O ID do paciente a ser avaliado não existe na ListaPessoas.");
         }
         else{
             for(Map.Entry<String,Pessoa> mediconalista : hospital.getListaPessoas().entrySet()){
                 if(mediconalista.getKey().equals(medicoid) && !(mediconalista.getValue().getClass().getSimpleName().equals("Medico"))){
-                    throw new ArrayIndexOutOfBoundsException("O ID foi encontrado, mas não pertence a um médico.");
+                    System.out.println("O ID foi encontrado, mas não pertence a um médico.");
                 }
                 else if(mediconalista.getKey().equals(medicoid) && mediconalista.getValue().getClass().getSimpleName().equals("Medico")){
                     if(((Medico)mediconalista.getValue()).isEmptyPacienteAlta()){
-                        throw new ArrayIndexOutOfBoundsException("O médico selecionado tem a lista de pacientes a aguardar alta como vazia.");
+                        System.out.println("O médico selecionado tem a lista de pacientes a aguardar alta como vazia.");
                     }
                     else{
                         for(int i = 0; i < ((Medico)mediconalista.getValue()).getlistaPacientesAlta().length; i++){
@@ -188,20 +188,20 @@ public class MenuMedico {
         System.out.println("Insira o ID do enfermeiro-chefe a ser comunicado: ");
         String chefeid = scanner.next();
         if(!hospital.getListaPessoas().containsKey(medicoid)){
-            throw new ArrayIndexOutOfBoundsException("O ID do médico a procurar não existe na ListaPessoas.");
+            System.out.println("O ID do médico a procurar não existe na ListaPessoas.");
         }
         else if(!hospital.getListaPessoas().containsKey(chefeid)){
-            throw new ArrayIndexOutOfBoundsException("O ID do chefe a ser comunicado não existe na ListaPessoas.");
+            System.out.println("O ID do chefe a ser comunicado não existe na ListaPessoas.");
         }
         else{
             for(Map.Entry<String,Pessoa> mediconalista : hospital.getListaPessoas().entrySet()){
                 if(mediconalista.getKey().equals(medicoid) && !(mediconalista.getValue().getClass().getSimpleName().equals("Medico"))){
-                    throw new ArrayIndexOutOfBoundsException("O ID do suposto médico foi encontrado, mas não pertence a um médico.");
+                    System.out.println("O ID do suposto médico foi encontrado, mas não pertence a um médico.");
                 }
                 else if(mediconalista.getKey().equals(medicoid) && mediconalista.getValue().getClass().getSimpleName().equals("Medico")){
                     for(Map.Entry<String,Pessoa> chefenalista : hospital.getListaPessoas().entrySet()){
                         if(chefenalista.getKey().equals(chefeid) && !(mediconalista.getValue().getClass().getSimpleName().equals("EnfermeiroChefe"))){
-                            throw new ArrayIndexOutOfBoundsException("O ID do suposto enfermeiro-chefe foi encontrado, mas não pertence a um enfermeiro-chefe.");
+                            System.out.println("O ID do suposto enfermeiro-chefe foi encontrado, mas não pertence a um enfermeiro-chefe.");
                         }
                         else if(chefenalista.getKey().equals(chefeid) && mediconalista.getValue().getClass().getSimpleName().equals("EnfermeiroChefe")){
                             System.out.println("Insira o número de auxiliares para acompanhar o médico: ");
@@ -209,7 +209,7 @@ public class MenuMedico {
                             int totalauxiliaresdis = contadorAuxiliaresDisponiveis(hospital);
                             if(numeroauxiliares>totalauxiliaresdis){
                                 //atender ao pedido de mais enfermeiros-auxiliares
-                                throw new ArithmeticException("O número de auxiliares pedido pelo médico é maior do que o número de auxiliares disponíveis na ListaPessoas.");
+                                System.out.println("O número de auxiliares pedido pelo médico é maior do que o número de auxiliares disponíveis na ListaPessoas.");
                             }
                             else{
                                 for(Map.Entry<String,Pessoa> auxiliarnalista : hospital.getListaPessoas().entrySet()){
@@ -234,7 +234,7 @@ public class MenuMedico {
                 case "EnfermeiroAuxiliar":
                     EnfermeiroAuxiliar ea = (EnfermeiroAuxiliar) enfermeironalista.getValue();
                     if(ea.getMedicoAcompanhado().equals(medico) && ea.isFullPacienteAgenda()){
-                        throw new ArrayIndexOutOfBoundsException("O(s) enfermeiro(s) que acompanha(m) o médico têm a agenda cheia.");
+                        System.out.println("O(s) enfermeiro(s) que acompanha(m) o médico têm a agenda cheia.");
                     }
                     else if(ea.getMedicoAcompanhado().equals(medico) && !ea.isFullPacienteAgenda()){
                         if(paciente.getDoenca().getCovid() || paciente.getDoenca().getEbola() || paciente.getDoenca().getHiv()){
@@ -257,7 +257,7 @@ public class MenuMedico {
                 case "EnfermeiroEspecialista":
                     EnfermeiroEspecialista ee = (EnfermeiroEspecialista) enfermeironalista.getValue();
                     if(ee.getMedicoAcompanhado().equals(medico) && ee.isFullPacienteAgenda()){
-                        throw new ArrayIndexOutOfBoundsException("O(s) enfermeiro(s) que acompanha(m) o médico têm a agenda cheia.");
+                        System.out.println("O(s) enfermeiro(s) que acompanha(m) o médico têm a agenda cheia.");
                     }
                     else if(ee.getMedicoAcompanhado().equals(medico) && !ee.isFullPacienteAgenda()){
                         if(paciente.getDoenca().getCovid() || paciente.getDoenca().getEbola() || paciente.getDoenca().getHiv()){
