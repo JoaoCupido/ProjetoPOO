@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Random;
 /**
@@ -140,10 +141,16 @@ public class MenuAdministrador {
         int anonascimento;
         Scanner inserirano = new Scanner(System.in);
         System.out.println("Insere o ano de nascimento: ");
-        anonascimento = inserirano.nextInt();
-        Pessoa paciente = new Paciente(anonascimento);
-        hospital.addPessoa(paciente); //adicionar paciente à lista de pessoas no hospital
-        hospital.addPaciente((Paciente) paciente); //adicionar paciente à lista de pacientes em espera no hospital
+        try{
+            anonascimento = inserirano.nextInt();
+            Pessoa paciente = new Paciente(anonascimento);
+            hospital.addPessoa(paciente); //adicionar paciente à lista de pessoas no hospital
+            hospital.addPaciente((Paciente) paciente); //adicionar paciente à lista de pacientes em espera no hospital
+        }
+        catch(InputMismatchException e){
+            System.out.println("Input inválido!");
+            inserirano.nextLine();
+        }
     }
     
     public void promoverEnfermeiroChefe(Hospital hospital)
