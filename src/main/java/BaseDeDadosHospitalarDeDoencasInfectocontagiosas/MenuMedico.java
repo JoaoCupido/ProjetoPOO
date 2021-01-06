@@ -246,8 +246,9 @@ public class MenuMedico {
                 case "EnfermeiroAuxiliar":
                     EnfermeiroAuxiliar ea = (EnfermeiroAuxiliar) enfermeironalista.getValue();
                     if(ea.getMedicoAcompanhado().equals(medico) && ea.isFullPacienteAgenda()){
-                        System.out.println("O(s) enfermeiro(s) que acompanha(m) o médico têm a agenda cheia.");
-                        break;
+                        if(hospital.getListaPacientes().containsValue(paciente) || medico.containsPacienteInPacienteAlta(paciente)){
+                            System.out.println("O(s) enfermeiro(s) que acompanha(m) o médico têm a agenda cheia.");
+                        }
                     }
                     else if(ea.getMedicoAcompanhado().equals(medico) && !ea.isFullPacienteAgenda()){
                         if(paciente.getDoenca().getCovid() || paciente.getDoenca().getEbola() || paciente.getDoenca().getHiv()){
@@ -261,17 +262,21 @@ public class MenuMedico {
                             }
                         }
                         else if(!(paciente.getDoenca().getCovid() || paciente.getDoenca().getEbola() || paciente.getDoenca().getHiv())){
+                            if(hospital.getListaPacientes().containsValue(paciente) || medico.containsPacienteInPacienteAlta(paciente)){
+                                //adicionar dados do paciente que teve alta no relatorio hospitalar
+                            }
+                            paciente.getDoenca().setNumerovezes(0);
                             medico.removePacienteAlta(paciente);
                             ea.removePacienteAgenda(paciente);
-                            //adicionar dados do paciente que teve alta no relatorio hospitalar
                         }
                     }
                     break;
                 case "EnfermeiroEspecialista":
                     EnfermeiroEspecialista ee = (EnfermeiroEspecialista) enfermeironalista.getValue();
                     if(ee.getMedicoAcompanhado().equals(medico) && ee.isFullPacienteAgenda()){
-                        System.out.println("O(s) enfermeiro(s) que acompanha(m) o médico têm a agenda cheia.");
-                        break;
+                        if(hospital.getListaPacientes().containsValue(paciente) || medico.containsPacienteInPacienteAlta(paciente)){
+                            System.out.println("O(s) enfermeiro(s) que acompanha(m) o médico têm a agenda cheia.");
+                        }
                     }
                     else if(ee.getMedicoAcompanhado().equals(medico) && !ee.isFullPacienteAgenda()){
                         if(paciente.getDoenca().getCovid() || paciente.getDoenca().getEbola() || paciente.getDoenca().getHiv()){
@@ -285,10 +290,12 @@ public class MenuMedico {
                             }
                         }
                         else if(!(paciente.getDoenca().getCovid() || paciente.getDoenca().getEbola() || paciente.getDoenca().getHiv())){
+                            if(hospital.getListaPacientes().containsValue(paciente) || medico.containsPacienteInPacienteAlta(paciente)){
+                                //adicionar dados do paciente que teve alta no relatorio hospitalar
+                            }
                             paciente.getDoenca().setNumerovezes(0);
                             medico.removePacienteAlta(paciente);
                             ee.removePacienteAgenda(paciente);
-                            //adicionar dados do paciente que teve alta no relatorio hospitalar
                         }
                     }
                     break;

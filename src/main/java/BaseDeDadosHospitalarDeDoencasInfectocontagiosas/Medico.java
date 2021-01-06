@@ -45,6 +45,9 @@ public class Medico extends Pessoa{
     public boolean isFullPacienteAlta(){
         return (listaPacientesAlta[0]!=null && listaPacientesAlta[1]!=null && listaPacientesAlta[2]!=null);
     }
+    public boolean containsPacienteInPacienteAlta(Paciente paciente){
+        return (paciente.equals(listaPacientesAlta[0]) || paciente.equals(listaPacientesAlta[1]) || paciente.equals(listaPacientesAlta[2]));
+    }
     
     public void atualizarEnfermeirosAcompanhados(Hospital hospital){ 
         boolean enfermeirounico = true;
