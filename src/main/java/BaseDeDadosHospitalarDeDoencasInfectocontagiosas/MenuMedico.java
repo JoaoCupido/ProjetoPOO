@@ -123,7 +123,7 @@ public class MenuMedico {
                     System.out.println("O ID foi encontrado, mas não pertence a um médico.");
                 }
                 else if(mediconalista.getKey().equals(medicoid) && mediconalista.getValue().getClass().getSimpleName().equals("Medico")){
-                    if(!((Medico)mediconalista).getAuxiliaresAcompanhados().isEmpty() && !((Medico)mediconalista).getEspecialistasAcompanhados().isEmpty()){
+                    if(!((Medico)mediconalista.getValue()).getAuxiliaresAcompanhados().isEmpty() && !((Medico)mediconalista.getValue()).getEspecialistasAcompanhados().isEmpty()){
                         for(Map.Entry<String,Paciente> pacientenalista : hospital.getListaPacientes().entrySet()){
                             if(pacientenalista.getKey().equals(pacienteid) && !(pacientenalista.getValue().getClass().getSimpleName().equals("Paciente"))){
                                 System.out.println("O ID foi encontrado, mas não pertence a um paciente.");
@@ -167,8 +167,8 @@ public class MenuMedico {
                         for(int i = 0; i < ((Medico)mediconalista.getValue()).getlistaPacientesAlta().length; i++){
                             if(((Medico)mediconalista.getValue()).getlistaPacientesAlta()[i]!=null){
                                 for(Map.Entry<String,Pessoa> pacientenalista : hospital.getListaPessoas().entrySet()){
-                                    if(((Medico)mediconalista.getValue()).getlistaPacientesAlta()[i].equals((Paciente)pacientenalista) && pacientenalista.getKey().equals(pacienteid)){
-                                        diagnosticoPaciente(hospital,(Medico)mediconalista,(Paciente)pacientenalista);
+                                    if(((Medico)mediconalista.getValue()).getlistaPacientesAlta()[i].equals((Paciente)pacientenalista.getValue()) && pacientenalista.getKey().equals(pacienteid)){
+                                        diagnosticoPaciente(hospital,(Medico)mediconalista.getValue(),(Paciente)pacientenalista.getValue());
                                         break;
                                     }
                                 }
@@ -200,10 +200,10 @@ public class MenuMedico {
                 }
                 else if(mediconalista.getKey().equals(medicoid) && mediconalista.getValue().getClass().getSimpleName().equals("Medico")){
                     for(Map.Entry<String,Pessoa> chefenalista : hospital.getListaPessoas().entrySet()){
-                        if(chefenalista.getKey().equals(chefeid) && !(mediconalista.getValue().getClass().getSimpleName().equals("EnfermeiroChefe"))){
+                        if(chefenalista.getKey().equals(chefeid) && !(chefenalista.getValue().getClass().getSimpleName().equals("EnfermeiroChefe"))){
                             System.out.println("O ID do suposto enfermeiro-chefe foi encontrado, mas não pertence a um enfermeiro-chefe.");
                         }
-                        else if(chefenalista.getKey().equals(chefeid) && mediconalista.getValue().getClass().getSimpleName().equals("EnfermeiroChefe")){
+                        else if(chefenalista.getKey().equals(chefeid) && chefenalista.getValue().getClass().getSimpleName().equals("EnfermeiroChefe")){
                             System.out.println("Insira o número de auxiliares para acompanhar o médico: ");
                             int numeroauxiliares = scanner.nextInt();
                             int totalauxiliaresdis = contadorAuxiliaresDisponiveis(hospital);
@@ -214,9 +214,9 @@ public class MenuMedico {
                             else{
                                 for(Map.Entry<String,Pessoa> auxiliarnalista : hospital.getListaPessoas().entrySet()){
                                     if(auxiliarnalista.getValue().getClass().getSimpleName().equals("EnfermeiroAuxiliar")){
-                                        if(((EnfermeiroAuxiliar)auxiliarnalista).getMedicoAcompanhado()==null){
-                                            ((EnfermeiroAuxiliar)auxiliarnalista).setMedicoAcompanhado((Medico)mediconalista);
-                                            break;
+                                        if(((EnfermeiroAuxiliar)auxiliarnalista.getValue()).getMedicoAcompanhado()==null && numeroauxiliares>0){
+                                            ((EnfermeiroAuxiliar)auxiliarnalista.getValue()).setMedicoAcompanhado((Medico)mediconalista.getValue());
+                                            numeroauxiliares = numeroauxiliares - 1;
                                         }
                                     }
                                 }
@@ -271,6 +271,7 @@ public class MenuMedico {
                             }
                         }
                         else if(!(paciente.getDoenca().getCovid() || paciente.getDoenca().getEbola() || paciente.getDoenca().getHiv())){
+                            paciente.getDoenca().setNumerovezes(0);
                             medico.removePacienteAlta(paciente);
                             ee.removePacienteAgenda(paciente);
                             //adicionar dados do paciente que teve alta no relatorio hospitalar
@@ -287,7 +288,7 @@ public class MenuMedico {
         int conta = 0;
         for(Map.Entry<String,Pessoa> auxiliarnalista : hospital.getListaPessoas().entrySet()){
             if(auxiliarnalista.getValue().getClass().getSimpleName().equals("EnfermeiroAuxiliar")){
-                if(((EnfermeiroAuxiliar)auxiliarnalista).getMedicoAcompanhado()==null){
+                if(((EnfermeiroAuxiliar)auxiliarnalista.getValue()).getMedicoAcompanhado()==null){
                     conta += 1;
                 }
             }

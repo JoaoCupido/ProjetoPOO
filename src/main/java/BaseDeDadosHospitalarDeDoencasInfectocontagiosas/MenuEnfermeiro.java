@@ -149,7 +149,7 @@ public class MenuEnfermeiro {
                                         System.out.println("O ID foi encontrado, mas não pertence a um médico.");
                                     }
                                     else if(mediconalista.getKey().equals(medicoid) && mediconalista.getValue().getClass().getSimpleName().equals("Medico")){
-                                        ((EnfermeiroEspecialista)especialistanalista).setMedicoAcompanhado((Medico)mediconalista.getValue());
+                                        ((EnfermeiroEspecialista)especialistanalista.getValue()).setMedicoAcompanhado((Medico)mediconalista.getValue());
                                         ((Medico)mediconalista.getValue()).atualizarEnfermeirosAcompanhados(hospital);
                                     }
                                 }
@@ -203,31 +203,35 @@ public class MenuEnfermeiro {
                                         especialistanalista.removePacienteAgenda(paciente);
                                     }
                                     //adicionar no relatorio hospitalar
+                                    break;
                                 }
-                                Random gerador = new Random();
-                                if(paciente.getDoenca().getCovid()){
-                                    if(gerador.nextBoolean()){
-                                        paciente.getDoenca().setCovid(false);
+                                else{
+                                    Random gerador = new Random();
+                                    if(paciente.getDoenca().getCovid()){
+                                        if(gerador.nextBoolean()){
+                                            paciente.getDoenca().setCovid(false);
+                                        }
                                     }
-                                }
-                                if(paciente.getDoenca().getEbola()){
-                                    if(gerador.nextBoolean()){
-                                        paciente.getDoenca().setEbola(false);
+                                    if(paciente.getDoenca().getEbola()){
+                                        if(gerador.nextBoolean()){
+                                            paciente.getDoenca().setEbola(false);
+                                        }
                                     }
-                                }
-                                if(paciente.getDoenca().getHiv()){
-                                    if(gerador.nextBoolean()){
-                                        paciente.getDoenca().setHiv(false);
+                                    if(paciente.getDoenca().getHiv()){
+                                        if(gerador.nextBoolean()){
+                                            paciente.getDoenca().setHiv(false);
+                                        }
                                     }
+                                    for(EnfermeiroAuxiliar auxiliarnalista : ea.getMedicoAcompanhado().getAuxiliaresAcompanhados().values()){
+                                        auxiliarnalista.removePacienteAgenda(paciente);
+                                    }
+                                    for(EnfermeiroEspecialista especialistanalista : ea.getMedicoAcompanhado().getEspecialistasAcompanhados().values()){
+                                        especialistanalista.removePacienteAgenda(paciente);
+                                    }
+                                    paciente.getDoenca().setNumerovezes(paciente.getDoenca().getNumerovezes()+1);
+                                    ea.getMedicoAcompanhado().addPacienteAlta(paciente);
+                                    break;
                                 }
-                                for(EnfermeiroAuxiliar auxiliarnalista : ea.getMedicoAcompanhado().getAuxiliaresAcompanhados().values()){
-                                    auxiliarnalista.removePacienteAgenda(paciente);
-                                }
-                                for(EnfermeiroEspecialista especialistanalista : ea.getMedicoAcompanhado().getEspecialistasAcompanhados().values()){
-                                    especialistanalista.removePacienteAgenda(paciente);
-                                }
-                                ea.getMedicoAcompanhado().addPacienteAlta(paciente);
-                                break;
                             }
                         }
                     }
@@ -260,31 +264,35 @@ public class MenuEnfermeiro {
                                         especialistanalista.removePacienteAgenda(paciente);
                                     }
                                     //adicionar no relatorio hospitalar
+                                    break;
                                 }
-                                Random gerador = new Random();
-                                if(paciente.getDoenca().getCovid()){
-                                    if(gerador.nextBoolean()){
-                                        paciente.getDoenca().setCovid(false);
+                                else{
+                                    Random gerador = new Random();
+                                    if(paciente.getDoenca().getCovid()){
+                                        if(gerador.nextBoolean()){
+                                            paciente.getDoenca().setCovid(false);
+                                        }
                                     }
-                                }
-                                if(paciente.getDoenca().getEbola()){
-                                    if(gerador.nextBoolean()){
-                                        paciente.getDoenca().setEbola(false);
+                                    if(paciente.getDoenca().getEbola()){
+                                        if(gerador.nextBoolean()){
+                                            paciente.getDoenca().setEbola(false);
+                                        }
                                     }
-                                }
-                                if(paciente.getDoenca().getHiv()){
-                                    if(gerador.nextBoolean()){
-                                        paciente.getDoenca().setHiv(false);
+                                    if(paciente.getDoenca().getHiv()){
+                                        if(gerador.nextBoolean()){
+                                            paciente.getDoenca().setHiv(false);
+                                        }
                                     }
+                                    for(EnfermeiroAuxiliar auxiliarnalista : ee.getMedicoAcompanhado().getAuxiliaresAcompanhados().values()){
+                                        auxiliarnalista.removePacienteAgenda(paciente);
+                                    }
+                                    for(EnfermeiroEspecialista especialistanalista : ee.getMedicoAcompanhado().getEspecialistasAcompanhados().values()){
+                                        especialistanalista.removePacienteAgenda(paciente);
+                                    }
+                                    paciente.getDoenca().setNumerovezes(paciente.getDoenca().getNumerovezes()+1);
+                                    ee.getMedicoAcompanhado().addPacienteAlta(paciente);
+                                    break;
                                 }
-                                for(EnfermeiroAuxiliar auxiliarnalista : ee.getMedicoAcompanhado().getAuxiliaresAcompanhados().values()){
-                                    auxiliarnalista.removePacienteAgenda(paciente);
-                                }
-                                for(EnfermeiroEspecialista especialistanalista : ee.getMedicoAcompanhado().getEspecialistasAcompanhados().values()){
-                                    especialistanalista.removePacienteAgenda(paciente);
-                                }
-                                ee.getMedicoAcompanhado().addPacienteAlta(paciente);
-                                break;
                             }
                         }
                     }

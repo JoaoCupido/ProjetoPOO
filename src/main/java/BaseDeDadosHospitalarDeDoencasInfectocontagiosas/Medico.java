@@ -56,7 +56,7 @@ public class Medico extends Pessoa{
                             enfermeirounico = false;
                         }
                     }
-                    if(enfermeirounico && ((EnfermeiroAuxiliar)pessoaencontrar).getMedicoAcompanhado().equals(this)){
+                    if(enfermeirounico && this.equals(((EnfermeiroAuxiliar)pessoaencontrar).getMedicoAcompanhado())){
                         auxiliaresAcompanhados.put(pessoaencontrar.getId(),(EnfermeiroAuxiliar)pessoaencontrar);
                     }
                     break;
@@ -66,7 +66,7 @@ public class Medico extends Pessoa{
                             enfermeirounico = false;
                         }
                     }
-                    if(enfermeirounico && ((EnfermeiroEspecialista)pessoaencontrar).getMedicoAcompanhado().equals(this)){
+                    if(enfermeirounico && this.equals(((EnfermeiroEspecialista)pessoaencontrar).getMedicoAcompanhado())){
                         especialistasAcompanhados.put(pessoaencontrar.getId(),(EnfermeiroEspecialista)pessoaencontrar);
                     }
                     break;
