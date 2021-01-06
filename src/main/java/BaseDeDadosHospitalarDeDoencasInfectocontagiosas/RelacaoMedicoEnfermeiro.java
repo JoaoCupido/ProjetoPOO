@@ -15,6 +15,7 @@ public interface RelacaoMedicoEnfermeiro {
     public void addPacienteAgenda(Hospital hospital, Paciente paciente);
     public void removePacienteAgenda(Paciente paciente);
     public boolean isEmptyPacienteAgenda();
+    public boolean isFullPacienteAgenda();
     //getters e setters
     public Medico getMedicoAcompanhado();
     public void setMedicoAcompanhado(Medico medico);
