@@ -11,10 +11,12 @@ import java.util.Random;
  */
 public class Doenca {
     //variaveis de instancia
-    Random gerador = new Random();
+    private int numerovezes;
     private boolean covid, hiv, ebola;
     //construtor
     public Doenca(){
+        numerovezes = 0;
+        Random gerador = new Random();
         combinacaoDoenca(gerador.nextInt(7) + 1);
     }
     //metodos
@@ -64,6 +66,12 @@ public class Doenca {
     }
     public void setHiv(boolean hiv){
         this.hiv = hiv;
+    }
+    public int getNumerovezes() {
+        return numerovezes;
+    }
+    public void setNumerovezes(int numerovezes) {
+        this.numerovezes = numerovezes;
     }
     //toString
     //equals

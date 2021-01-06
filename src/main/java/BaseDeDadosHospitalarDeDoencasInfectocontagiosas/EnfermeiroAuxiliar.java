@@ -21,16 +21,11 @@ public class EnfermeiroAuxiliar extends Enfermeiro implements RelacaoMedicoEnfer
     }
     //metodos
     public void addPacienteAgenda(Hospital hospital, Paciente paciente){
-        if(isFullPacienteAgenda()){
-            System.out.println("ERRO! O enfermeiro " + this.getId() + " de nome " + this.getNome() + " já tem o máximo de 3 pacientes.");
-        }
-        else{
-            for(int i = 0; i < agenda.length; i++) {
-                if(agenda[i] == null){
-                    hospital.removerPaciente(paciente);
-                    agenda[i] = paciente;
-                    break;
-                }
+        for(int i = 0; i < agenda.length; i++) {
+            if(agenda[i] == null){
+                hospital.removerPaciente(paciente);
+                agenda[i] = paciente;
+                break;
             }
         }
     }

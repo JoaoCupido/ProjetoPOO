@@ -7,6 +7,7 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
 
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Random;
 
 /**
  *
@@ -163,7 +164,134 @@ public class MenuEnfermeiro {
     
     public void aplicarCurativo(Hospital hospital)
     {
-        
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Insira o ID do enfermeiro auxiliar ou especialista a selecionar: ");
+        String enfid = scanner.next();
+        if(!hospital.getListaPessoas().containsKey(enfid)){
+            System.out.println("O ID do enfermeiro auxiliar ou especialista a procurar não existe na ListaPessoas.");
+        }
+        else {
+            for(Map.Entry<String,Pessoa> elementonalista : hospital.getListaPessoas().entrySet()){
+                if(elementonalista.getKey().equals(enfid) && !(elementonalista.getValue().getClass().getSimpleName().equals("EnfermeiroEspecialista")) && !(elementonalista.getValue().getClass().getSimpleName().equals("EnfermeiroAuxiliar"))){
+                    System.out.println("O ID foi encontrado, mas não pertence nem a um enfermeiro auxiliar nem a um enfermeiro especialista.");
+                    break;
+                }
+                else if(elementonalista.getKey().equals(enfid) && elementonalista.getValue().getClass().getSimpleName().equals("EnfermeiroAuxiliar")){
+                    EnfermeiroAuxiliar ea = (EnfermeiroAuxiliar) elementonalista.getValue();
+                    if(ea.getMedicoAcompanhado()==null){
+                        System.out.println("O enfermeiro-auxiliar não tem um médico acompanhado.");
+                    }
+                    System.out.println("Insira o ID do paciente a ser aplicado o curativo: ");
+                    String pacid = scanner.next();
+                    if(ea.isEmptyPacienteAgenda()){
+                        System.out.println("A agenda do enfermeiro-auxiliar está vazia.");
+                    }
+                    if(ea.getMedicoAcompanhado().isFullPacienteAlta()){
+                        System.out.println("O médico acompanhado já tem o máximo de 3 pacientes.");
+                    }
+                    if(!hospital.getListaPessoas().containsKey(pacid)){
+                        System.out.println("O ID do paciente a ser aplicado o curativo não existe na ListaPessoas nem na Agenda.");
+                    }
+                    else{
+                        for (Paciente paciente : ea.getAgenda()) {
+                            if(paciente.getId().equals(pacid)){
+                                if(paciente.getDoenca().getNumerovezes()>=5){
+                                    for(EnfermeiroAuxiliar auxiliarnalista : ea.getMedicoAcompanhado().getAuxiliaresAcompanhados().values()){
+                                        auxiliarnalista.removePacienteAgenda(paciente);
+                                    }
+                                    for(EnfermeiroEspecialista especialistanalista : ea.getMedicoAcompanhado().getEspecialistasAcompanhados().values()){
+                                        especialistanalista.removePacienteAgenda(paciente);
+                                    }
+                                    //adicionar no relatorio hospitalar
+                                }
+                                Random gerador = new Random();
+                                if(paciente.getDoenca().getCovid()){
+                                    if(gerador.nextBoolean()){
+                                        paciente.getDoenca().setCovid(false);
+                                    }
+                                }
+                                if(paciente.getDoenca().getEbola()){
+                                    if(gerador.nextBoolean()){
+                                        paciente.getDoenca().setEbola(false);
+                                    }
+                                }
+                                if(paciente.getDoenca().getHiv()){
+                                    if(gerador.nextBoolean()){
+                                        paciente.getDoenca().setHiv(false);
+                                    }
+                                }
+                                for(EnfermeiroAuxiliar auxiliarnalista : ea.getMedicoAcompanhado().getAuxiliaresAcompanhados().values()){
+                                    auxiliarnalista.removePacienteAgenda(paciente);
+                                }
+                                for(EnfermeiroEspecialista especialistanalista : ea.getMedicoAcompanhado().getEspecialistasAcompanhados().values()){
+                                    especialistanalista.removePacienteAgenda(paciente);
+                                }
+                                ea.getMedicoAcompanhado().addPacienteAlta(paciente);
+                                break;
+                            }
+                        }
+                    }
+                    break;
+                }
+                else if(elementonalista.getKey().equals(enfid) && elementonalista.getValue().getClass().getSimpleName().equals("EnfermeiroEspecialista")){
+                    EnfermeiroEspecialista ee = (EnfermeiroEspecialista) elementonalista.getValue();
+                    if(ee.getMedicoAcompanhado()==null){
+                        System.out.println("O enfermeiro-especialista não tem um médico acompanhado.");
+                    }
+                    System.out.println("Insira o ID do paciente a ser aplicado o curativo: ");
+                    String pacid = scanner.next();
+                    if(ee.isEmptyPacienteAgenda()){
+                        System.out.println("A agenda do enfermeiro-especialista está vazia.");
+                    }
+                    if(ee.getMedicoAcompanhado().isFullPacienteAlta()){
+                        System.out.println("O médico acompanhado já tem o máximo de 3 pacientes.");
+                    }
+                    if(!hospital.getListaPessoas().containsKey(pacid)){
+                        System.out.println("O ID do paciente a ser aplicado o curativo não existe na ListaPessoas nem na Agenda.");
+                    }
+                    else{
+                        for (Paciente paciente : ee.getAgenda()) {
+                            if(paciente.getId().equals(pacid)){
+                                if(paciente.getDoenca().getNumerovezes()>=5){
+                                    for(EnfermeiroAuxiliar auxiliarnalista : ee.getMedicoAcompanhado().getAuxiliaresAcompanhados().values()){
+                                        auxiliarnalista.removePacienteAgenda(paciente);
+                                    }
+                                    for(EnfermeiroEspecialista especialistanalista : ee.getMedicoAcompanhado().getEspecialistasAcompanhados().values()){
+                                        especialistanalista.removePacienteAgenda(paciente);
+                                    }
+                                    //adicionar no relatorio hospitalar
+                                }
+                                Random gerador = new Random();
+                                if(paciente.getDoenca().getCovid()){
+                                    if(gerador.nextBoolean()){
+                                        paciente.getDoenca().setCovid(false);
+                                    }
+                                }
+                                if(paciente.getDoenca().getEbola()){
+                                    if(gerador.nextBoolean()){
+                                        paciente.getDoenca().setEbola(false);
+                                    }
+                                }
+                                if(paciente.getDoenca().getHiv()){
+                                    if(gerador.nextBoolean()){
+                                        paciente.getDoenca().setHiv(false);
+                                    }
+                                }
+                                for(EnfermeiroAuxiliar auxiliarnalista : ee.getMedicoAcompanhado().getAuxiliaresAcompanhados().values()){
+                                    auxiliarnalista.removePacienteAgenda(paciente);
+                                }
+                                for(EnfermeiroEspecialista especialistanalista : ee.getMedicoAcompanhado().getEspecialistasAcompanhados().values()){
+                                    especialistanalista.removePacienteAgenda(paciente);
+                                }
+                                ee.getMedicoAcompanhado().addPacienteAlta(paciente);
+                                break;
+                            }
+                        }
+                    }
+                    break;
+                }
+            }
+        }
     }
     //getters e setters
     //toString
