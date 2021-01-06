@@ -31,7 +31,7 @@ public class EnfermeiroEspecialista extends Enfermeiro implements RelacaoMedicoE
     }
     public void removePacienteAgenda(Paciente paciente){
         for(int i = 0; i < agenda.length; i++){
-            if(agenda[i].equals(paciente)){
+            if(paciente.equals(agenda[i])){
                 agenda[i] = null;
                 break;
             }

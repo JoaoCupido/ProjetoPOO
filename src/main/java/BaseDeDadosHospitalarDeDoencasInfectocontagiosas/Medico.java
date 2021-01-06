@@ -33,7 +33,7 @@ public class Medico extends Pessoa{
     }
     public void removePacienteAlta(Paciente paciente){
         for(int i = 0; i < listaPacientesAlta.length; i++){
-            if(listaPacientesAlta[i].equals(paciente)){
+            if(paciente.equals(listaPacientesAlta[i])){
                 listaPacientesAlta[i] = null;
                 break;
             }

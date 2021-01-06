@@ -123,7 +123,7 @@ public class MenuMedico {
                     System.out.println("O ID foi encontrado, mas não pertence a um médico.");
                 }
                 else if(mediconalista.getKey().equals(medicoid) && mediconalista.getValue().getClass().getSimpleName().equals("Medico")){
-                    if(!((Medico)mediconalista.getValue()).getAuxiliaresAcompanhados().isEmpty() && !((Medico)mediconalista.getValue()).getEspecialistasAcompanhados().isEmpty()){
+                    if(!((Medico)mediconalista.getValue()).getAuxiliaresAcompanhados().isEmpty() && !((Medico)mediconalista.getValue()).getEspecialistasAcompanhados().isEmpty() && !((Medico)mediconalista.getValue()).isFullPacienteAlta()){
                         for(Map.Entry<String,Paciente> pacientenalista : hospital.getListaPacientes().entrySet()){
                             if(pacientenalista.getKey().equals(pacienteid) && !(pacientenalista.getValue().getClass().getSimpleName().equals("Paciente"))){
                                 System.out.println("O ID foi encontrado, mas não pertence a um paciente.");
@@ -133,8 +133,19 @@ public class MenuMedico {
                             }
                         }
                     }
-                    else{
-                        System.out.println("O médico não tem nenhum enfermeiro a acompanhar no diagnóstico.");
+                    else if(!((Medico)mediconalista.getValue()).getAuxiliaresAcompanhados().isEmpty() && !((Medico)mediconalista.getValue()).getEspecialistasAcompanhados().isEmpty()){
+                        System.out.println("O médico não tem nenhum enfermeiro-auxiliar nem enfermeiro-especialista a acompanhar no diagnóstico.");
+                    }
+                    else if(((Medico)mediconalista.getValue()).getAuxiliaresAcompanhados().isEmpty() && !((Medico)mediconalista.getValue()).getEspecialistasAcompanhados().isEmpty()){
+                        System.out.println("O médico não tem nenhum enfermeiro-auxiliar a acompanhar no diagnóstico.");
+                    }
+                    else if(!((Medico)mediconalista.getValue()).getAuxiliaresAcompanhados().isEmpty() && ((Medico)mediconalista.getValue()).getEspecialistasAcompanhados().isEmpty()){
+                        System.out.println("O médico não tem nenhum enfermeiro-especialista a acompanhar no diagnóstico.");
+                    }
+                    //caso a listapacientesalta do medico estiver cheio (pois pode acontecer que listapacientesalta está cheia e agenda dos enfermeiros tenha 1 espaço livre
+                    //aí se o paciente do diagnostico entrar na agenda dos enfermeiros, ambas as listas ficam cheias e pode ocorrer que nunca se vai sair dali (ficam presos)
+                    else if(((Medico)mediconalista.getValue()).isFullPacienteAlta()){ 
+                        System.out.println("A lista de pacientes à espera de alta do médico está cheia.");
                     }
                 }
             }
@@ -216,6 +227,7 @@ public class MenuMedico {
                                     if(auxiliarnalista.getValue().getClass().getSimpleName().equals("EnfermeiroAuxiliar")){
                                         if(((EnfermeiroAuxiliar)auxiliarnalista.getValue()).getMedicoAcompanhado()==null && numeroauxiliares>0){
                                             ((EnfermeiroAuxiliar)auxiliarnalista.getValue()).setMedicoAcompanhado((Medico)mediconalista.getValue());
+                                            ((EnfermeiroAuxiliar)auxiliarnalista.getValue()).getMedicoAcompanhado().atualizarEnfermeirosAcompanhados(hospital);
                                             numeroauxiliares = numeroauxiliares - 1;
                                         }
                                     }
@@ -235,6 +247,7 @@ public class MenuMedico {
                     EnfermeiroAuxiliar ea = (EnfermeiroAuxiliar) enfermeironalista.getValue();
                     if(ea.getMedicoAcompanhado().equals(medico) && ea.isFullPacienteAgenda()){
                         System.out.println("O(s) enfermeiro(s) que acompanha(m) o médico têm a agenda cheia.");
+                        break;
                     }
                     else if(ea.getMedicoAcompanhado().equals(medico) && !ea.isFullPacienteAgenda()){
                         if(paciente.getDoenca().getCovid() || paciente.getDoenca().getEbola() || paciente.getDoenca().getHiv()){
@@ -258,6 +271,7 @@ public class MenuMedico {
                     EnfermeiroEspecialista ee = (EnfermeiroEspecialista) enfermeironalista.getValue();
                     if(ee.getMedicoAcompanhado().equals(medico) && ee.isFullPacienteAgenda()){
                         System.out.println("O(s) enfermeiro(s) que acompanha(m) o médico têm a agenda cheia.");
+                        break;
                     }
                     else if(ee.getMedicoAcompanhado().equals(medico) && !ee.isFullPacienteAgenda()){
                         if(paciente.getDoenca().getCovid() || paciente.getDoenca().getEbola() || paciente.getDoenca().getHiv()){
