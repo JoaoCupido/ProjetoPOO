@@ -5,23 +5,26 @@
  */
 package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
 import java.util.HashMap;
+import java.util.ArrayList;
 /**
  *
  * @author jcupi
  */
 public class Hospital {
     //variaveis de instancia
-    private int numobitos,casospositivos, totalpacientestestados, anoscarreiraminimo;
-    private double raciopacientespositivos;
+    private int anoscarreiraminimo;
     
     private HashMap<String,Pessoa> listaPessoas;
     private HashMap<String,Paciente> listaPacientes;
+    
+    private ArrayList<RelatorioHospitalar> listarelatorio;
     
     //construtor
     public Hospital()
     {
         listaPessoas = new HashMap<>(0);
         listaPacientes = new HashMap<>(0);
+        listarelatorio = new ArrayList<>(0);
     }
     //metodos
     public void addPessoa(Pessoa pessoa){
@@ -45,6 +48,12 @@ public class Hospital {
     }
     public HashMap<String,Paciente> getListaPacientes(){
         return listaPacientes;
+    }
+    public ArrayList<RelatorioHospitalar> getListaRelatorio() {
+        return listarelatorio;
+    }
+    public void setListaRelatorio(ArrayList<RelatorioHospitalar> listarelatorio) {
+        this.listarelatorio = listarelatorio;
     }
     
     //toString

@@ -46,7 +46,12 @@ public class MenuMedico {
                     break;
                 case 5:
                     System.out.println("\nEscolhido a opção Requerimento de Auxiliares...\n");
-                    requerimentoAuxiliares(hospital);
+                    try{
+                        requerimentoAuxiliares(hospital);
+                    }
+                    catch(InvalidNumberOfAuxiliaresException exc){
+                        System.out.println(exc.getMessage());
+                    }
                     break;
                 default:
                     System.out.println("\nNão foi escolhido nenhuma das opções que foram apresentadas! Voltando para Menu...\n");
@@ -191,7 +196,7 @@ public class MenuMedico {
         }
     }
     
-    public void requerimentoAuxiliares(Hospital hospital)
+    public void requerimentoAuxiliares(Hospital hospital) throws InvalidNumberOfAuxiliaresException
     {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insira o ID do médico a selecionar: ");
@@ -220,7 +225,8 @@ public class MenuMedico {
                             int totalauxiliaresdis = contadorAuxiliaresDisponiveis(hospital);
                             if(numeroauxiliares>totalauxiliaresdis){
                                 //atender ao pedido de mais enfermeiros-auxiliares
-                                System.out.println("O número de auxiliares pedido pelo médico é maior do que o número de auxiliares disponíveis na ListaPessoas.");
+                                throw new InvalidNumberOfAuxiliaresException("O número de auxiliares pedido pelo médico é maior do que o número de auxiliares disponíveis na ListaPessoas.");
+                                //System.out.println("O número de auxiliares pedido pelo médico é maior do que o número de auxiliares disponíveis na ListaPessoas.");
                             }
                             else{
                                 for(Map.Entry<String,Pessoa> auxiliarnalista : hospital.getListaPessoas().entrySet()){
