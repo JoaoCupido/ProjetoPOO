@@ -10,6 +10,12 @@ package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
  * @author jcupi
  */
 public class RelatorioHospitalar {
+    //variaveis de instancia
     private static int numobitos, casospositivos, totalpacientestestados;
     private static double raciopacientespositivos;
+    //construtor
+    //metodos
+    //getters e setters
+    //toString
+    //equals
 }
