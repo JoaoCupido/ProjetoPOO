@@ -5,7 +5,6 @@
  */
 package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
 import java.util.HashMap;
-import java.util.ArrayList;
 /**
  *
  * @author jcupi
@@ -17,14 +16,14 @@ public class Hospital {
     private HashMap<String,Pessoa> listaPessoas;
     private HashMap<String,Paciente> listaPacientes;
     
-    private ArrayList<RelatorioHospitalar> listarelatorio;
+    private RelatorioHospitalar relatorio;
     
     //construtor
     public Hospital()
     {
         listaPessoas = new HashMap<>(0);
         listaPacientes = new HashMap<>(0);
-        listarelatorio = new ArrayList<>(0);
+        relatorio = new RelatorioHospitalar();
     }
     //metodos
     public void addPessoa(Pessoa pessoa){
@@ -49,11 +48,11 @@ public class Hospital {
     public HashMap<String,Paciente> getListaPacientes(){
         return listaPacientes;
     }
-    public ArrayList<RelatorioHospitalar> getListaRelatorio() {
-        return listarelatorio;
+    public RelatorioHospitalar getRelatorio() {
+        return relatorio;
     }
-    public void setListaRelatorio(ArrayList<RelatorioHospitalar> listarelatorio) {
-        this.listarelatorio = listarelatorio;
+    public void setRelatorio(RelatorioHospitalar relatorio) {
+        this.relatorio = relatorio;
     }
     
     //toString

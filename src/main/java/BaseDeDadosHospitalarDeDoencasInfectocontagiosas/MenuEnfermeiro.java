@@ -196,13 +196,14 @@ public class MenuEnfermeiro {
                         for (Paciente paciente : ea.getAgenda()) {
                             if(paciente.getId().equals(pacid)){
                                 if(paciente.getDoenca().getNumerovezes()>=5){
+                                    //adicionar no relatorio hospitalar
+                                    hospital.setRelatorio(new RelatorioHospitalar(paciente));
                                     for(EnfermeiroAuxiliar auxiliarnalista : ea.getMedicoAcompanhado().getAuxiliaresAcompanhados().values()){
                                         auxiliarnalista.removePacienteAgenda(paciente);
                                     }
                                     for(EnfermeiroEspecialista especialistanalista : ea.getMedicoAcompanhado().getEspecialistasAcompanhados().values()){
                                         especialistanalista.removePacienteAgenda(paciente);
                                     }
-                                    //adicionar no relatorio hospitalar
                                     break;
                                 }
                                 else{
@@ -257,13 +258,14 @@ public class MenuEnfermeiro {
                         for (Paciente paciente : ee.getAgenda()) {
                             if(paciente.getId().equals(pacid)){
                                 if(paciente.getDoenca().getNumerovezes()>=5){
+                                    //adicionar no relatorio hospitalar
+                                    hospital.setRelatorio(new RelatorioHospitalar(paciente));
                                     for(EnfermeiroAuxiliar auxiliarnalista : ee.getMedicoAcompanhado().getAuxiliaresAcompanhados().values()){
                                         auxiliarnalista.removePacienteAgenda(paciente);
                                     }
                                     for(EnfermeiroEspecialista especialistanalista : ee.getMedicoAcompanhado().getEspecialistasAcompanhados().values()){
                                         especialistanalista.removePacienteAgenda(paciente);
                                     }
-                                    //adicionar no relatorio hospitalar
                                     break;
                                 }
                                 else{

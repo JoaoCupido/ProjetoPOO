@@ -98,7 +98,7 @@ public class MenuAdministrador {
                     break;
                 case 14:
                     System.out.println("\nEscolhido a opção N-ésimo Relatório Hospitalar...\n");
-                    relatorioHospitalar();
+                    relatorioHospitalar(hospital);
                     break;
                 case 15:
                     System.out.println("\nEscolhido a opção Sair da Aplicação...\n");
@@ -383,9 +383,9 @@ public class MenuAdministrador {
         }
     }
     
-    public void relatorioHospitalar()
+    public void relatorioHospitalar(Hospital hospital)
     {
-        
+        System.out.println(hospital.getRelatorio());
     }
     
     public void sairAplicacao(){

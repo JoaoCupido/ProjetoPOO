@@ -259,6 +259,7 @@ public class MenuMedico {
                     else if(ea.getMedicoAcompanhado().equals(medico) && !ea.isFullPacienteAgenda()){
                         if(paciente.getDoenca().getCovid() || paciente.getDoenca().getEbola() || paciente.getDoenca().getHiv()){
                             if(hospital.getListaPacientes().containsValue(paciente)){
+                                hospital.getRelatorio().relatorioTestarPaciente(paciente);
                                 ea.addPacienteAgenda(hospital, paciente);
                                 hospital.removerPaciente(paciente);
                             }
@@ -270,6 +271,7 @@ public class MenuMedico {
                         else if(!(paciente.getDoenca().getCovid() || paciente.getDoenca().getEbola() || paciente.getDoenca().getHiv())){
                             if(hospital.getListaPacientes().containsValue(paciente) || medico.containsPacienteInPacienteAlta(paciente)){
                                 //adicionar dados do paciente que teve alta no relatorio hospitalar
+                                hospital.setRelatorio(new RelatorioHospitalar(paciente));
                             }
                             paciente.getDoenca().setNumerovezes(0);
                             medico.removePacienteAlta(paciente);
@@ -287,6 +289,7 @@ public class MenuMedico {
                     else if(ee.getMedicoAcompanhado().equals(medico) && !ee.isFullPacienteAgenda()){
                         if(paciente.getDoenca().getCovid() || paciente.getDoenca().getEbola() || paciente.getDoenca().getHiv()){
                             if(hospital.getListaPacientes().containsValue(paciente)){
+                                hospital.getRelatorio().relatorioTestarPaciente(paciente);
                                 ee.addPacienteAgenda(hospital, paciente);
                                 hospital.removerPaciente(paciente);
                             }
@@ -298,6 +301,7 @@ public class MenuMedico {
                         else if(!(paciente.getDoenca().getCovid() || paciente.getDoenca().getEbola() || paciente.getDoenca().getHiv())){
                             if(hospital.getListaPacientes().containsValue(paciente) || medico.containsPacienteInPacienteAlta(paciente)){
                                 //adicionar dados do paciente que teve alta no relatorio hospitalar
+                                hospital.setRelatorio(new RelatorioHospitalar(paciente));
                             }
                             paciente.getDoenca().setNumerovezes(0);
                             medico.removePacienteAlta(paciente);
