@@ -5,6 +5,7 @@
  */
 package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
 import java.util.HashMap;
+import java.util.ArrayList;
 /**
  *
  * @author jcupi
@@ -18,12 +19,15 @@ public class Hospital {
     
     private RelatorioHospitalar relatorio;
     
+    private ArrayList<Pessoa> pedidosAuxiliares;
+    
     //construtor
     public Hospital()
     {
         listaPessoas = new HashMap<>(0);
         listaPacientes = new HashMap<>(0);
         relatorio = new RelatorioHospitalar();
+        pedidosAuxiliares = new ArrayList<>(0);
     }
     //metodos
     public void addPessoa(Pessoa pessoa){
@@ -32,8 +36,17 @@ public class Hospital {
     public void addPaciente(Paciente paciente){
         listaPacientes.put(paciente.getId(),paciente);
     }
+    public void addPedido(Pessoa auxiliar){
+        pedidosAuxiliares.add(auxiliar);
+    }
+    public void removerPessoa(Pessoa pessoa){
+        listaPessoas.remove(pessoa.getId());
+    }
     public void removerPaciente(Paciente pacientearemover){ 
         listaPacientes.remove(pacientearemover.getId());
+    }
+    public void removerPedido(Pessoa auxiliar){
+        pedidosAuxiliares.remove(auxiliar);
     }
     //getters e setters
     public int getAnosCarreiraMinimo(){
@@ -53,6 +66,12 @@ public class Hospital {
     }
     public void setRelatorio(RelatorioHospitalar relatorio) {
         this.relatorio = relatorio;
+    }
+    public ArrayList<Pessoa> getPedidos(){
+        return pedidosAuxiliares;
+    }
+    public void setPedidos(ArrayList<Pessoa> pedidosAuxiliares){
+        this.pedidosAuxiliares = pedidosAuxiliares;
     }
     
     //toString

@@ -78,7 +78,7 @@ public class MenuAdministrador {
                     break;
                 case 9:
                     System.out.println("\nEscolhido a opção Listar Pedidos para Enfermeiros-Auxiliares...\n");
-                    pedidosEnfermeirosAuxiliares();
+                    pedidosEnfermeirosAuxiliares(hospital);
                     break;
                 case 10:
                     System.out.println("\nEscolhido a opção Listar Pacientes em espera no Hospital...\n");
@@ -86,11 +86,11 @@ public class MenuAdministrador {
                     break;
                 case 11:
                     System.out.println("\nEscolhido a opção Atirar Pedidos para Enfermeiros-Auxiliares para a Trituradora...\n");
-                    atribuirPedidosEnfAuxTrituradora();
+                    atribuirPedidosEnfAuxTrituradora(hospital);
                     break;
                 case 12:
                     System.out.println("\nEscolhido a opção Atender ao Pedido para Enfermeiros-Auxiliares...\n");
-                    atenderPedidoEnfAuxiliares();
+                    atenderPedidoEnfAuxiliares(hospital);
                     break;
                 case 13:
                     System.out.println("\nEscolhido a opção Virus Outbreak...\n");
@@ -244,9 +244,16 @@ public class MenuAdministrador {
         }
     }
     
-    public void pedidosEnfermeirosAuxiliares()
+    public void pedidosEnfermeirosAuxiliares(Hospital hospital)
     {
-        
+        if(hospital.getPedidos().isEmpty()){
+            System.out.println("PedidosAuxiliares está vazio.");
+        }
+        else{
+            for(Pessoa auxiliar : hospital.getPedidos()){
+                System.out.println(auxiliar);
+            }
+        }
     }
     
     public void pacientesEsperanoHospital(Hospital hospital)
@@ -261,13 +268,33 @@ public class MenuAdministrador {
         }
     }
     
-    public void atribuirPedidosEnfAuxTrituradora()
+    public void atribuirPedidosEnfAuxTrituradora(Hospital hospital)
     {
-        
+        if(hospital.getListaPacientes().isEmpty()){
+            System.out.println("ListaPacientes está vazio.");
+        }
+        else{
+            Random generator = new Random();
+            for(Pessoa auxiliar : hospital.getPedidos()){
+                if(generator.nextBoolean()){
+                    hospital.removerPedido(auxiliar);
+                }
+            }
+        }
     }
     
-    public void atenderPedidoEnfAuxiliares(){
-        
+    public void atenderPedidoEnfAuxiliares(Hospital hospital){
+        if(hospital.getListaPacientes().isEmpty()){
+            System.out.println("ListaPacientes está vazio.");
+        }
+        else{
+            int tamanho = hospital.getPedidos().size();
+            int n = 2;
+            while(n>0){
+                hospital.addPessoa(hospital.getPedidos().get(tamanho-1));
+                hospital.removerPedido(hospital.getPedidos().get(tamanho-1));
+            }
+        }
     }
     
     public void outBreak(Hospital hospital)

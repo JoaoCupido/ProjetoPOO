@@ -224,6 +224,16 @@ public class MenuMedico {
                             int numeroauxiliares = scanner.nextInt();
                             int totalauxiliaresdis = contadorAuxiliaresDisponiveis(hospital);
                             if(numeroauxiliares>totalauxiliaresdis){
+                                int diferenca = numeroauxiliares-totalauxiliaresdis;
+                                while(diferenca>0){
+                                    String nome;
+                                    Scanner inserirnome = new Scanner(System.in);
+                                    System.out.println("Insere o nome: ");
+                                    nome = inserirnome.next();
+                                    Pessoa enfermeiroauxiliar = new EnfermeiroAuxiliar(nome, 0);
+                                    hospital.addPedido(enfermeiroauxiliar);
+                                    diferenca--;
+                                }
                                 //atender ao pedido de mais enfermeiros-auxiliares
                                 throw new InvalidNumberOfAuxiliaresException("O número de auxiliares pedido pelo médico é maior do que o número de auxiliares disponíveis na ListaPessoas.");
                                 //System.out.println("O número de auxiliares pedido pelo médico é maior do que o número de auxiliares disponíveis na ListaPessoas.");

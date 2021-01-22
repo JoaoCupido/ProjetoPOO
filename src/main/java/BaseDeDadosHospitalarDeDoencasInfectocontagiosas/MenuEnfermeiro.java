@@ -204,6 +204,7 @@ public class MenuEnfermeiro {
                                     for(EnfermeiroEspecialista especialistanalista : ea.getMedicoAcompanhado().getEspecialistasAcompanhados().values()){
                                         especialistanalista.removePacienteAgenda(paciente);
                                     }
+                                    hospital.removerPessoa(paciente);
                                     break;
                                 }
                                 else{
@@ -266,6 +267,7 @@ public class MenuEnfermeiro {
                                     for(EnfermeiroEspecialista especialistanalista : ee.getMedicoAcompanhado().getEspecialistasAcompanhados().values()){
                                         especialistanalista.removePacienteAgenda(paciente);
                                     }
+                                    hospital.removerPessoa(paciente);
                                     break;
                                 }
                                 else{

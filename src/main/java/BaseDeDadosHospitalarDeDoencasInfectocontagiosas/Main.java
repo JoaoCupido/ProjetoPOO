@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
+import java.io.IOException;
 import java.util.Scanner;
 /**
  *
@@ -16,6 +17,7 @@ public class Main {
         MenuAdministrador menuadministrador = new MenuAdministrador();
         MenuMedico menumedico = new MenuMedico();
         MenuEnfermeiro menuenfermeiro = new MenuEnfermeiro();
+        FicheiroTexto ficheirotexto = new FicheiroTexto();
         System.out.println("Insere os anos de carreira mínimo do hospital: ");
         Scanner scanner = new Scanner(System.in);
         hospital.setAnosCarreiraMinimo(scanner.nextInt());
@@ -24,7 +26,8 @@ public class Main {
             System.out.println("***Menu***");
             System.out.println("1) Médico");
             System.out.println("2) Enfermeiro");
-            System.out.println("3) Administrador"+"\n");
+            System.out.println("3) Administrador");
+            System.out.println("4) Escrever Ficheiro de Texto"+"\n");
             System.out.println("Digite uma opção que esteja apresentada no Menu: ");
             opcao = scanner.nextInt();
             switch(opcao)
@@ -40,6 +43,16 @@ public class Main {
                 case 3:
                     System.out.println("\nEscolhido a opção Administrador...\n");//implementar o menu administrador;
                     menuadministrador.menuOpcoesAdministrador(hospital);
+                    break;
+                case 4:
+                    System.out.println("\nEscolhido a opção Escrever Ficheiro de Texto...\n");//implementar o menu ficheirotexto;
+                    try{
+                        ficheirotexto.escreverFicheiroTexto(hospital);
+                    }
+                    catch(IOException ioe){
+                        System.out.println("\nERRO! IOException!");
+                        System.out.println(ioe.getMessage());
+                    }
                     break;
                 default:
                     System.out.println("\nERRO! Não foi escolhido nenhuma das opções que foram apresentadas! Voltando ao Menu...\n");
