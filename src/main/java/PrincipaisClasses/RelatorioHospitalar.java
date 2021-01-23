@@ -71,6 +71,9 @@ public class RelatorioHospitalar {
             casospositivoshiv += 1;
         }
         totalpacientestestados += 1;
+        raciopacientespositivoscovid = (double)casospositivoscovid/totalpacientestestados;
+        raciopacientespositivosebola = (double)casospositivosebola/totalpacientestestados;
+        raciopacientespositivoshiv = (double)casospositivoshiv/totalpacientestestados;
     }
     
     public String pacienteNaoExistente(RelatorioHospitalar relatorio){

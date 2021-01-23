@@ -124,7 +124,7 @@ public class MenuMedico {
             System.out.println("O ID do médico a procurar não existe na ListaPessoas.");
         }
         else if(!hospital.getListaPacientes().containsKey(pacienteid)){
-            System.out.println("O ID do paciente a ser diagnosticado não existe na ListaPessoas.");
+            System.out.println("O ID do paciente a ser diagnosticado não existe na ListaPacientes.");
         }
         else{
             for(Map.Entry<String,Pessoa> mediconalista : hospital.getListaPessoas().entrySet()){
@@ -133,12 +133,9 @@ public class MenuMedico {
                 }
                 else if(mediconalista.getKey().equals(medicoid) && mediconalista.getValue().getClass().getSimpleName().equals("Medico")){
                     if(!((Medico)mediconalista.getValue()).getAuxiliaresAcompanhados().isEmpty() && !((Medico)mediconalista.getValue()).getEspecialistasAcompanhados().isEmpty() && !((Medico)mediconalista.getValue()).isFullPacienteAlta()){
-                        for(Map.Entry pacientenalista : hospital.getListaPacientes().entrySet()){
-                            if(pacientenalista.getKey().equals(pacienteid) && !(pacientenalista.getValue().getClass().getSimpleName().equals("Paciente"))){
-                                System.out.println("O ID foi encontrado, mas não pertence a um paciente.");
-                            }
-                            else if(pacientenalista.getKey().equals(pacienteid) && pacientenalista.getValue().getClass().getSimpleName().equals("Paciente")){
-                                diagnosticoPaciente(hospital, (Medico)mediconalista.getValue(),(Paciente)pacientenalista.getValue());
+                        for(String pacientenalistaid : hospital.getListaPacientes().keySet()){
+                            if(pacientenalistaid.equals(pacienteid)){
+                                diagnosticoPaciente(hospital, (Medico)mediconalista.getValue(),(Paciente) (hospital.getListaPacientes().get(pacientenalistaid)));
                             }
                         }
                     }
