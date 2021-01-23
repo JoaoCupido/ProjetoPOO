@@ -3,18 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
+package PrincipaisClasses;
+
+import Interface.RelacaoMedicoEnfermeiro;
 
 /**
  *
  * @author jcupi
  */
-public class EnfermeiroAuxiliar extends Enfermeiro implements RelacaoMedicoEnfermeiro{
+public class EnfermeiroEspecialista extends Enfermeiro implements RelacaoMedicoEnfermeiro{
     //variaveis de instancia
     private Medico medicoacompanhado;
     private Paciente[] agenda = {null, null, null};
     //construtor
-    public EnfermeiroAuxiliar(String nome, int anoscarreira)
+    public EnfermeiroEspecialista(String nome, int anoscarreira)
     {
         super(nome, anoscarreira);
         medicoacompanhado = null;
@@ -71,7 +73,7 @@ public class EnfermeiroAuxiliar extends Enfermeiro implements RelacaoMedicoEnfer
         if(this==obj) return true;
         if(obj == null) return false;
         if(this.getClass() != obj.getClass()) return false;
-        EnfermeiroAuxiliar ea = (EnfermeiroAuxiliar) obj;
-        return getId().equals(ea.getId());
+        EnfermeiroEspecialista ee = (EnfermeiroEspecialista) obj;
+        return getId().equals(ee.getId());
     }
 }

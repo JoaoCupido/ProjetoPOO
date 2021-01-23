@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
-import java.io.BufferedReader;
-import java.util.Scanner;
+package Mains;
+import PrincipaisClasses.*;
 
 import java.io.BufferedWriter;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;

@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
+package Mains;
+import PrincipaisClasses.*;
+
 import java.io.IOException;
 import java.util.Scanner;
 /**

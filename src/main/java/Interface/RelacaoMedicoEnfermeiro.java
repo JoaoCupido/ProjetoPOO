@@ -1,4 +1,5 @@
-package BaseDeDadosHospitalarDeDoencasInfectocontagiosas;
+package Interface;
+import PrincipaisClasses.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
