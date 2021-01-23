@@ -75,11 +75,11 @@ public class RelatorioHospitalar {
     
     public String pacienteNaoExistente(RelatorioHospitalar relatorio){
         String texto;
+        texto = "ÚLTIMO PACIENTE A TER ALTA OU A CONTAR COMO ÓBITO: \n";
         if(relatorio.getAnonascimentopaciente() == 0){
-            texto = "Ainda não houve nenhum paciente que teve alta ou que foi declarado como óbito de momento.\n";
+            texto += "Ainda não houve nenhum paciente que teve alta ou que foi declarado como óbito de momento.\n";
         }
         else{
-            texto = "ÚLTIMO PACIENTE A TER ALTA OU A CONTAR COMO ÓBITO: \n";
             texto += "ID: " + relatorio.getIdpaciente() + " ANO NASCIMENTO: " + relatorio.getAnonascimentopaciente() + "\n";
         }
         return texto;
@@ -106,12 +106,12 @@ public class RelatorioHospitalar {
     @Override
     public String toString() {
         String texto;
-        texto = "--- RELATORIO HOSPITALAR: ---\n";
+        texto = "-- RELATÓRIO HOSPITALAR: --\n";
         texto += pacienteNaoExistente(this);
         texto += "NÚMERO DE ÓBITOS: " + numobitos + "\n";
         texto += "NÚMERO DE RECUPERADOS: " + numrecuperados + "\n";
         texto += "\n";
-        texto += "NUMERO DE PACIENTES TESTADOS: " + totalpacientestestados + "\n";
+        texto += "NÚMERO DE PACIENTES TESTADOS: " + totalpacientestestados + "\n";
         texto += "\n";
         texto += "* COVID *" + "\n";
         texto += "CASOS POSITIVOS: " + casospositivoscovid + "\n";
@@ -119,11 +119,11 @@ public class RelatorioHospitalar {
         texto += "\n";
         texto += "* EBOLA *" + "\n";
         texto += "CASOS POSITIVOS: " + casospositivosebola + "\n";
-        texto += "RÁCIO COVID: " + raciopacientespositivosebola + "\n";
+        texto += "RÁCIO EBOLA: " + raciopacientespositivosebola + "\n";
         texto += "\n";
         texto += "* HIV *" + "\n";
         texto += "CASOS POSITIVOS: " + casospositivoshiv + "\n";
-        texto += "RÁCIO COVID: " + raciopacientespositivoshiv + "\n";
+        texto += "RÁCIO HIV: " + raciopacientespositivoshiv + "\n";
         return texto;
     }
     //equals

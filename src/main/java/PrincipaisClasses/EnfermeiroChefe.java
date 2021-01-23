@@ -26,7 +26,7 @@ public class EnfermeiroChefe extends Enfermeiro{
         info = "ENFERMEIRO: " + getClass().getSimpleName() + "\n";
         info += "NOME: " + getNome() + "\n";
         info += "ID: " + getId() + "\n";
-        info += "ANOS DE EXPERIENCIA: " + getAnosCarreira() + "\n";
+        info += "ANOS DE EXPERIÊNCIA: " + getAnosCarreira() + "\n";
         // medico a qual está alocado (??)
         return info;
     }

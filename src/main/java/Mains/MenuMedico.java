@@ -6,6 +6,7 @@
 package Mains;
 import PrincipaisClasses.*;
 import CustomException.*;
+import java.util.InputMismatchException;
 
 import java.util.Scanner;
 import java.util.Map;
@@ -132,7 +133,7 @@ public class MenuMedico {
                 }
                 else if(mediconalista.getKey().equals(medicoid) && mediconalista.getValue().getClass().getSimpleName().equals("Medico")){
                     if(!((Medico)mediconalista.getValue()).getAuxiliaresAcompanhados().isEmpty() && !((Medico)mediconalista.getValue()).getEspecialistasAcompanhados().isEmpty() && !((Medico)mediconalista.getValue()).isFullPacienteAlta()){
-                        for(Map.Entry<String,Paciente> pacientenalista : hospital.getListaPacientes().entrySet()){
+                        for(Map.Entry pacientenalista : hospital.getListaPacientes().entrySet()){
                             if(pacientenalista.getKey().equals(pacienteid) && !(pacientenalista.getValue().getClass().getSimpleName().equals("Paciente"))){
                                 System.out.println("O ID foi encontrado, mas não pertence a um paciente.");
                             }
@@ -223,34 +224,40 @@ public class MenuMedico {
                             System.out.println("O ID do suposto enfermeiro-chefe foi encontrado, mas não pertence a um enfermeiro-chefe.");
                         }
                         else if(chefenalista.getKey().equals(chefeid) && chefenalista.getValue().getClass().getSimpleName().equals("EnfermeiroChefe")){
-                            System.out.println("Insira o número de auxiliares para acompanhar o médico: ");
-                            int numeroauxiliares = scanner.nextInt();
-                            int totalauxiliaresdis = contadorAuxiliaresDisponiveis(hospital);
-                            if(numeroauxiliares>totalauxiliaresdis){
-                                int diferenca = numeroauxiliares-totalauxiliaresdis;
-                                while(diferenca>0){
-                                    String nome;
-                                    Scanner inserirnome = new Scanner(System.in);
-                                    System.out.println("Insere o nome: ");
-                                    nome = inserirnome.next();
-                                    Pessoa enfermeiroauxiliar = new EnfermeiroAuxiliar(nome, 0);
-                                    hospital.addPedido(enfermeiroauxiliar);
-                                    diferenca--;
+                            try{
+                                System.out.println("Insira o número de auxiliares para acompanhar o médico: ");
+                                int numeroauxiliares = scanner.nextInt();
+                                int totalauxiliaresdis = contadorAuxiliaresDisponiveis(hospital);
+                                if(numeroauxiliares>totalauxiliaresdis){
+                                    int diferenca = numeroauxiliares-totalauxiliaresdis;
+                                    while(diferenca>0){
+                                        String nome;
+                                        Scanner inserirnome = new Scanner(System.in);
+                                        System.out.println("Insere o nome: ");
+                                        nome = inserirnome.next();
+                                        Pessoa enfermeiroauxiliar = new EnfermeiroAuxiliar(nome, 0);
+                                        hospital.addPedido(enfermeiroauxiliar);
+                                        diferenca--;
+                                    }
+                                    //atender ao pedido de mais enfermeiros-auxiliares
+                                    throw new InvalidNumberOfAuxiliaresException("O número de auxiliares pedido pelo médico é maior do que o número de auxiliares disponíveis na ListaPessoas.");
+                                    //System.out.println("O número de auxiliares pedido pelo médico é maior do que o número de auxiliares disponíveis na ListaPessoas.");
                                 }
-                                //atender ao pedido de mais enfermeiros-auxiliares
-                                throw new InvalidNumberOfAuxiliaresException("O número de auxiliares pedido pelo médico é maior do que o número de auxiliares disponíveis na ListaPessoas.");
-                                //System.out.println("O número de auxiliares pedido pelo médico é maior do que o número de auxiliares disponíveis na ListaPessoas.");
-                            }
-                            else{
-                                for(Map.Entry<String,Pessoa> auxiliarnalista : hospital.getListaPessoas().entrySet()){
-                                    if(auxiliarnalista.getValue().getClass().getSimpleName().equals("EnfermeiroAuxiliar")){
-                                        if(((EnfermeiroAuxiliar)auxiliarnalista.getValue()).getMedicoAcompanhado()==null && numeroauxiliares>0){
-                                            ((EnfermeiroAuxiliar)auxiliarnalista.getValue()).setMedicoAcompanhado((Medico)mediconalista.getValue());
-                                            ((EnfermeiroAuxiliar)auxiliarnalista.getValue()).getMedicoAcompanhado().atualizarEnfermeirosAcompanhados(hospital);
-                                            numeroauxiliares = numeroauxiliares - 1;
+                                else{
+                                    for(Map.Entry<String,Pessoa> auxiliarnalista : hospital.getListaPessoas().entrySet()){
+                                        if(auxiliarnalista.getValue().getClass().getSimpleName().equals("EnfermeiroAuxiliar")){
+                                            if(((EnfermeiroAuxiliar)auxiliarnalista.getValue()).getMedicoAcompanhado()==null && numeroauxiliares>0){
+                                                ((EnfermeiroAuxiliar)auxiliarnalista.getValue()).setMedicoAcompanhado((Medico)mediconalista.getValue());
+                                                ((EnfermeiroAuxiliar)auxiliarnalista.getValue()).getMedicoAcompanhado().atualizarEnfermeirosAcompanhados(hospital);
+                                                numeroauxiliares = numeroauxiliares - 1;
+                                            }
                                         }
                                     }
                                 }
+                            }
+                            catch(InputMismatchException e){
+                                System.out.println("Input inválido!");
+                                scanner.nextLine();
                             }
                         }
                     }
@@ -264,12 +271,12 @@ public class MenuMedico {
             switch(enfermeironalista.getValue().getClass().getSimpleName()){
                 case "EnfermeiroAuxiliar":
                     EnfermeiroAuxiliar ea = (EnfermeiroAuxiliar) enfermeironalista.getValue();
-                    if(ea.getMedicoAcompanhado().equals(medico) && ea.isFullPacienteAgenda()){
+                    if(medico.equals(ea.getMedicoAcompanhado()) && ea.isFullPacienteAgenda()){
                         if(hospital.getListaPacientes().containsValue(paciente) || medico.containsPacienteInPacienteAlta(paciente)){
                             System.out.println("O(s) enfermeiro(s) que acompanha(m) o médico têm a agenda cheia.");
                         }
                     }
-                    else if(ea.getMedicoAcompanhado().equals(medico) && !ea.isFullPacienteAgenda()){
+                    else if(medico.equals(ea.getMedicoAcompanhado()) && !ea.isFullPacienteAgenda()){
                         if(paciente.getDoenca().getCovid() || paciente.getDoenca().getEbola() || paciente.getDoenca().getHiv()){
                             if(hospital.getListaPacientes().containsValue(paciente)){
                                 hospital.getRelatorio().relatorioTestarPaciente(paciente);
@@ -294,12 +301,12 @@ public class MenuMedico {
                     break;
                 case "EnfermeiroEspecialista":
                     EnfermeiroEspecialista ee = (EnfermeiroEspecialista) enfermeironalista.getValue();
-                    if(ee.getMedicoAcompanhado().equals(medico) && ee.isFullPacienteAgenda()){
+                    if(medico.equals(ee.getMedicoAcompanhado()) && ee.isFullPacienteAgenda()){
                         if(hospital.getListaPacientes().containsValue(paciente) || medico.containsPacienteInPacienteAlta(paciente)){
                             System.out.println("O(s) enfermeiro(s) que acompanha(m) o médico têm a agenda cheia.");
                         }
                     }
-                    else if(ee.getMedicoAcompanhado().equals(medico) && !ee.isFullPacienteAgenda()){
+                    else if(medico.equals(ee.getMedicoAcompanhado()) && !ee.isFullPacienteAgenda()){
                         if(paciente.getDoenca().getCovid() || paciente.getDoenca().getEbola() || paciente.getDoenca().getHiv()){
                             if(hospital.getListaPacientes().containsValue(paciente)){
                                 hospital.getRelatorio().relatorioTestarPaciente(paciente);

@@ -172,14 +172,14 @@ public class MenuAdministrador {
                         //ERRO: class BaseDeDadosHospitalarDeDoencasInfectocontagiosas.EnfermeiroEspecialista cannot be cast to class BaseDeDadosHospitalarDeDoencasInfectocontagiosas.EnfermeiroChefe
                         hospital.getListaPessoas().replace(enfermeirochefe.getId(), enfermeirochefe);
                     }
+                    else if(enfermeiroespecialista.getAnosCarreira() < hospital.getAnosCarreiraMinimo() && enfermeiroespecialista.getMedicoAcompanhado()!=null){
+                        System.out.println("O enfermeiro especialista " + enfermeiroespecialista.getId() + " de nome " + enfermeiroespecialista.getNome() + " não tem o requerimento minimo de anos de carreira ( " + enfermeiroespecialista.getAnosCarreira() + " < " + hospital.getAnosCarreiraMinimo() + " ) para ser promovido a enfermeiro chefe.");
+                        System.out.println("O enfermeiro especialista " + enfermeiroespecialista.getId() + " de nome " + enfermeiroespecialista.getNome() + " acompanha o médico " + enfermeiroespecialista.getMedicoAcompanhado().getId() + ".");
+                    }
                     else if(enfermeiroespecialista.getAnosCarreira() < hospital.getAnosCarreiraMinimo() && enfermeiroespecialista.getMedicoAcompanhado()==null){
                         System.out.println("O enfermeiro especialista " + enfermeiroespecialista.getId() + " de nome " + enfermeiroespecialista.getNome() + " não tem o requerimento minimo de anos de carreira ( " + enfermeiroespecialista.getAnosCarreira() + " < " + hospital.getAnosCarreiraMinimo() + " ) para ser promovido a enfermeiro chefe.");
                     }
                     else if(enfermeiroespecialista.getAnosCarreira() >= hospital.getAnosCarreiraMinimo() && enfermeiroespecialista.getMedicoAcompanhado()!=null){
-                        System.out.println("O enfermeiro especialista " + enfermeiroespecialista.getId() + " de nome " + enfermeiroespecialista.getNome() + " acompanha o médico " + enfermeiroespecialista.getMedicoAcompanhado().getId() + ".");
-                    }
-                    else{
-                        System.out.println("O enfermeiro especialista " + enfermeiroespecialista.getId() + " de nome " + enfermeiroespecialista.getNome() + " não tem o requerimento minimo de anos de carreira ( " + enfermeiroespecialista.getAnosCarreira() + " < " + hospital.getAnosCarreiraMinimo() + " ) para ser promovido a enfermeiro chefe.");
                         System.out.println("O enfermeiro especialista " + enfermeiroespecialista.getId() + " de nome " + enfermeiroespecialista.getNome() + " acompanha o médico " + enfermeiroespecialista.getMedicoAcompanhado().getId() + ".");
                     }
                 }
@@ -425,12 +425,12 @@ public class MenuAdministrador {
         boolean foundmedico = false;
         for(Pessoa pessoaencontrar : hospital.getListaPessoas().values()){
             if(pessoaencontrar.getClass().getSimpleName().equals("EnfermeiroAuxiliar")){
-                if(((EnfermeiroAuxiliar)pessoaencontrar).getMedicoAcompanhado().equals(medico)){
+                if(medico.equals(((EnfermeiroAuxiliar)pessoaencontrar).getMedicoAcompanhado())){
                     foundmedico = true;
                 }
             }
             else if(pessoaencontrar.getClass().getSimpleName().equals("EnfermeiroEspecialista")){
-                if(((EnfermeiroEspecialista)pessoaencontrar).getMedicoAcompanhado().equals(medico)){
+                if(medico.equals(((EnfermeiroEspecialista)pessoaencontrar).getMedicoAcompanhado())){
                     foundmedico = true;
                 }
             }

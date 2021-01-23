@@ -10,6 +10,10 @@ package CustomException;
  * @author jcupi
  */
 public class InvalidNumberOfAuxiliaresException extends Exception{
+    /**
+     * Construtor: invocar a mensagem de erro da superclasse Exception
+     * @param errorMessage 
+     */
     public InvalidNumberOfAuxiliaresException(String errorMessage){
         super(errorMessage);
     }

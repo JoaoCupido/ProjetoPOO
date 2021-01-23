@@ -20,6 +20,11 @@ public class FicheiroTexto {
     //variaveis de instancia
     //construtor
     //metodos
+    /**
+     * Vai criar um ficheiro de texto com os dados do hospital
+     * @param hospital
+     * @throws IOException 
+     */
     public void escreverFicheiroTexto(Hospital hospital) throws IOException{
         String file = "HospitalProjeto.txt";
         
@@ -30,10 +35,11 @@ public class FicheiroTexto {
         
         // Ciclo de escrita
         //:> DADOS DO HOSPITAL
-        out.println("-- DADOS DO HOSPITAL --");
+        out.println("-*-*- DADOS DO HOSPITAL -*-*-");
         out.println("Anos de carreira mínimo: " + hospital.getAnosCarreiraMinimo());
         out.println();
         
+        out.println("-- HISTÓRICO DE PESSOAS DO HOSPITAL --");
         for(Pessoa pessoa : hospital.getListaPessoas().values()){
             switch (pessoa.getClass().getSimpleName()) {
                 case "Paciente":
@@ -58,17 +64,17 @@ public class FicheiroTexto {
         
         out.println();
         
+        out.println("-- LISTA DE PACIENTES EM ESPERA NO HOSPITAL --");
         for(Paciente paciente : hospital.getListaPacientes().values())
             out.println(paciente);
         
         out.println();
         
-        out.println("-- RELATORIO -- ");
         out.println(hospital.getRelatorio());
         
         out.println();
         
-        out.println("-- PEDIDOS AUXILIARES -- ");
+        out.println("-- PEDIDOS DE AUXILIARES -- ");
         for(Pessoa auxiliar : hospital.getPedidos())
             out.println(auxiliar);
         
