@@ -45,7 +45,7 @@ public class RelatorioHospitalar {
         anonascimentopaciente = paciente.getAnoNascimento();
         
         criarRelatorioPaciente(paciente);
-        relatorioTestarPaciente(paciente);
+        //relatorioTestarPaciente(paciente);
         raciopacientespositivoscovid = (double)casospositivoscovid/totalpacientestestados;
         raciopacientespositivosebola = (double)casospositivosebola/totalpacientestestados;
         raciopacientespositivoshiv = (double)casospositivoshiv/totalpacientestestados;
