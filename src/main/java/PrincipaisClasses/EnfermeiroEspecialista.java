@@ -6,6 +6,7 @@
 package PrincipaisClasses;
 
 import Interface.RelacaoMedicoEnfermeiro;
+import java.util.Arrays;
 
 /**
  *
@@ -65,6 +66,7 @@ public class EnfermeiroEspecialista extends Enfermeiro implements RelacaoMedicoE
         info += "ID: " + getId() + "\n";
         info += "ANOS DE EXPERIÊNCIA: " + getAnosCarreira() + "\n";
         info += "MÉDICO ALOCADO: " + medicoacompanhado + "\n";
+        info += "AGENDA DESTE ENFERMEIRO: " + Arrays.toString(agenda) + "\n";
         return info;
     }
     //equals

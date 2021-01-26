@@ -39,7 +39,7 @@ public class Main {
             menuadministrador.criarEnfermeiroEspecialista(hospital); // ESP1 ID6
             menuadministrador.criarNovoPaciente(hospital); // 2000 ID7
             menuadministrador.criarNovoPaciente(hospital); // 2001 ID8
-            //menuadministrador.criarNovoPaciente(hospital); // 2002 ID9
+            menuadministrador.criarNovoPaciente(hospital); // 2002 ID9
             menuenfermeiro.atribuirEnfermeiroEspecialista(hospital); // ID4 , ID6, ID1
             menumedico.requerimentoAuxiliares(hospital); // ID1, ID4, 2
             menumedico.diagnosticoPacientePrimeiraVez(hospital); // ID1, ID7
@@ -85,7 +85,7 @@ public class Main {
             }
         }
         catch(InputMismatchException ime){
-            System.out.println("Input inválido! Saindo...");
+            System.out.println("Input inválido! Saindo da aplicação...");
             scanner.nextLine();
         }
     }

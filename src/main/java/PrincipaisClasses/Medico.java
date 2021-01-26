@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package PrincipaisClasses;
+import java.util.Arrays;
 import java.util.HashMap;
 /**
  *
@@ -94,6 +95,9 @@ public class Medico extends Pessoa{
     {
         String info;
         info = "MÉDICO: " + super.getId() + "\n";
+        info += "LISTA DE PACIENTES A AGUARDAR ALTA DESTE MÉDICO: " + Arrays.toString(listaPacientesAlta) + "\n";
+        info += "LISTA DE ENFERMEIROS AUXILIARES ACOMPANHADOS POR ESTE MÉDICO: " + auxiliaresAcompanhados + "\n";
+        info += "LISTA DE ENFERMEIROS ESPECIALISTAS ACOMPANHADOS POR ESTE MÉDICO: " + especialistasAcompanhados + "\n";
         return info;
     }
     //equals

@@ -133,25 +133,26 @@ public class MenuMedico {
                 }
                 else if(mediconalista.getKey().equals(medicoid) && mediconalista.getValue().getClass().getSimpleName().equals("Medico")){
                     if(!((Medico)mediconalista.getValue()).getAuxiliaresAcompanhados().isEmpty() && !((Medico)mediconalista.getValue()).getEspecialistasAcompanhados().isEmpty() && !((Medico)mediconalista.getValue()).isFullPacienteAlta()){
-                        for(String pacientenalistaid : hospital.getListaPacientes().keySet()){
-                            if(pacientenalistaid.equals(pacienteid)){
-                                diagnosticoPaciente(hospital, (Medico)mediconalista.getValue(),(Paciente) (hospital.getListaPacientes().get(pacientenalistaid)));
-                            }
-                        }
+                        diagnosticoPaciente(hospital, (Medico)mediconalista.getValue(),(Paciente) (hospital.getListaPacientes().get(pacienteid)));
+                        break;
                     }
                     else if(!((Medico)mediconalista.getValue()).getAuxiliaresAcompanhados().isEmpty() && !((Medico)mediconalista.getValue()).getEspecialistasAcompanhados().isEmpty()){
                         System.out.println("O médico não tem nenhum enfermeiro-auxiliar nem enfermeiro-especialista a acompanhar no diagnóstico.");
+                        break;
                     }
                     else if(((Medico)mediconalista.getValue()).getAuxiliaresAcompanhados().isEmpty() && !((Medico)mediconalista.getValue()).getEspecialistasAcompanhados().isEmpty()){
                         System.out.println("O médico não tem nenhum enfermeiro-auxiliar a acompanhar no diagnóstico.");
+                        break;
                     }
                     else if(!((Medico)mediconalista.getValue()).getAuxiliaresAcompanhados().isEmpty() && ((Medico)mediconalista.getValue()).getEspecialistasAcompanhados().isEmpty()){
                         System.out.println("O médico não tem nenhum enfermeiro-especialista a acompanhar no diagnóstico.");
+                        break;
                     }
                     //caso a listapacientesalta do medico estiver cheio (pois pode acontecer que listapacientesalta está cheia e agenda dos enfermeiros tenha 1 espaço livre
                     //aí se o paciente do diagnostico entrar na agenda dos enfermeiros, ambas as listas ficam cheias e pode ocorrer que nunca se vai sair dali (ficam presos)
                     else if(((Medico)mediconalista.getValue()).isFullPacienteAlta()){ 
                         System.out.println("A lista de pacientes à espera de alta do médico está cheia.");
+                        break;
                     }
                 }
             }
