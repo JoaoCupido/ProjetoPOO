@@ -18,6 +18,10 @@ public class MenuEnfermeiro {
     //variaveis de instancia
     //construtor
     //metodos
+    /**
+     * Método em que contêm várias opções de enfermeiro
+     * @param hospital 
+     */
      public void menuOpcoesEnfermeiro(Hospital hospital){
         int opcao;
         System.out.println("***SubMenu Enfermeiro***");
@@ -52,7 +56,10 @@ public class MenuEnfermeiro {
                     break;
         }
     }
-    
+    /**
+     * listarEnfermeiros: listar enfermeiros acompanhados por um certo médico na consola.
+     * @param hospital 
+     */
     public void listarEnfermeiros(Hospital hospital)
     {
         Scanner scanner = new Scanner(System.in);
@@ -80,7 +87,10 @@ public class MenuEnfermeiro {
             }
         }
     }
-    
+    /**
+     * listarPacientesCurativo: listar pacientes que aguardam o curativo para um dado enfermeiro acompanhado
+     * @param hospital 
+     */
     public void listarPacientesCurativo(Hospital hospital)
     {
         Scanner scanner = new Scanner(System.in);
@@ -114,7 +124,11 @@ public class MenuEnfermeiro {
             }
         }
     }
-    
+    /**
+     * atribuirEnfermeiroEspecialista: O enfermeiro-chefe atribui o enfermeiro-especialista que não tem médico acompanhado
+     * ao médico pedido, caso isto exista.
+     * @param hospital 
+     */
     public void atribuirEnfermeiroEspecialista(Hospital hospital)
     {
         Scanner scanner = new Scanner(System.in);
@@ -148,10 +162,17 @@ public class MenuEnfermeiro {
                                 for(Map.Entry<String,Pessoa> mediconalista : hospital.getListaPessoas().entrySet()){
                                     if(mediconalista.getKey().equals(medicoid) && !(mediconalista.getValue().getClass().getSimpleName().equals("Medico"))){
                                         System.out.println("O ID foi encontrado, mas não pertence a um médico.");
+                                        break;
                                     }
                                     else if(mediconalista.getKey().equals(medicoid) && mediconalista.getValue().getClass().getSimpleName().equals("Medico")){
-                                        ((EnfermeiroEspecialista)especialistanalista.getValue()).setMedicoAcompanhado((Medico)mediconalista.getValue());
-                                        ((Medico)mediconalista.getValue()).atualizarEnfermeirosAcompanhados(hospital);
+                                        if(((EnfermeiroEspecialista)especialistanalista.getValue()).getMedicoAcompanhado()==null){
+                                            ((EnfermeiroEspecialista)especialistanalista.getValue()).setMedicoAcompanhado((Medico)mediconalista.getValue());
+                                            ((Medico)mediconalista.getValue()).atualizarEnfermeirosAcompanhados(hospital);
+                                        }
+                                        else{
+                                            System.out.println("O ID foi encontrado e pertence a um enfermeiro-especialista, mas este já tem médico acompanhado.");
+                                        }
+                                        break;
                                     }
                                 }
                                 break;
@@ -162,7 +183,11 @@ public class MenuEnfermeiro {
             }
         }
     }
-    
+    /**
+     * aplicarCurativo: o enfermeiro acompanhado pedido aplica o curativo ao paciente, se este não for a 5ª vez consecutiva e caso estes existam.
+     * Se for a 5ª vez consecutiva ou mais, é declarado o óbito do paciente e é adicionado ao relatório hospitalar.
+     * @param hospital 
+     */
     public void aplicarCurativo(Hospital hospital)
     {
         Scanner scanner = new Scanner(System.in);

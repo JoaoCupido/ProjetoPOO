@@ -18,6 +18,10 @@ public class MenuMedico {
     //variaveis de instancia
     //construtor
     //metodos
+    /**
+     * Método em que contêm várias opções de médico.
+     * @param hospital 
+     */
     public void menuOpcoesMedico(Hospital hospital){
         int opcao;
         System.out.println("***SubMenu Médico***");
@@ -62,9 +66,10 @@ public class MenuMedico {
                     break;
         }
     }
-    /*
-    Lista de Pacientes em espera!
-    */
+    /**
+     * pacientesEsperanoHospital: listar todos os pacientes em espera do hospital na consola
+     * @param hospital 
+     */
     public void listarPacientesEspera(Hospital hospital)
     {
         if(hospital.getListaPacientes().isEmpty()){
@@ -110,9 +115,11 @@ public class MenuMedico {
         }
     }
     
-    /*
-    Paciente que deu entrada no hospital. Sera feito um diagnostico caso de positivo de patologia sera colocado na agenda dos enfermeiros alocados ao medico
-    */
+    /**
+     * Paciente que deu entrada no hospital pela primeira vez.
+     * Será feito um diagnóstico caso dê positivo de patologia vai para diagnosticoPaciente
+     * @param hospital
+     */
     public void diagnosticoPacientePrimeiraVez(Hospital hospital)
     {
         Scanner scanner = new Scanner(System.in);
@@ -158,7 +165,12 @@ public class MenuMedico {
             }
         }
     }
-    
+    /**
+     * altaHospitalar: O médico tenta dar alta ao paciente a aguardar alta do médico. Se ainda tiver patologias,
+     * o paciente é outra vez feito o diagnóstico. Caso não tenha patologias, vai entrar no diagnóstico ao paciente
+     * e este é dado como alta e é inserido no relatório hospitalar.
+     * @param hospital 
+     */
     public void altaHospitalar(Hospital hospital)
     {
         Scanner scanner = new Scanner(System.in);
@@ -197,7 +209,17 @@ public class MenuMedico {
             }
         }
     }
-    
+    /**
+     * requerimentoAuxiliares: O médico pede ao enfermeiro-chefe para haver n enfermeiros-auxiliares acompanhados.
+     * Caso n seja menor ou igual que o número total de enfermeiros-auxiliares, o enfermeiro-chefe junta os
+     * auxiliares disponíveis na lista de pessoas do hospital (isto é, os auxiliares que não têm médico
+     * acompanhado) e estes vão ser acompanhados pelo médico pedido.
+     * Caso contrário, vai ocorrer uma exceção e é criado vários pedidos de auxiliares de acordo com a diferença
+     * entre o número de auxiliares disponíveis na lista de pessoas do hospital com o número de auxiliares pedidos
+     * do médico.
+     * @param hospital
+     * @throws InvalidNumberOfAuxiliaresException 
+     */
     public void requerimentoAuxiliares(Hospital hospital) throws InvalidNumberOfAuxiliaresException
     {
         Scanner scanner = new Scanner(System.in);
@@ -263,7 +285,16 @@ public class MenuMedico {
             }
         }
     }
-    
+    /**
+     * diagnosticoPaciente: Se o paciente for diagnosticado pela primeira vez, o paciente sai da lista de espera
+     * e entra na agenda dos enfermeiros acompanhados, caso isto seja possível (pode ocorrer casos em que a agenda esteja cheia
+     * ou que a lista de pacientes à espera de ter alta do médico esteja cheia)
+     * Se o paciente não for diagnosticado pela primeira vez, este pode ter alta (caso não tenha patologias) e consequentemente, é
+     * adicionado no relatório hospitalar, ou é passado outra vez para a agenda dos enfermeiros acompanhados.
+     * @param hospital
+     * @param medico
+     * @param paciente 
+     */
     public void diagnosticoPaciente(Hospital hospital, Medico medico, Paciente paciente){
         for(Map.Entry<String,Pessoa> enfermeironalista : hospital.getListaPessoas().entrySet()){
             switch(enfermeironalista.getValue().getClass().getSimpleName()){
@@ -332,7 +363,12 @@ public class MenuMedico {
             }
         }
     }
-    
+    /**
+     * contadorAuxiliaresDisponiveis: retorna o número de auxiliares sem médico acompanhado da lista de pessoas
+     * do hospital.
+     * @param hospital
+     * @return 
+     */
     public int contadorAuxiliaresDisponiveis(Hospital hospital){
         int conta = 0;
         for(Map.Entry<String,Pessoa> auxiliarnalista : hospital.getListaPessoas().entrySet()){

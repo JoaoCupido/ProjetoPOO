@@ -14,6 +14,11 @@ public abstract class Enfermeiro extends Pessoa{
     private String nome;
     private int anoscarreira;
     //construtor
+    /**
+     * Construtor de Enfermeiro
+     * @param nome
+     * @param anoscarreira 
+     */
     public Enfermeiro(String nome, int anoscarreira)
     {
         super();
@@ -24,15 +29,31 @@ public abstract class Enfermeiro extends Pessoa{
     //metodos
     
     //getters e setters
+    /**
+     * Getter da variável de instância nome
+     * @return 
+     */
     public String getNome(){
         return nome;
     }
+    /**
+     * Getter da variável de instância anoscarreira
+     * @return 
+     */
     public int getAnosCarreira(){
         return anoscarreira;
     }
+    /**
+     * Setter da variável de instância nome
+     * @param nome 
+     */
     public void setNome(String nome){
         this.nome = nome;
     }
+    /**
+     * Setter da variável de instância anoscarreira
+     * @param anoscarreira 
+     */
     public void setAnosCarreira(int anoscarreira){
         this.anoscarreira = anoscarreira;
     }

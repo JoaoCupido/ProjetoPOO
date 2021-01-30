@@ -15,7 +15,11 @@ public class Paciente extends Pessoa{
     
     Random gerador = new Random();
     
-    //ConstrutorD
+    //Construtor
+    /**
+     * Construtor de Paciente
+     * @param anonascimento 
+     */
     public Paciente(int anonascimento){
         super();
         this.anonascimento = anonascimento;
@@ -23,21 +27,41 @@ public class Paciente extends Pessoa{
     }
     //metodos
     //getters e setters
+    /**
+     * Getter da variável de instância anonascimento
+     * @return 
+     */
     public int getAnoNascimento()
     {
         return anonascimento;
     }
+    /**
+     * Setter da variável de instância anonascimento
+     * @param anonascimento 
+     */
     public void setAnoNascimento(int anonascimento)
     {
         this.anonascimento=anonascimento;
     }
+    /**
+     * Getter da variável de instância doenca
+     * @return 
+     */
     public Doenca getDoenca(){
         return doenca;
     }
+    /**
+     * Setter da variável de instância doenca
+     * @param doenca 
+     */
     public void setDoenca(Doenca doenca){
         this.doenca = doenca;
     }
     //toString
+    /**
+     * toString: texto do paciente
+     * @return 
+     */
     @Override
     public String toString()
     {
@@ -47,6 +71,11 @@ public class Paciente extends Pessoa{
         return info;
     }
     //equals
+    /**
+     * equals: verificar se o paciente é igual ao this
+     * @param obj
+     * @return 
+     */
     @Override
     public boolean equals(Object obj){
         if(this==obj) return true;

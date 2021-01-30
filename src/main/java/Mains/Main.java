@@ -14,6 +14,10 @@ import java.util.Scanner;
  * @author jcupi
  */
 public class Main {
+    /**
+     * Método main
+     * @param args 
+     */
     public static void main(String args[])
     {
         Hospital hospital = new Hospital();
@@ -44,7 +48,7 @@ public class Main {
             menumedico.requerimentoAuxiliares(hospital); // ID1, ID4, 2
             menumedico.diagnosticoPacientePrimeiraVez(hospital); // ID1, ID7
             */
-
+            
             while(!menuadministrador.getSair()){
                 int opcao;
                 System.out.println("***Menu***");

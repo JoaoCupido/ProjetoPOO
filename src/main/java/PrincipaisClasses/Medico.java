@@ -16,14 +16,20 @@ public class Medico extends Pessoa{
     private HashMap<String,EnfermeiroAuxiliar> auxiliaresAcompanhados;
     private HashMap<String,EnfermeiroEspecialista> especialistasAcompanhados;
     //construtor
+    /**
+     * Construtor de Medico
+     */
     public Medico()
     {
         super();
         auxiliaresAcompanhados = new HashMap<>(0);
         especialistasAcompanhados = new HashMap<>(0);
     }
-    
     //metodos
+    /**
+     * addPacienteAlta: adicionar paciente à lista de pacientes a aguardar alta do médico
+     * @param paciente 
+     */
     public void addPacienteAlta(Paciente paciente){
         for(int i = 0; i < listaPacientesAlta.length; i++) {
             if(listaPacientesAlta[i] == null){
@@ -32,6 +38,10 @@ public class Medico extends Pessoa{
             }
         }
     }
+    /**
+     * removePacienteAlta: remover paciente à lista de pacientes a aguardar alta do médico
+     * @param paciente 
+     */
     public void removePacienteAlta(Paciente paciente){
         for(int i = 0; i < listaPacientesAlta.length; i++){
             if(paciente.equals(listaPacientesAlta[i])){
@@ -40,16 +50,36 @@ public class Medico extends Pessoa{
             }
         }
     }
+    /**
+     * isEmptyPacienteAlta: Retorna true se lista de pacientes a aguardar alta está vazia.
+     * Caso contrário, retorna false.
+     * @return 
+     */
     public boolean isEmptyPacienteAlta(){
         return (listaPacientesAlta[0]==null && listaPacientesAlta[1]==null && listaPacientesAlta[2]==null);
     }
+    /**
+     * isEmptyPacienteAlta: Retorna true se lista de pacientes a aguardar alta está cheia.
+     * Caso contrário, retorna false.
+     * @return 
+     */
     public boolean isFullPacienteAlta(){
         return (listaPacientesAlta[0]!=null && listaPacientesAlta[1]!=null && listaPacientesAlta[2]!=null);
     }
+    /**
+     * containsPacienteInPacienteAlta: Retorna true se o paciente está na lista de pacientes a
+     * aguardar alta do médico. Caso contrário, retorna false.
+     * @param paciente
+     * @return 
+     */
     public boolean containsPacienteInPacienteAlta(Paciente paciente){
         return (paciente.equals(listaPacientesAlta[0]) || paciente.equals(listaPacientesAlta[1]) || paciente.equals(listaPacientesAlta[2]));
     }
-    
+    /**
+     * atualizarEnfermeirosAcompanhados: Atualiza a lista de enfermeiros auxiliares e de enfermeiros
+     * especialistas do médico acompanhado
+     * @param hospital 
+     */
     public void atualizarEnfermeirosAcompanhados(Hospital hospital){ 
         boolean enfermeirounico = true;
         for(Pessoa pessoaencontrar : hospital.getListaPessoas().values()){
@@ -80,27 +110,48 @@ public class Medico extends Pessoa{
         }
     }
     //getters e setters
+    /**
+     * Getter da variável de instância listaPacientesAlta
+     * @return 
+     */
     public Paciente[] getlistaPacientesAlta(){
         return listaPacientesAlta;
     }
+    /**
+     * Getter da variável de instância auxiliaresAcompanhados
+     * @return 
+     */
     public HashMap<String,EnfermeiroAuxiliar> getAuxiliaresAcompanhados(){
         return auxiliaresAcompanhados;
     }
+    /**
+     * Getter da variável de instância especialistasAcompanhados
+     * @return 
+     */
     public HashMap<String,EnfermeiroEspecialista> getEspecialistasAcompanhados(){
         return especialistasAcompanhados;
     }
     //toString
+    /**
+     * toString: texto do médico
+     * @return 
+     */
     @Override
     public String toString()
     {
         String info;
         info = "MÉDICO: " + super.getId() + "\n";
         info += "LISTA DE PACIENTES A AGUARDAR ALTA DESTE MÉDICO: " + Arrays.toString(listaPacientesAlta) + "\n";
-        info += "LISTA DE ENFERMEIROS AUXILIARES ACOMPANHADOS POR ESTE MÉDICO: " + auxiliaresAcompanhados + "\n";
-        info += "LISTA DE ENFERMEIROS ESPECIALISTAS ACOMPANHADOS POR ESTE MÉDICO: " + especialistasAcompanhados + "\n";
+        info += "LISTA DE ENFERMEIROS AUXILIARES ACOMPANHADOS POR ESTE MÉDICO: " + auxiliaresAcompanhados.keySet() + "\n";
+        info += "LISTA DE ENFERMEIROS ESPECIALISTAS ACOMPANHADOS POR ESTE MÉDICO: " + especialistasAcompanhados.keySet() + "\n";
         return info;
     }
     //equals
+    /**
+     * equals: verificar se o médico é igual ao this
+     * @param obj
+     * @return 
+     */
     @Override
     public boolean equals(Object obj){
         if(this==obj) return true;

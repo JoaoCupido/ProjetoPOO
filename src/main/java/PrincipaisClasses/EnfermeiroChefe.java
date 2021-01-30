@@ -12,6 +12,11 @@ package PrincipaisClasses;
 public class EnfermeiroChefe extends Enfermeiro{
     //variaveis de instancia
     //construtor
+    /**
+     * Construtor de EnfermeiroChefe
+     * @param nome
+     * @param anoscarreira 
+     */
     public EnfermeiroChefe(String nome, int anoscarreira)
     {
         super(nome, anoscarreira);
@@ -19,6 +24,10 @@ public class EnfermeiroChefe extends Enfermeiro{
     //metodos
     //getters e setters
     //toString
+    /**
+     * toString: texto do enfermeiro-chefe
+     * @return 
+     */
     @Override
     public String toString()
     {
@@ -31,6 +40,11 @@ public class EnfermeiroChefe extends Enfermeiro{
         return info;
     }
     //equals
+    /**
+     * equals: verificar se o enfermeiro chefe é igual ao this
+     * @param obj
+     * @return 
+     */
     @Override
     public boolean equals(Object obj){
         if(this==obj) return true;

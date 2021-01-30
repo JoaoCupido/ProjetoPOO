@@ -17,11 +17,17 @@ public class MenuAdministrador {
     //variaveis de instancia
     private boolean sair;
     //construtor
+    /**
+     * Construtor da classe MenuAdministrador em que sair=false;
+     */
     public MenuAdministrador(){
         sair = false;
     }
     //metodos
-    
+    /**
+     * Método em que contêm várias opções de administrador
+     * @param hospital 
+     */
     public void menuOpcoesAdministrador(Hospital hospital){
         int opcao;
         System.out.println("***SubMenu Administrador***");
@@ -111,13 +117,19 @@ public class MenuAdministrador {
                     break;
             }
     }
-    
+    /**
+     * criarMedico: criar um novo médico na lista de pessoas do hospital
+     * @param hospital 
+     */
     public void criarMedico(Hospital hospital)
     {
         Pessoa medico = new Medico();
-        hospital.getListaPessoas().put(medico.getId(),medico); //adicionar medico à lista de pessoas no hospital
+        hospital.addPessoa(medico); //adicionar medico à lista de pessoas no hospital
     }
-    
+    /**
+     * criarEnfermeiroEspecialista: criar um novo enfermeiro-especialista na lista de pessoas do hospital
+     * @param hospital 
+     */
     public void criarEnfermeiroEspecialista(Hospital hospital)
     {
         String nome;
@@ -127,7 +139,10 @@ public class MenuAdministrador {
         Pessoa enfermeiroespecialista = new EnfermeiroEspecialista(nome, 0);
         hospital.addPessoa(enfermeiroespecialista); //adicionar enfermeiroespecialista à lista de pessoas no hospital 
     }
-    
+    /**
+     * criarEnfermeiroAuxiliar: criar um novo enfermeiro-auxiliar na lista de pessoas do hospital
+     * @param hospital 
+     */
     public void criarEnfermeiroAuxiliar(Hospital hospital)
     {
         String nome;
@@ -137,7 +152,10 @@ public class MenuAdministrador {
         Pessoa enfermeiroauxiliar = new EnfermeiroAuxiliar(nome, 0);
         hospital.addPessoa(enfermeiroauxiliar); //adicionar enfermeiroauxiliar à lista de pessoas no hospital 
     }
-    
+    /**
+     * criarNovoPaciente: criar um novo paciente na lista de pessoas do hospital e na lista de pacientes em espera do hospital
+     * @param hospital 
+     */
     public void criarNovoPaciente(Hospital hospital)
     {
         int anonascimento;
@@ -154,7 +172,11 @@ public class MenuAdministrador {
             inserirano.nextLine();
         }
     }
-    
+    /**
+     * promoverEnfermeiroChefe: transformar todas as pessoas que são enfermeiros-especialistas e cumprem os requisitos mínimos
+     * para enfermeiros-chefes
+     * @param hospital 
+     */
     public void promoverEnfermeiroChefe(Hospital hospital)
     {
         if(hospital.getListaPessoas().isEmpty()){
@@ -186,7 +208,10 @@ public class MenuAdministrador {
             }
         }
     }
-    
+    /**
+     * aumentarAnosCarreira: aumentar anos de carreira de todos os enfermeiros
+     * @param hospital 
+     */
     public void aumentarAnosCarreira(Hospital hospital)
     {
         if(hospital.getListaPessoas().isEmpty()){
@@ -203,7 +228,10 @@ public class MenuAdministrador {
             }
         }
     }
-    
+    /**
+     * listarEnfermeiros: imprimir todos os enfermeiros na consola
+     * @param hospital 
+     */
     public void listarEnfermeiros(Hospital hospital)
     {
         if(hospital.getListaPessoas().isEmpty()){
@@ -230,7 +258,10 @@ public class MenuAdministrador {
             }
         }
     }
-    
+    /**
+     * listarMedicos: listar todos os médicos do hospital na consola
+     * @param hospital 
+     */
     public void listarMedicos(Hospital hospital)
     {
         if(hospital.getListaPessoas().isEmpty()){
@@ -245,7 +276,10 @@ public class MenuAdministrador {
             }
         }
     }
-    
+    /**
+     * pedidosEnfermeirosAuxiliares: listar todos os pedidos de auxiliares do hospital na consola
+     * @param hospital 
+     */
     public void pedidosEnfermeirosAuxiliares(Hospital hospital)
     {
         if(hospital.getPedidos().isEmpty()){
@@ -257,7 +291,10 @@ public class MenuAdministrador {
             }
         }
     }
-    
+    /**
+     * pacientesEsperanoHospital: listar todos os pacientes em espera do hospital na consola
+     * @param hospital 
+     */
     public void pacientesEsperanoHospital(Hospital hospital)
     {
         if(hospital.getListaPacientes().isEmpty()){
@@ -269,7 +306,10 @@ public class MenuAdministrador {
             }
         }
     }
-    
+    /**
+     * atribuirPedidosEnfAuxTrituradora: de pedido a pedido, é removido 50% das hipóteses
+     * @param hospital 
+     */
     public void atribuirPedidosEnfAuxTrituradora(Hospital hospital)
     {
         if(hospital.getListaPacientes().isEmpty()){
@@ -284,7 +324,11 @@ public class MenuAdministrador {
             }
         }
     }
-    
+    /**
+     * atenderPedidoEnfAuxiliares: adicionar 2 enfermeiros-auxiliares na lista de pessoas do hospital
+     * de acordo com os últimos 2 pedidos de enfermeiros-auxiliares
+     * @param hospital 
+     */
     public void atenderPedidoEnfAuxiliares(Hospital hospital){
         if(hospital.getListaPacientes().isEmpty()){
             System.out.println("ListaPacientes está vazio.");
@@ -298,7 +342,18 @@ public class MenuAdministrador {
             }
         }
     }
-    
+    /**
+     * outBreak: ocorre um surto no hospital; vai percorrer na lista de pessoas e ocorre certas condições para
+     * cada caso (se cumpre as condições, a pessoa tem 50% de probabilidade de ficar infetado - se for infetado, é alterado o tipo de pessoa
+     * para paciente na lista de pessoas e entra na lista de pacientes em espera no hospital):
+     *  > Medico: se este não tem enfermeiros acompanhados (auxiliares ou especialistas) e se não tem pacientes à espera da alta;
+     *  > Paciente: se este já está em alta ou está em lista de espera do hospital;
+     *  > Especialista: se este tem a agenda vazia (ou seja, se não tem pacientes à espera do curativo), e não é acompanhado por um médico;
+     *  > Auxiliar: se este tem a agenda vazia (ou seja, se não tem pacientes à espera do curativo), e não é acompanhado por um médico;
+     *  > Chefe: este não tem condições; é logo feito a probabilidade de ser infetado
+     *
+     * @param hospital 
+     */
     public void outBreak(Hospital hospital)
     {
         Random gerador = new Random();
@@ -411,16 +466,27 @@ public class MenuAdministrador {
             }
         }
     }
-    
+    /**
+     * relatorioHospitalar: imprime o relatorio hospitalar na consola
+     * @param hospital 
+     */
     public void relatorioHospitalar(Hospital hospital)
     {
         System.out.println(hospital.getRelatorio());
     }
-    
+    /**
+     * sairAplicacao: passar a variavel de instancia sair=false para sair=true;
+     */
     public void sairAplicacao(){
         setSair(true);
     }
-    
+    /**
+     * isEnfermeiroWithMedico: Retorna true se o enfermeiro está com um médico.
+     * Caso contrário, retorna false.
+     * @param hospital
+     * @param medico
+     * @return 
+     */
     public boolean isEnfermeiroWithMedico(Hospital hospital, Medico medico){
         boolean foundmedico = false;
         for(Pessoa pessoaencontrar : hospital.getListaPessoas().values()){
@@ -439,9 +505,17 @@ public class MenuAdministrador {
     }
     
     //getters e setters
+    /**
+     * Getter da variável de instância sair
+     * @return 
+     */
     public boolean getSair(){
         return sair;
     }
+    /**
+     * Setter da variável de instância sair
+     * @param sair 
+     */
     public void setSair(boolean sair){
         this.sair = sair;
     }

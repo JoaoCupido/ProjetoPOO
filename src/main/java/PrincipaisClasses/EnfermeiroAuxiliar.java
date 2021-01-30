@@ -17,12 +17,22 @@ public class EnfermeiroAuxiliar extends Enfermeiro implements RelacaoMedicoEnfer
     private Medico medicoacompanhado;
     private Paciente[] agenda = {null, null, null};
     //construtor
+    /**
+     * Construtor de EnfermeiroAuxiliar
+     * @param nome
+     * @param anoscarreira 
+     */
     public EnfermeiroAuxiliar(String nome, int anoscarreira)
     {
         super(nome, anoscarreira);
         medicoacompanhado = null;
     }
     //metodos
+    /**
+     * addPacienteAgenda: adicionar um paciente na agenda do enfermeiro-auxiliar
+     * @param hospital
+     * @param paciente 
+     */
     public void addPacienteAgenda(Hospital hospital, Paciente paciente){
         for(int i = 0; i < agenda.length; i++) {
             if(agenda[i] == null){
@@ -32,6 +42,10 @@ public class EnfermeiroAuxiliar extends Enfermeiro implements RelacaoMedicoEnfer
             }
         }
     }
+    /**
+     * removePacienteAgenda: remover um paciente na agenda do enfermeiro-auxiliar
+     * @param paciente 
+     */
     public void removePacienteAgenda(Paciente paciente){
         for(int i = 0; i < agenda.length; i++){
             if(paciente.equals(agenda[i])){
@@ -40,23 +54,78 @@ public class EnfermeiroAuxiliar extends Enfermeiro implements RelacaoMedicoEnfer
             }
         }
     }
+    /**
+     * agendaPacientes: retorna um String de texto da agenda de pacientes
+     * do enfermeiro-auxiliar
+     * @return 
+     */
+    public String agendaPacientes(){
+        String texto;
+        texto = "AGENDA DESTE ENFERMEIRO: {";
+        if(agenda[0]!=null){
+            texto += agenda[0].getId() + ",";
+        }
+        else{
+            texto += "null,";
+        }
+        if(agenda[1]!=null){
+            texto += agenda[1].getId() + ",";
+        }
+        else{
+            texto += "null,";
+        }
+        if(agenda[2]!=null){
+            texto += agenda[2].getId() + "}";
+        }
+        else{
+            texto += "null}";
+        }
+        texto += "\n";
+        return texto;
+    }
+    /**
+     * Retorna true se a agenda do enfermeiro acompanhado está vazio
+     * Retorna false caso contrário
+     * @return 
+     */
     public boolean isEmptyPacienteAgenda(){
         return (agenda[0]==null && agenda[1]==null && agenda[2]==null);
     }
+    /**
+     * Retorna true se a agenda do enfermeiro acompanhado está cheio
+     * Retorna false caso contrário
+     * @return 
+     */
     public boolean isFullPacienteAgenda(){
         return (agenda[0]!=null && agenda[1]!=null && agenda[2]!=null);
     }
     //getters e setters
+    /**
+     * Getter da variável de instância medicoacompanhado
+     * @return 
+     */
     public Medico getMedicoAcompanhado(){
         return medicoacompanhado;
     }
+    /**
+     * Setter da variável de instância medicoacompanhado
+     * @param medico 
+     */
     public void setMedicoAcompanhado(Medico medico){
         medicoacompanhado = medico;
     }
+    /**
+     * Getter da variável de instância agenda
+     * @return 
+     */
     public Paciente[] getAgenda(){
         return agenda;
     }
     //toString
+    /**
+     * toString: texto do enfermeiro-auxiliar
+     * @return 
+     */
     @Override
     public String toString()
     {
@@ -65,11 +134,16 @@ public class EnfermeiroAuxiliar extends Enfermeiro implements RelacaoMedicoEnfer
         info += "NOME: " + getNome() + "\n";
         info += "ID: " + getId() + "\n";
         info += "ANOS DE EXPERIÊNCIA: " + getAnosCarreira() + "\n";
-        info += "MÉDICO ALOCADO: " + medicoacompanhado + "\n";
-        info += "AGENDA DESTE ENFERMEIRO: " + Arrays.toString(agenda) + "\n";
+        info += "MÉDICO ALOCADO: " + medicoacompanhado.getId() + "\n";
+        info += agendaPacientes();
         return info;
     }
     //equals
+    /**
+     * equals: verificar se o enfermeiro auxiliar é igual ao this
+     * @param obj
+     * @return 
+     */
     @Override
     public boolean equals(Object obj){
         if(this==obj) return true;

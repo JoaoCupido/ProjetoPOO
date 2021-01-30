@@ -27,6 +27,9 @@ public class RelatorioHospitalar {
     private static double raciopacientespositivoshiv;
     
     //construtor
+    /**
+     * Construtor de RelatorioHospitalar com parâmetro vazio
+     */
     public RelatorioHospitalar(){
         idpaciente = "----";
         anonascimentopaciente = 0;
@@ -40,6 +43,10 @@ public class RelatorioHospitalar {
         casospositivoshiv = 0;
         raciopacientespositivoshiv = 0.0;
     }
+    /**
+     * Construtor de RelatorioHospitalar com parâmetro paciente (Overloading)
+     * @param paciente 
+     */
     public RelatorioHospitalar(Paciente paciente){
         idpaciente = paciente.getId();
         anonascimentopaciente = paciente.getAnoNascimento();
@@ -51,6 +58,11 @@ public class RelatorioHospitalar {
         raciopacientespositivoshiv = (double)casospositivoshiv/totalpacientestestados;
     }
     //metodos
+    /**
+     * criarRelatorioPaciente: Se paciente não tiver nenhuma patologia, numrecuperados aumenta +1.
+     * Caso contrário, numobitos aumenta +1.
+     * @param paciente 
+     */
     public void criarRelatorioPaciente(Paciente paciente){
         if(!(paciente.getDoenca().getCovid() || paciente.getDoenca().getEbola() || paciente.getDoenca().getHiv())){
             numrecuperados += 1;
@@ -59,7 +71,13 @@ public class RelatorioHospitalar {
             numobitos += 1;
         }
     }
-    
+    /**
+     * relatorioTestarPaciente: Se tiver uma certa patologia, é adicionado +1 à varíavel
+     * de instância da patologia pretendida. Também é adicionado +1 no número total de
+     * pacientes testados e é atualizado as variáveis de instância raciopacientespositivoscovid,
+     * raciopacientespositivosebola e raciopacientespositivoshiv.
+     * @param paciente 
+     */
     public void relatorioTestarPaciente(Paciente paciente){
         if(paciente.getDoenca().getCovid()){
             casospositivoscovid += 1;
@@ -76,6 +94,14 @@ public class RelatorioHospitalar {
         raciopacientespositivoshiv = (double)casospositivoshiv/totalpacientestestados;
     }
     
+    /**
+     * pacienteNaoExistente: Se anosnascimento do paciente for igual a 0 (isto é a mesma coisa que 
+     * dizer se não houver nenhum paciente no relatoriohospitalar), retorna um texto
+     * a avisar que não houve nenhum paciente que teve alta ou que foi declarado como óbito de momento.
+     * Caso contrário, retorna um texto com o ID e o anonascimento do paciente.
+     * @param relatorio
+     * @return 
+     */
     public String pacienteNaoExistente(RelatorioHospitalar relatorio){
         String texto;
         texto = "ÚLTIMO PACIENTE A TER ALTA OU A CONTAR COMO ÓBITO: \n";
@@ -88,24 +114,40 @@ public class RelatorioHospitalar {
         return texto;
     }
     //getters e setters
-
+    /**
+     * Getter da variável de instância idpaciente
+     * @return 
+     */
     public String getIdpaciente() {
         return idpaciente;
     }
-
+    /**
+     * Setter da variável de instância idpaciente
+     * @param idpaciente 
+     */
     public void setIdpaciente(String idpaciente) {
         this.idpaciente = idpaciente;
     }
-
+    /**
+     * Getter da variável de instância anonascimentopaciente
+     * @return 
+     */
     public int getAnonascimentopaciente() {
         return anonascimentopaciente;
     }
-
+    /**
+     * Setter da variável de instância anonascimentopaciente
+     * @param anonascimentopaciente 
+     */
     public void setAnonascimentopaciente(int anonascimentopaciente) {
         this.anonascimentopaciente = anonascimentopaciente;
     }
     
     //toString
+    /**
+     * toString: texto do relatório hospitalar
+     * @return 
+     */
     @Override
     public String toString() {
         String texto;
