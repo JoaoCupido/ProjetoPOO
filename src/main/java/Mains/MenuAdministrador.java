@@ -312,8 +312,8 @@ public class MenuAdministrador {
      */
     public void atribuirPedidosEnfAuxTrituradora(Hospital hospital)
     {
-        if(hospital.getListaPacientes().isEmpty()){
-            System.out.println("ListaPacientes está vazio.");
+        if(hospital.getPedidos().isEmpty()){
+            System.out.println("PedidosAuxiliares está vazio.");
         }
         else{
             Random generator = new Random();
@@ -330,8 +330,8 @@ public class MenuAdministrador {
      * @param hospital 
      */
     public void atenderPedidoEnfAuxiliares(Hospital hospital){
-        if(hospital.getListaPacientes().isEmpty()){
-            System.out.println("ListaPacientes está vazio.");
+        if(hospital.getPedidos().isEmpty()){
+            System.out.println("PedidosAuxiliares está vazio.");
         }
         else{
             int tamanho = hospital.getPedidos().size();
@@ -366,7 +366,7 @@ public class MenuAdministrador {
                     case "Medico":
                         Medico medicoencontrado = (Medico) pessoaencontrar;
                         if(medicoencontrado.isEmptyPacienteAlta()){
-                            if(!isEnfermeiroWithMedico(hospital, medicoencontrado)){
+                            if(medicoencontrado.getAuxiliaresAcompanhados().isEmpty() && medicoencontrado.getEspecialistasAcompanhados().isEmpty()){
                                 if(gerador.nextBoolean()){
                                     Scanner anonascimento = new Scanner(System.in);
                                     System.out.println("Insere o ano de nascimento de um infetado: ");
@@ -480,30 +480,6 @@ public class MenuAdministrador {
     public void sairAplicacao(){
         setSair(true);
     }
-    /**
-     * isEnfermeiroWithMedico: Retorna true se o enfermeiro está com um médico.
-     * Caso contrário, retorna false.
-     * @param hospital
-     * @param medico
-     * @return 
-     */
-    public boolean isEnfermeiroWithMedico(Hospital hospital, Medico medico){
-        boolean foundmedico = false;
-        for(Pessoa pessoaencontrar : hospital.getListaPessoas().values()){
-            if(pessoaencontrar.getClass().getSimpleName().equals("EnfermeiroAuxiliar")){
-                if(medico.equals(((EnfermeiroAuxiliar)pessoaencontrar).getMedicoAcompanhado())){
-                    foundmedico = true;
-                }
-            }
-            else if(pessoaencontrar.getClass().getSimpleName().equals("EnfermeiroEspecialista")){
-                if(medico.equals(((EnfermeiroEspecialista)pessoaencontrar).getMedicoAcompanhado())){
-                    foundmedico = true;
-                }
-            }
-        }
-        return foundmedico;
-    }
-    
     //getters e setters
     /**
      * Getter da variável de instância sair
