@@ -422,6 +422,15 @@ public class MenuAdministrador {
                                 }
                             }
                         }
+                        else{
+                            if(gerador.nextBoolean()){
+                                Pessoa paciente = new Paciente(((Paciente)pessoaencontrar).getAnoNascimento()); // paciente já tem ano de nascimento;
+                                paciente.setId(pessoaencontrar.getId());
+                                paciente.setContarPessoas(paciente.getContarPessoas()-1);
+                                hospital.getListaPessoas().replace(paciente.getId(), paciente);
+                                hospital.addPaciente((Paciente) paciente);
+                            }
+                        }
                         break;
                     case "EnfermeiroEspecialista":
                         if(((EnfermeiroEspecialista)pessoaencontrar).isEmptyPacienteAgenda() && ((EnfermeiroEspecialista)pessoaencontrar).getMedicoAcompanhado()==null){
