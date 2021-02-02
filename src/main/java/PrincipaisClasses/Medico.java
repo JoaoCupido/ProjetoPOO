@@ -81,8 +81,8 @@ public class Medico extends Pessoa{
      * @param hospital 
      */
     public void atualizarEnfermeirosAcompanhados(Hospital hospital){ 
-        boolean enfermeirounico = true;
         for(Pessoa pessoaencontrar : hospital.getListaPessoas().values()){
+            boolean enfermeirounico = true;
             switch(pessoaencontrar.getClass().getSimpleName()){
                 case "EnfermeiroAuxiliar":
                     for(EnfermeiroAuxiliar ea : auxiliaresAcompanhados.values()){
