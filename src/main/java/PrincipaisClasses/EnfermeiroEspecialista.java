@@ -6,7 +6,6 @@
 package PrincipaisClasses;
 
 import Interface.RelacaoMedicoEnfermeiro;
-import java.util.Arrays;
 
 /**
  *
