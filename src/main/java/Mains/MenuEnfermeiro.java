@@ -204,19 +204,23 @@ public class MenuEnfermeiro {
                 }
                 else if(elementonalista.getKey().equals(enfid) && elementonalista.getValue().getClass().getSimpleName().equals("EnfermeiroAuxiliar")){
                     EnfermeiroAuxiliar ea = (EnfermeiroAuxiliar) elementonalista.getValue();
-                    if(ea.getMedicoAcompanhado()==null){
-                        System.out.println("O enfermeiro-auxiliar não tem um médico acompanhado.");
-                    }
                     System.out.println("Insira o ID do paciente a ser aplicado o curativo: ");
                     String pacid = scanner.next();
-                    if(ea.isEmptyPacienteAgenda()){
+                    if(ea.getMedicoAcompanhado()==null){
+                        System.out.println("O enfermeiro-auxiliar não tem um médico acompanhado.");
+                        break;
+                    }
+                    else if(ea.isEmptyPacienteAgenda()){
                         System.out.println("A agenda do enfermeiro-auxiliar está vazia.");
+                        break;
                     }
-                    if(ea.getMedicoAcompanhado().isFullPacienteAlta()){
+                    else if(ea.getMedicoAcompanhado().isFullPacienteAlta()){
                         System.out.println("O médico acompanhado já tem o máximo de 3 pacientes.");
+                        break;
                     }
-                    if(!hospital.getListaPessoas().containsKey(pacid)){
+                    else if(!hospital.getListaPessoas().containsKey(pacid)){
                         System.out.println("O ID do paciente a ser aplicado o curativo não existe na ListaPessoas nem na Agenda.");
+                        break;
                     }
                     else{
                         for (Paciente paciente : ea.getAgenda()) {
@@ -267,19 +271,23 @@ public class MenuEnfermeiro {
                 }
                 else if(elementonalista.getKey().equals(enfid) && elementonalista.getValue().getClass().getSimpleName().equals("EnfermeiroEspecialista")){
                     EnfermeiroEspecialista ee = (EnfermeiroEspecialista) elementonalista.getValue();
-                    if(ee.getMedicoAcompanhado()==null){
-                        System.out.println("O enfermeiro-especialista não tem um médico acompanhado.");
-                    }
                     System.out.println("Insira o ID do paciente a ser aplicado o curativo: ");
                     String pacid = scanner.next();
-                    if(ee.isEmptyPacienteAgenda()){
+                    if(ee.getMedicoAcompanhado()==null){
+                        System.out.println("O enfermeiro-especialista não tem um médico acompanhado.");
+                        break;
+                    }
+                    else if(ee.isEmptyPacienteAgenda()){
                         System.out.println("A agenda do enfermeiro-especialista está vazia.");
+                        break;
                     }
-                    if(ee.getMedicoAcompanhado().isFullPacienteAlta()){
+                    else if(ee.getMedicoAcompanhado().isFullPacienteAlta()){
                         System.out.println("O médico acompanhado já tem o máximo de 3 pacientes.");
+                        break;
                     }
-                    if(!hospital.getListaPessoas().containsKey(pacid)){
+                    else if(!hospital.getListaPessoas().containsKey(pacid)){
                         System.out.println("O ID do paciente a ser aplicado o curativo não existe na ListaPessoas nem na Agenda.");
+                        break;
                     }
                     else{
                         for (Paciente paciente : ee.getAgenda()) {
