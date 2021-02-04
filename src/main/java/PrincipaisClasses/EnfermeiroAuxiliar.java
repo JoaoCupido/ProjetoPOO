@@ -133,7 +133,12 @@ public class EnfermeiroAuxiliar extends Enfermeiro implements RelacaoMedicoEnfer
         info += "NOME: " + getNome() + "\n";
         info += "ID: " + getId() + "\n";
         info += "ANOS DE EXPERIÊNCIA: " + getAnosCarreira() + "\n";
-        info += "MÉDICO ALOCADO: " + medicoacompanhado.getId() + "\n";
+        if(medicoacompanhado !=null){
+            info += "MÉDICO ALOCADO: " + medicoacompanhado.getId() + "\n";
+        }
+        else{
+            info += "MÉDICO ALOCADO: " + medicoacompanhado + "\n";
+        }
         info += agendaPacientes();
         return info;
     }
