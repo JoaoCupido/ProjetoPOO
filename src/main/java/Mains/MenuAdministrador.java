@@ -135,7 +135,7 @@ public class MenuAdministrador {
         String nome;
         Scanner inserirnome = new Scanner(System.in);
         System.out.println("Insere o nome: ");
-        nome = inserirnome.next();
+        nome = inserirnome.nextLine();
         Pessoa enfermeiroespecialista = new EnfermeiroEspecialista(nome, 0);
         hospital.addPessoa(enfermeiroespecialista); //adicionar enfermeiroespecialista à lista de pessoas no hospital 
     }
@@ -148,7 +148,7 @@ public class MenuAdministrador {
         String nome;
         Scanner inserirnome = new Scanner(System.in);
         System.out.println("Insere o nome: ");
-        nome = inserirnome.next();
+        nome = inserirnome.nextLine();
         Pessoa enfermeiroauxiliar = new EnfermeiroAuxiliar(nome, 0);
         hospital.addPessoa(enfermeiroauxiliar); //adicionar enfermeiroauxiliar à lista de pessoas no hospital 
     }

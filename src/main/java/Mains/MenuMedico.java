@@ -89,7 +89,7 @@ public class MenuMedico {
     {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insira o ID do médico a selecionar: ");
-        String medicoid = scanner.next();
+        String medicoid = scanner.nextLine();
         if(!hospital.getListaPessoas().containsKey(medicoid)){
             System.out.println("O ID a procurar não existe na ListaPessoas.");
         }
@@ -124,9 +124,9 @@ public class MenuMedico {
     {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insira o ID do médico a selecionar: ");
-        String medicoid = scanner.next();
+        String medicoid = scanner.nextLine();
         System.out.println("Insira o ID do paciente a ser diagnosticado: ");
-        String pacienteid = scanner.next();
+        String pacienteid = scanner.nextLine();
         if(!hospital.getListaPessoas().containsKey(medicoid)){
             System.out.println("O ID do médico a procurar não existe na ListaPessoas.");
         }
@@ -175,9 +175,9 @@ public class MenuMedico {
     {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insira o ID do médico a selecionar: ");
-        String medicoid = scanner.next();
+        String medicoid = scanner.nextLine();
         System.out.println("Insira o ID do paciente a ser diagnosticado: ");
-        String pacienteid = scanner.next();
+        String pacienteid = scanner.nextLine();
         if(!hospital.getListaPessoas().containsKey(medicoid)){
             System.out.println("O ID do médico a procurar não existe na ListaPessoas.");
         }
@@ -224,9 +224,9 @@ public class MenuMedico {
     {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insira o ID do médico a selecionar: ");
-        String medicoid = scanner.next();
+        String medicoid = scanner.nextLine();
         System.out.println("Insira o ID do enfermeiro-chefe a ser comunicado: ");
-        String chefeid = scanner.next();
+        String chefeid = scanner.nextLine();
         if(!hospital.getListaPessoas().containsKey(medicoid)){
             System.out.println("O ID do médico a procurar não existe na ListaPessoas.");
         }
@@ -254,7 +254,7 @@ public class MenuMedico {
                                         String nome;
                                         Scanner inserirnome = new Scanner(System.in);
                                         System.out.println("Insere o nome: ");
-                                        nome = inserirnome.next();
+                                        nome = inserirnome.nextLine();
                                         Pessoa enfermeiroauxiliar = new EnfermeiroAuxiliar(nome, 0);
                                         hospital.addPedido(enfermeiroauxiliar);
                                         diferenca--;

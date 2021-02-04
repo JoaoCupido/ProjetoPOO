@@ -64,7 +64,7 @@ public class MenuEnfermeiro {
     {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insira o ID do médico a selecionar: ");
-        String medicoid = scanner.next();
+        String medicoid = scanner.nextLine();
         if(!hospital.getListaPessoas().containsKey(medicoid)){
             System.out.println("O ID a procurar não existe na ListaPessoas.");
         }
@@ -95,7 +95,7 @@ public class MenuEnfermeiro {
     {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insira o ID do enfermeiro auxiliar ou especialista a selecionar: ");
-        String enfermeiroid = scanner.next();
+        String enfermeiroid = scanner.nextLine();
         if(!hospital.getListaPessoas().containsKey(enfermeiroid)){
             System.out.println("O ID a procurar não existe na ListaPessoas.");
         }
@@ -133,7 +133,7 @@ public class MenuEnfermeiro {
     {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insira o ID do enfermeiro chefe a selecionar: ");
-        String chefeid = scanner.next();
+        String chefeid = scanner.nextLine();
         if(!hospital.getListaPessoas().containsKey(chefeid)){
             System.out.println("O ID do chefe a procurar não existe na ListaPessoas.");
         }
@@ -144,9 +144,9 @@ public class MenuEnfermeiro {
                 }
                 else if(elementonalista.getKey().equals(chefeid) && elementonalista.getValue().getClass().getSimpleName().equals("EnfermeiroChefe")){
                     System.out.println("Insira o ID do enfermeiro-especialista a ser atribuído: ");
-                    String enfermeiroid = scanner.next();
+                    String enfermeiroid = scanner.nextLine();
                     System.out.println("Insira o ID do médico a receber o enfermeiro-especialista: ");
-                    String medicoid = scanner.next();
+                    String medicoid = scanner.nextLine();
                     if(!hospital.getListaPessoas().containsKey(enfermeiroid)){
                         System.out.println("O ID do enfermeiro-especialista a ser atribuído não existe na ListaPessoas.");
                     }
@@ -192,7 +192,7 @@ public class MenuEnfermeiro {
     {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insira o ID do enfermeiro auxiliar ou especialista a selecionar: ");
-        String enfid = scanner.next();
+        String enfid = scanner.nextLine();
         if(!hospital.getListaPessoas().containsKey(enfid)){
             System.out.println("O ID do enfermeiro auxiliar ou especialista a procurar não existe na ListaPessoas.");
         }
@@ -205,7 +205,7 @@ public class MenuEnfermeiro {
                 else if(elementonalista.getKey().equals(enfid) && elementonalista.getValue().getClass().getSimpleName().equals("EnfermeiroAuxiliar")){
                     EnfermeiroAuxiliar ea = (EnfermeiroAuxiliar) elementonalista.getValue();
                     System.out.println("Insira o ID do paciente a ser aplicado o curativo: ");
-                    String pacid = scanner.next();
+                    String pacid = scanner.nextLine();
                     if(ea.getMedicoAcompanhado()==null){
                         System.out.println("O enfermeiro-auxiliar não tem um médico acompanhado.");
                         break;
@@ -272,7 +272,7 @@ public class MenuEnfermeiro {
                 else if(elementonalista.getKey().equals(enfid) && elementonalista.getValue().getClass().getSimpleName().equals("EnfermeiroEspecialista")){
                     EnfermeiroEspecialista ee = (EnfermeiroEspecialista) elementonalista.getValue();
                     System.out.println("Insira o ID do paciente a ser aplicado o curativo: ");
-                    String pacid = scanner.next();
+                    String pacid = scanner.nextLine();
                     if(ee.getMedicoAcompanhado()==null){
                         System.out.println("O enfermeiro-especialista não tem um médico acompanhado.");
                         break;
