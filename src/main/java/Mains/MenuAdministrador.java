@@ -369,14 +369,12 @@ public class MenuAdministrador {
                             if(medicoencontrado.getAuxiliaresAcompanhados().isEmpty() && medicoencontrado.getEspecialistasAcompanhados().isEmpty()){
                                 if(gerador.nextBoolean()){
                                     Scanner anonascimento = new Scanner(System.in);
-                                    do{
-                                        System.out.println("Insere o ano de nascimento de um infetado: ");
-                                        Pessoa paciente = new Paciente(anonascimento.nextInt());
-                                        paciente.setId(pessoaencontrar.getId());
-                                        paciente.setContarPessoas(paciente.getContarPessoas()-1);
-                                        hospital.getListaPessoas().replace(paciente.getId(), paciente);
-                                        hospital.addPaciente((Paciente) paciente);
-                                    } while(anonascimento.hasNextInt()); //verifica se é inteiro; se não for, vai repetir outra vez para inserir int.
+                                    System.out.println("Insere o ano de nascimento de um infetado: ");
+                                    Pessoa paciente = new Paciente(anonascimento.nextInt());
+                                    paciente.setId(pessoaencontrar.getId());
+                                    paciente.setContarPessoas(paciente.getContarPessoas()-1);
+                                    hospital.getListaPessoas().replace(paciente.getId(), paciente);
+                                    hospital.addPaciente((Paciente) paciente);
                                 }
                             }
                         }
@@ -417,28 +415,24 @@ public class MenuAdministrador {
                             if(pacientepossivelinfetar){
                                 if(gerador.nextBoolean()){
                                     Scanner anonascimento = new Scanner(System.in);
-                                    do{
-                                        System.out.println("Insere o ano de nascimento de um infetado: ");
-                                        Pessoa paciente = new Paciente(anonascimento.nextInt());
-                                        paciente.setId(pessoaencontrar.getId());
-                                        paciente.setContarPessoas(paciente.getContarPessoas()-1);
-                                        hospital.getListaPessoas().replace(paciente.getId(), paciente);
-                                        hospital.addPaciente((Paciente) paciente);
-                                    } while(anonascimento.hasNextInt()); //verifica se é inteiro; se não for, vai repetir outra vez para inserir int.
+                                    System.out.println("Insere o ano de nascimento de um infetado: ");
+                                    Pessoa paciente = new Paciente(anonascimento.nextInt());
+                                    paciente.setId(pessoaencontrar.getId());
+                                    paciente.setContarPessoas(paciente.getContarPessoas() - 1);
+                                    hospital.getListaPessoas().replace(paciente.getId(), paciente);
+                                    hospital.addPaciente((Paciente) paciente);
                                 }
                             }
                         }
                         else{
                             if(gerador.nextBoolean()){
                                 Scanner anonascimento = new Scanner(System.in);
-                                do{
-                                    System.out.println("Insere o ano de nascimento de um infetado: ");
-                                    Pessoa paciente = new Paciente(anonascimento.nextInt());
-                                    paciente.setId(pessoaencontrar.getId());
-                                    paciente.setContarPessoas(paciente.getContarPessoas()-1);
-                                    hospital.getListaPessoas().replace(paciente.getId(), paciente);
-                                    hospital.addPaciente((Paciente) paciente);
-                                } while(anonascimento.hasNextInt()); //verifica se é inteiro; se não for, vai repetir outra vez para inserir int.
+                                System.out.println("Insere o ano de nascimento de um infetado: ");
+                                Pessoa paciente = new Paciente(anonascimento.nextInt());
+                                paciente.setId(pessoaencontrar.getId());
+                                paciente.setContarPessoas(paciente.getContarPessoas() - 1);
+                                hospital.getListaPessoas().replace(paciente.getId(), paciente);
+                                hospital.addPaciente((Paciente) paciente);
                             }
                         }
                         break;
@@ -446,14 +440,12 @@ public class MenuAdministrador {
                         if(((EnfermeiroEspecialista)pessoaencontrar).isEmptyPacienteAgenda() && ((EnfermeiroEspecialista)pessoaencontrar).getMedicoAcompanhado()==null){
                             if(gerador.nextBoolean()){
                                 Scanner anonascimento = new Scanner(System.in);
-                                do{
-                                    System.out.println("Insere o ano de nascimento de um infetado: ");
-                                    Pessoa paciente = new Paciente(anonascimento.nextInt());
-                                    paciente.setId(pessoaencontrar.getId());
-                                    paciente.setContarPessoas(paciente.getContarPessoas()-1);
-                                    hospital.getListaPessoas().replace(paciente.getId(), paciente);
-                                    hospital.addPaciente((Paciente) paciente);
-                                } while(anonascimento.hasNextInt()); //verifica se é inteiro; se não for, vai repetir outra vez para inserir int.
+                                System.out.println("Insere o ano de nascimento de um infetado: ");
+                                Pessoa paciente = new Paciente(anonascimento.nextInt());
+                                paciente.setId(pessoaencontrar.getId());
+                                paciente.setContarPessoas(paciente.getContarPessoas() - 1);
+                                hospital.getListaPessoas().replace(paciente.getId(), paciente);
+                                hospital.addPaciente((Paciente) paciente);
                             }
                         }
                         break;
@@ -461,28 +453,24 @@ public class MenuAdministrador {
                         if(((EnfermeiroAuxiliar)pessoaencontrar).isEmptyPacienteAgenda() && ((EnfermeiroAuxiliar)pessoaencontrar).getMedicoAcompanhado()==null){
                             if(gerador.nextBoolean()){
                                 Scanner anonascimento = new Scanner(System.in);
-                                do{
-                                    System.out.println("Insere o ano de nascimento de um infetado: ");
-                                    Pessoa paciente = new Paciente(anonascimento.nextInt());
-                                    paciente.setId(pessoaencontrar.getId());
-                                    paciente.setContarPessoas(paciente.getContarPessoas()-1);
-                                    hospital.getListaPessoas().replace(paciente.getId(), paciente);
-                                    hospital.addPaciente((Paciente) paciente);
-                                } while(anonascimento.hasNextInt()); //verifica se é inteiro; se não for, vai repetir outra vez para inserir int.
+                                System.out.println("Insere o ano de nascimento de um infetado: ");
+                                Pessoa paciente = new Paciente(anonascimento.nextInt());
+                                paciente.setId(pessoaencontrar.getId());
+                                paciente.setContarPessoas(paciente.getContarPessoas() - 1);
+                                hospital.getListaPessoas().replace(paciente.getId(), paciente);
+                                hospital.addPaciente((Paciente) paciente);
                             }
                         }
                         break;
                     case "EnfermeiroChefe":
                         if(gerador.nextBoolean()){
                             Scanner anonascimento = new Scanner(System.in);
-                            do{
-                                System.out.println("Insere o ano de nascimento de um infetado: ");
-                                Pessoa paciente = new Paciente(anonascimento.nextInt());
-                                paciente.setId(pessoaencontrar.getId());
-                                paciente.setContarPessoas(paciente.getContarPessoas()-1);
-                                hospital.getListaPessoas().replace(paciente.getId(), paciente);
-                                hospital.addPaciente((Paciente) paciente);
-                            } while(anonascimento.hasNextInt()); //verifica se é inteiro; se não for, vai repetir outra vez para inserir int.
+                            System.out.println("Insere o ano de nascimento de um infetado: ");
+                            Pessoa paciente = new Paciente(anonascimento.nextInt());
+                            paciente.setId(pessoaencontrar.getId());
+                            paciente.setContarPessoas(paciente.getContarPessoas() - 1);
+                            hospital.getListaPessoas().replace(paciente.getId(), paciente);
+                            hospital.addPaciente((Paciente) paciente);
                         }
                         break;
                     default:
