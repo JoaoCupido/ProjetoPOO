@@ -139,7 +139,7 @@ public class MenuMedico {
                     System.out.println("O ID foi encontrado, mas não pertence a um médico.");
                 }
                 else if(mediconalista.getKey().equals(medicoid) && mediconalista.getValue().getClass().getSimpleName().equals("Medico")){
-                    if(!((Medico)mediconalista.getValue()).getAuxiliaresAcompanhados().isEmpty() && !((Medico)mediconalista.getValue()).getEspecialistasAcompanhados().isEmpty()){
+                    if(((Medico)mediconalista.getValue()).getAuxiliaresAcompanhados().isEmpty() && ((Medico)mediconalista.getValue()).getEspecialistasAcompanhados().isEmpty()){
                         System.out.println("O médico não tem nenhum enfermeiro-auxiliar nem enfermeiro-especialista a acompanhar no diagnóstico.");
                         break;
                     }
@@ -197,9 +197,11 @@ public class MenuMedico {
                         for(int i = 0; i < ((Medico)mediconalista.getValue()).getlistaPacientesAlta().length; i++){
                             if(((Medico)mediconalista.getValue()).getlistaPacientesAlta()[i]!=null){
                                 for(Map.Entry<String,Pessoa> pacientenalista : hospital.getListaPessoas().entrySet()){
-                                    if(((Medico)mediconalista.getValue()).getlistaPacientesAlta()[i].equals((Paciente)pacientenalista.getValue()) && pacientenalista.getKey().equals(pacienteid)){
-                                        diagnosticoPaciente(hospital,(Medico)mediconalista.getValue(),(Paciente)pacientenalista.getValue());
-                                        break;
+                                    if(pacientenalista.getValue().getClass().getSimpleName().equals("Paciente")){
+                                        if((((Medico)mediconalista.getValue()).getlistaPacientesAlta()[i]).equals((Paciente)pacientenalista.getValue()) && pacientenalista.getKey().equals(pacienteid)){
+                                            diagnosticoPaciente(hospital,(Medico)mediconalista.getValue(),(Paciente)pacientenalista.getValue());
+                                            break;
+                                        } 
                                     }
                                 }
                             }
