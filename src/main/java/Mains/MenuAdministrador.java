@@ -415,9 +415,7 @@ public class MenuAdministrador {
                             }
                             if(pacientepossivelinfetar){
                                 if(gerador.nextBoolean()){
-                                    Scanner anonascimento = new Scanner(System.in);
-                                    System.out.println("Insere o ano de nascimento de um infetado: ");
-                                    Pessoa paciente = new Paciente(anonascimento.nextInt());
+                                    Pessoa paciente = new Paciente(((Paciente)pessoaencontrar).getAnoNascimento());
                                     paciente.setId(pessoaencontrar.getId());
                                     paciente.setContarPessoas(paciente.getContarPessoas() - 1);
                                     hospital.getListaPessoas().replace(paciente.getId(), paciente);
@@ -427,9 +425,7 @@ public class MenuAdministrador {
                         }
                         else{
                             if(gerador.nextBoolean()){
-                                Scanner anonascimento = new Scanner(System.in);
-                                System.out.println("Insere o ano de nascimento de um infetado: ");
-                                Pessoa paciente = new Paciente(anonascimento.nextInt());
+                                Pessoa paciente = new Paciente(((Paciente)pessoaencontrar).getAnoNascimento());
                                 paciente.setId(pessoaencontrar.getId());
                                 paciente.setContarPessoas(paciente.getContarPessoas() - 1);
                                 hospital.getListaPessoas().replace(paciente.getId(), paciente);
