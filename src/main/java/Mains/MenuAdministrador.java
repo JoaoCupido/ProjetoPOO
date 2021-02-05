@@ -336,9 +336,10 @@ public class MenuAdministrador {
         else{
             int tamanho = hospital.getPedidos().size();
             int n = 2;
-            while(n>0){
+            while(n>0 && !(hospital.getPedidos().isEmpty())){
                 hospital.addPessoa(hospital.getPedidos().get(tamanho-1));
                 hospital.removerPedido(hospital.getPedidos().get(tamanho-1));
+                n -=1;
             }
         }
     }
